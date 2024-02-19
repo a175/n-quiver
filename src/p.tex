@@ -1,4 +1,44 @@
 % !TeX root =./x2.tex
 % !TeX program = pdfpLaTeX
 \chapter{準備}
+\section{Intoroduction}
+Quiver の表現の直既約分解に関する諸々について解説することが目標である.
+
+\subsection{Quiver (矢筒, 箙(えびら))とは?}
+(ラベルのついた)点(頂点)と,
+それらを結ぶ(ラベルのついた)矢印(辺)
+を集めたもの(図形)をQuiverと呼ぶ.
+\begin{example}
+  \begin{align*}
+    \bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+\end{example}
+\begin{example}
+  \begin{align*}
+    \bullet_{1} 
+  \end{align*}
+\end{example}
+\begin{example}
+  \begin{align*}
+    \bullet_{1}
+    \genfrac{}{}{0pt}{}{\xrightarrow{\alpha}}{\xrightarrow{\beta}}
+    \bullet_{2}
+  \end{align*}
+\end{example}
+\begin{example}
+  \begin{align*}
+    \genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
+  \end{align*}
+\end{example}
+
+集合と写像の言葉で定義するなら,
+\begin{enumerate}
+\item $Q_0$: 集合 (頂点の集合)
+\item $Q_1$: 集合 (辺(矢印)の集合)
+\item $s\colon Q_1\to Q_0$: 写像. ($s(\alpha)$は辺$\alpha$の始点\footnote{start, source})
+\item $t\colon Q_1\to Q_0$: 写像. ($t(\alpha)$は辺$\alpha$の終点\footnote{teminal, target})
+\end{enumerate}
+の4つのデータの組$(Q_0,Q_1,s,t)$がQuiver.
+(多重辺, セルフループを許す有向グラフという言い方もする)
+
 \sectionX{章末問題}
