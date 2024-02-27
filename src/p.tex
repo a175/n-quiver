@@ -1,5 +1,8 @@
 % !TeX root =./x2.tex
 % !TeX program = pdfpLaTeX
+
+\newcommand{\ZU}{\marginpar{図を挿入}}
+
 \chapter{準備}
 \section{Intoroduction}
 Quiver の表現の直既約分解に関する諸々について解説することが目標である.
@@ -9,16 +12,19 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
 それらを結ぶ(ラベルのついた)矢印(辺)
 を集めたもの(図形)をQuiverと呼ぶ.
 \begin{example}
+  \ZU
   \begin{align*}
     \bullet_{1} \xrightarrow{\alpha} \bullet_{2}
   \end{align*}
 \end{example}
 \begin{example}
+  \ZU
   \begin{align*}
     \bullet_{1} 
   \end{align*}
 \end{example}
 \begin{example}
+  \ZU
   \begin{align*}
     \bullet_{1}
     \genfrac{}{}{0pt}{}{\xrightarrow{\alpha}}{\xrightarrow{\beta}}
@@ -26,6 +32,7 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
   \end{align*}
 \end{example}
 \begin{example}
+  \ZU
   \begin{align*}
     \genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
   \end{align*}
@@ -40,5 +47,305 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
 \end{enumerate}
 の4つのデータの組$(Q_0,Q_1,s,t)$がQuiver.
 (多重辺, セルフループを許す有向グラフという言い方もする)
+
+
+\begin{example}
+  \ZU
+  $Q_0=\Set{1,2,3}$,
+  $Q_1=\Set{\alpha,\beta,\gamma,\delta}$,
+  $s(\alpha)=1$,
+  $t(\alpha)=2$,
+  $s(\beta)=1$,
+  $t(\beta)=2$,
+  $s(\gamma)=2$,
+  $t(\gamma)=1$,
+  $s(\delta)=1$,
+  $t(\delta)=1$
+  は次の図で表されるものとなる.
+\end{example}
+
+
+
+\subsection{quiverの表現とは?}
+$Q=(Q_0,Q_1,s,t)$をquiverとする.
+\begin{enumerate}
+\item
+  $x\in Q_0$に対し,
+  ($K$-)線型空間(有限次元ベクトル空間, 有限生成加群)$V_x$,
+\item
+  $\alpha\in Q_1$に対し,
+  ($K$-)線型写像$f_\alpha\colon V_{s(\alpha)} \to V_{t(\alpha)}$
+  が対応しているとき,
+  その対応$(V_\bullet,f_\bullet)$を$Q$び
+  ($K$-線型空間のカテゴリーへの)表現と呼ぶ.
+\end{enumerate}
+
+\begin{example}
+  \ZU
+  $Q_0=\Set{1}$,
+  $Q_1=\Set{\alpha}$,
+  $s(\alpha)=1$,
+  $t(\alpha)=1$
+  とする.
+  このとき,
+  例えば,
+  \begin{align*}
+    V_1=\CC^2&\\
+    f_\alpha\colon V_1&\to V_1\\
+    \begin{pmatrix}a\\b\end{pmatrix}
+      &\mapsto
+    \begin{pmatrix}b\\a\end{pmatrix}
+  \end{align*}
+  とすれば,
+  $(V_\bullet,f_\bullet)$は$Q$の表現である.
+  例えば,
+  \begin{align*}
+    V_1=\CC^2&\\
+    f'_\alpha\colon V_1&\to V_1\\
+    \begin{pmatrix}a\\b\end{pmatrix}
+      &\mapsto
+    \begin{pmatrix}a\\0\end{pmatrix}
+  \end{align*}
+  とすれば,
+  $(V_\bullet,f'_\bullet)$は$Q$の表現である.
+\end{example}
+
+\begin{example}
+  \ZU
+  $Q_0=\Set{1,2}$,
+  $Q_1=\Set{\alpha}$,
+  $s(\alpha)=1$,
+  $t(\alpha)=2$
+  とする.
+  このとき,
+  例えば,
+  \begin{align*}
+    V_1=\CC^2&\\
+    V_2=\CC^2&\\
+    f_\alpha\colon V_1&\to V_2\\
+    \begin{pmatrix}a\\b\end{pmatrix}
+      &\mapsto
+    \begin{pmatrix}b\\a\end{pmatrix}
+  \end{align*}
+  とすれば,
+  $(V_\bullet,f_\bullet)$は$Q$の表現である.
+  例えば,
+  \begin{align*}
+    V_1=\CC^2&\\
+    V_2=\CC^2&\\
+    f'_\alpha\colon V_1&\to V_2\\
+    \begin{pmatrix}a\\b\end{pmatrix}
+      &\mapsto
+    \begin{pmatrix}a\\0\end{pmatrix}
+  \end{align*}
+  とすれば,
+  $(V_\bullet,f'_\bullet)$は$Q$の表現である.
+\end{example}
+
+\begin{example}
+  \ZU
+  $Q_0=\Set{1,2}$,
+  $Q_1=\Set{\alpha,\beta}$,
+  $s(\alpha)=s(\beta)=1$,
+  $t(\alpha)=t(\alpha)=2$
+  とする.
+  このとき,
+  例えば,
+  \begin{align*}
+    V_1=\CC^2&\\
+    V_2=\CC^2&\\
+    f_\alpha\colon V_1&\to V_2\\
+    \begin{pmatrix}a\\b\end{pmatrix}
+      &\mapsto
+    \begin{pmatrix}a\\0\end{pmatrix}\\
+    f_\beta\colon V_1&\to V_2\\
+    \begin{pmatrix}a\\b\end{pmatrix}
+      &\mapsto
+    \begin{pmatrix}0\\b\end{pmatrix}
+  \end{align*}
+  とすれば,
+  $(V_\bullet,f_\bullet)$は$Q$の表現である.
+\end{example}
+
+\begin{example}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  このとき,
+  \begin{enumerate}
+  \item 各$x\in Q_0$に対して, $V_x=\Set{0}$ ($0$)
+  \item 各$\alpha\in Q_1$に対して,
+    \begin{align*}
+      f_\alpha = \underline{0} \colon \Set{0} &\to \Set{0}\\
+      0&\mapsto 0
+    \end{align*}
+  \end{enumerate}
+  とすると
+  $(V_\bullet,f_\bullet)$は$Q$の表現である.
+  これを零表現と呼ぶ.
+\end{example}
+
+\begin{example}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $(V_\bullet, f_\bullet)$,
+  $(U_\bullet, g_\bullet)$
+  を$Q$の表現とする.
+  \begin{enumerate}
+  \item
+    $x\in Q_0$に対し,
+    $W_\bullet=V_x\oplus U_x$
+  \item
+    $\alpha\in Q_1$に対し, 
+    \begin{align*}
+      h_\alpha = f_\alpha\oplus g_\alpha \colon
+      V_{s(\alpha)}\oplus U_{s(\alpha)}&\to
+      V_{t(\alpha)}\oplus U_{t(\alpha)}
+      \\
+      (v,u)&\mapsto (f_\alpha(v),g_\alpha(u))
+    \end{align*}
+  \end{enumerate}
+    とおくと,
+    $(W_\bullet,h_\bullet)$は$Q$の表現である.
+    これを,
+    $(V_\bullet, f_\bullet)$と
+    $(U_\bullet, g_\bullet)$の
+    直和とよび,
+    $(V_\bullet, f_\bullet)\oplus (U_\bullet, g_\bullet)$
+    で表す.
+  \end{example}
+
+\subsection{Quiverの表現の構造について}
+
+$Q$をquiverとする.
+$Q$の表現$(V_\bullet,f_\bullet)$を理解するにはどうしたらよいか?
+
+一つの答え:
+より``小さい''表現に分解する.
+\begin{align*}
+  (V_\bullet,f_\bullet)=
+  (V'_\bullet,f'_\bullet)\oplus (V''_\bullet,f''_\bullet)
+\end{align*}
+みたいに直和に分解していく.
+$\dim(V'_x),\dim(V''_x)\leq\dim(V_x)$
+なのだから, $V'_x$, $V''_x$の方が簡単に違いない.
+分解を頑張ってこれ以上分解できないところまで分解して,
+\begin{align*}
+(V_\bullet,f_\bullet)=
+  (V^{(1)}_\bullet,f^{(1)}_\bullet)\oplus (V^{(2)}_\bullet,f^{(2)}_\bullet)
+  \oplus \cdots
+\end{align*}
+と書けたら,
+`これ以上分解できない表現達' (直既約表現)
+がわかっていれば,
+$(V_\bullet,f_\bullet)$
+はわかったことになるはず.
+(直既約表現の方が$(V_\bullet,f_\bullet)$よりも簡単なはず.)
+
+問題:
+\begin{enumerate}
+\item
+  \label{basicquestion:ks}
+  表現は直既約表現の直和として書けるのか?
+\item
+  \label{basicquestion:ar}
+  与えられた直既約表現の直和に分解する方法(アルゴリズム)?
+\item
+  \label{basicquestion:gt}
+  $Q$の直既約表現は何種類くらいあるのか?
+  有限個/無限個?
+\end{enumerate}
+
+\Cref{basicquestion:ks}について:
+Krull-Schimidtの定理 ($\CC$上ならOK)
+
+\Cref{basicquestion:ar}について:
+(非アルゴリズム的\footnote{無限回のステップからなる手続きを含む}な)
+一般論としてはAuslander--Reiten理論が知られている.
+アルゴリズム的な方法は一部のQuiverに対して与えられている.
+(行列の行基本変形の延長)
+
+\Cref{basicquestion:gt}について:
+Gabrielの定理.
+次は同値:
+\begin{enumerate}
+\item
+  $Q$の直既約表現が有限種類しかない.
+\item
+  $Q$は(simply laced) Dynkin図形に向きをつけたものののみ.
+\end{enumerate}
+ただし, (simply laced) Dynkin図形とは,
+\ZU
+$A_n$, $D_n$, $E_n$
+のこと.
+
+
+実は, \ZU
+\begin{itemize}
+\item
+  $Q=\genfrac{}{}{0pt}{}{\bullet}{\circlearrowleft}$のときには,
+  $Q$の表現の直既約分解はジョルダン標準形を求めることに相当する.
+\item
+  $Q=\bullet\to\bullet$のときには,
+  $Q$の表現の直既約分解はランク標準形(スミス標準形)($\begin{pmatrix}E&O\\O&O\end{pmatrix}$)を求めることに相当する.
+\end{itemize}
+これらについては前半で復習する.
+
+
+\subsection{$A_n$型quiverの表現と関連する話}
+\subsubsection{$A_n$型quiverの表現について}
+\begin{align*}
+Q=\bullet_1\xrightarrow{\alpha_1}\bullet_2\xrightarrow{\alpha_2}\bullet_3\cdots \bullet_{n-1}\xrightarrow{\alpha_{n-1}}\bullet_n
+\end{align*}
+について考える.
+$1\leq i\leq j\leq n$に対し,
+区間表現$I[i,j]=(V_\bullet,f_\bullet)$を次で定める:
+\begin{enumerate}
+\item
+  $x\in Q_0$に対し,
+  \begin{align*}
+    V_x=
+    \begin{cases}
+      \CC & (i\leq x \leq j)\\
+      \Set{0} & (\text{otherwise}).
+    \end{cases}
+  \end{align*}
+\item
+  $\alpha_k\in Q_1$に対し,
+  \begin{align*}
+    f_{\alpha_k}=
+    \begin{cases}
+      \underline{0}\colon\Set{0} \to \Set{0} & (1\leq k < i-1)\\
+      \underline{0}\colon\Set{0} \to \CC & (k=i-1)\\
+      \id_\CC\colon\CC \to \CC & (i\leq k < j)\\
+      \underline{0}\colon\CC \to \Set{0} & (k=j)\\
+      \underline{0}\colon\Set{0} \to \Set{0} & (j+1\leq k).
+    \end{cases}
+  \end{align*}  
+\end{enumerate}
+つまり,
+\begin{align*}
+  I[i,j]\colon
+  0\xrightarrow{\underline{0}}
+  0\xrightarrow{\underline{0}} \cdots \xrightarrow{\underline{0}}
+  0\xrightarrow{\underline{0}}
+  \underbrace{\CC}_{i} \xrightarrow{\id_\CC}
+  \CC \xrightarrow{\id_\CC} \cdots
+  \underbrace{\CC}_{j} \xrightarrow{\underline{0}}
+  0\xrightarrow{\underline{0}}
+  0\xrightarrow{\underline{0}} \cdots \xrightarrow{\underline{0}}
+  0.
+\end{align*}
+実は,
+$Q$の既約表現は, $I[i,j]$ ($1\leq i\leq j \leq n$)で
+(同型を除き)全部であることが知られている.
+つまり, $Q$の表現$(V_\bullet,f_\bullet)$は,
+\begin{align*}
+  (V_\bullet,f_\bullet)
+  &=I[i_1,j_1]\oplus\cdots\oplus I[i_N,j_N]
+\end{align*}
+という形で書ける.
+
+\subsubsection{Persistent Homology}
+ホモロジー:
+\ZU
+
 
 \sectionX{章末問題}
