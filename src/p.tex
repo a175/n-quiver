@@ -345,7 +345,162 @@ $Q$の既約表現は, $I[i,j]$ ($1\leq i\leq j \leq n$)で
 
 \subsubsection{Persistent Homology}
 ホモロジー:
+幾何的対象 $\leadsto$ ホモロジー群
 \ZU
+`穴の個数'を調べる道具.
 
 
-\sectionX{章末問題}
+
+時刻$t$に合わせて変化する図形$X_t$を考える.
+\begin{example}
+  \label{ex:fundex:ph}
+\ZU
+中心は動かず時刻に合わせて
+半径が大きくなる円たち.
+\end{example}
+
+各時刻でのホモロジー$H(X_t)$が得られる.
+つまり時刻$t$に合わせて変化するホモロジー群(ベクトル空間)
+$\leadsto$ パーシステントホモロジー.
+
+\Cref{ex:fundex:ph}の様に
+\begin{align*}
+  t\leq t' \implies X_t \subset X_{t'}
+\end{align*}
+という条件をみたいしていたら,
+\begin{align*}
+  X_t&\injectto X_{t'}\\
+  x&\mapsto x
+\end{align*}
+から, 線型写像
+\begin{align*}
+  H(X_{t'})&\to H(X_t)\\
+\end{align*}
+を作ることができる,
+よって,
+$t_1<\cdots <t_n$を取ると,
+\begin{align*}
+  H(X_1)\to H(X_2)\to\cdots
+\end{align*}
+という$A_n$型の表現が得られる.
+この表現の直既約分解
+\begin{align*}
+  I[i_1,j_1]\oplus \cdots\oplus I[i_N,j_N]
+\end{align*}
+を考える.
+$I[i_k,j_k]$に含まれるホモロジー類は,
+時刻$i_k$に現れ時刻$j_k$に消えることをがわる.
+標語的な言い方をすると,
+`時刻$i_k$で生まれ
+時刻$j_k$で消える
+``穴''がある'
+ことを意味している.
+したがって,
+`穴' の個数だけでなく,
+その生存時刻(大きさ)がわかる.
+
+$\leadsto$
+\begin{itemize}
+\item
+  この情報を使ってデータ解析をするというのが流行っている.
+\item
+  例えば, $t$だけではなく,
+  2つのパラメータ$(t,s)$などで変化する図形のときには,
+  別のQuiverの表現.
+\end{itemize}
+
+
+\subsubsection{Leschets性}
+多項式環$A=K[x_1,\ldots,x_n]$を考える.
+$f\in A$ 
+に現れる単項式が$k$次のもののみであるとき,
+$f$は$k$次斉次多項式であるという.
+$A_k$で$k$次斉次多項式を集めた集合とする.
+(ただし, $0\in A_k$と約束する.)
+
+$f_1,\ldots, f_n\in A$
+とし, いずれも斉次多項式であるとする.
+$I$を$f_1,\ldots, f_n$で生成されるイデアルとする.
+つまり
+$I=\Braket{f_1,\ldots,f_m}_{A}$
+とする.
+剰余環
+$R=A/I$
+について考える.
+$R_k=\Set{\overline{f}\in R|f\in A_k}$
+とおくと,
+$R_i$は$K$-線型空間であり,
+$R=\bigoplus_{k=0}^{infty}A_k$
+と書ける.
+一般には$R$は無限次元の$K$-線型空間であるが,
+ここでは,
+アルチン環であることを仮定し,
+$R=\bigoplus_{k=0}^{s}A_k$, $A_s\neq \Set{0}$
+と書けるとする.
+
+$\overline{l}\in R_1$とする.
+このとき,
+\begin{align*}
+  \times \overline{l}\colon
+R_{k}&\to R_{k+1}  \\
+\overline{f}&\mapsto \overline{fl}
+\end{align*}
+は$K$-線型写像であり,
+\begin{align*}
+  R_0\xrightarrow{\times\overline{l}}
+  R_1\xrightarrow{\times\overline{l}}
+  R_1\xrightarrow{\times\overline{l}}\cdots
+\end{align*}
+という表現が得られる.
+この表現の直既約分解
+\begin{align*}
+  I[i_1,j_1]\oplus \cdots\oplus I[i_N,j_N]
+\end{align*}
+として,
+\begin{align*}
+  i_1\leq i_2 \leq \cdots\leq i_N \leq j_N \leq j_{N-1} \leq \cdots \leq j_1
+\end{align*}
+となっているとき,
+$\overline{l}$は$R$の広義Lefschetz元と呼ぶ.
+
+Lefschetz元を持つ環は,
+コホモロジー環
+などと言った面白い環であることが多い.
+
+与えられた環がLefschetz元を持つか?
+もしもつなら, Lefschetz元は何か?
+という問題を考えることができる.
+
+\section{今後の予定}
+\begin{enumerate}
+\item 線型代数の復習---行列の標準形 (証明はせず事実のみを紹介する)
+  \begin{enumerate}
+  \item 行基本変形
+  \item 対角化
+  \item Jordan標準形
+  \end{enumerate}
+\item Quiverの表現に関する概説---直既約表現
+  \begin{enumerate}
+  \item 定義
+  \item $\bullet \to \bullet$の表現
+  \item $\genfrac{}{}{0pt}{}{\bullet}{\circlearrowleft}$の表現
+  \item finite type/infinite fype
+  \end{enumerate}
+\item
+  関連する話題.
+  \begin{enumerate}
+  \item パーシステントホモロジー
+  \item Lefschetz性
+  \end{enumerate}
+\end{enumerate}
+
+目標は
+\begin{enumerate}
+\item 行列の対角化とかができる.
+\item Quiverという言葉を知っている.
+\end{enumerate}
+ARはやらない.
+
+\tableofcontents
+\chapter{行列についての復習}
+\section{行列の用語と記号}
