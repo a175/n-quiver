@@ -1057,3 +1057,201 @@ $\dim(\KKK(A))$を方程式$A\xx=\bb$の解の自由度と呼ぶ.
 \end{definition}
 
 \section{固有値}
+$A$を$n$次正方行列,
+$\lambda\in K$とする.
+\begin{align*}
+  V(A,\lambda)=\Set{\xx|A\xx=\lambda\xx}
+\end{align*}
+とおく.
+\begin{align*}
+  A\xx=\lambda\xx
+  &\iff A\xx-\lambda\xx=\zzero\\
+  &\iff (A-\lambda E_n)\xx=\zzero\\
+\end{align*}
+であるので,
+\begin{align*}
+  V(A,\lambda)=\KKK(A-\lambda E_n)
+\end{align*}
+である.
+よって$V(A,\lambda)$は線型空間である.
+\begin{definition}
+$\dim(V(A,\lambda))>0$のとき,
+$\lambda$を$A$の固有値と呼ぶ.
+  また$V(A,\lambda)$を
+  固有値$\lambda$に属する固有空間
+  と呼び,
+  $\vv\in V(A,\lambda)$を,
+  固有値$\lambda$に属する固有ベクトルと呼ぶ.
+\end{definition}
+\begin{example}
+  \begin{align*}
+    \begin{pmatrix}0&1\\1&0\end{pmatrix}
+      \begin{pmatrix}1\\-1\end{pmatrix}
+        =
+      \begin{pmatrix}-1\\1\end{pmatrix}
+        =
+      -\begin{pmatrix}1\\-1\end{pmatrix}
+  \end{align*}
+  であるので,
+  \begin{align*}
+    \begin{pmatrix}1\\-1\end{pmatrix}
+      \in
+      V(\begin{pmatrix}0&1\\1&0\end{pmatrix},-1)
+  \end{align*}
+  である.
+\end{example}
+\begin{remark}
+  与えられたベクトル$\xx$が$A$の固有ベクトルかどうか調べるには,
+  $A\xx$を計算して$\lambda\xx$となっていることをいえば良い.
+
+  固有ベクトルを見つけるにはどうしたらよいかについて以下では考える.
+  $A$の固有値$\lambda$を探すということは,
+  $\dim(V(A,\lambda))>0$となる$\lambda$を探すということである.
+  つまり
+  $\dim(\KKK(A-\lambda E_n))>0$となる$\lambda$を探すということである.
+  これは
+  $\det(A-\lambda E_n)=0$となる$\lambda$を探せばよい.
+  したがって, $\lambda$に関する方程式
+  $\det(A-\lambda E_n)=0$を解くことで固有値が求められる.
+  
+  $\lambda_1,\ldots,\lambda_n$が$A$の固有値であるときに,
+  $V(A,\lambda_i)$を決定するには,
+  $(A-\lambda_i)\xx=\zzero$という$\xx$に関する方程式の解を求めれば良い.
+\end{remark}
+
+\begin{prop}
+  $A$を$n$次正方行列とし,
+  $\det(A-\lambda E_n)=0$の解を (重複度を込めて)
+  $\lambda_1,\ldots,\lambda_n$とする.
+  \begin{enumerate}
+    \item $\tr(A)=\lambda_1+\cdots+\lambda_n$.
+    \item $\det(A)=\lambda_1\cdots\lambda_n$.
+    \item 次が同値:
+      \begin{enumerate}
+      \item $A$が正則.
+      \item 0は$A$の固有値ではない.
+      \end{enumerate}
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+  $A$を$n$次正方行列とする.
+  \begin{enumerate}
+    \item $\lambda\neq\lambda'\implies V(A,\lambda)\cap V(A,\lambda')=\Set{\zzero}$.
+    \item $\lambda\neq\lambda', \vv \in V(A,\lambda),\ww\in V(A,\lambda')\implies (\vv,\ww)$は一次独立.
+    \item $n$個の異なる固有値をもつなら, 固有値$\lambda$に対し, $\dim(V(A,\lambda))=1$.
+    \item $\lambda$が, $\det(A-\lambda E_n)=0$の$m$重根ならば,
+      $1\leq \dim(V(A,\lambda))\leq m$.
+  \end{enumerate}
+  
+\end{prop}
+
+
+\section{正方行列の対角化}
+\begin{definition}
+  $A$を$n$次正方行列とする.
+  次の条件を満たすとき,
+  $A$は$P$で対角化できるという:
+  \begin{enumerate}
+  \item 次の条件を満たす正則行列$P$と$\lambda_1,\ldots, \lambda_n\in K$が存在する:
+    \begin{align*}
+      P^{-1}AP=\diag(\lambda_1,\ldots,\lambda_n).
+    \end{align*}
+  \end{enumerate}
+\end{definition}
+\begin{problem}
+    どんな正方行列なら対角化できるのか?
+\end{problem}
+\begin{problem}
+  対角化可能な行列$A$に対し,
+  どうやって$P$と$\lambda_1,\ldots,\lambda_n$を見つけるか?
+\end{problem}
+\begin{prop}
+  $A$を$n$次正方行列とし,
+    $\lambda_1,\ldots, \lambda_n\in K$とする.
+    このとき, 以下は同値.
+    \begin{enumerate}
+    \item
+      \label{diagonalizable:item:1}
+      $P$が以下を満たす:
+      \begin{enumerate}
+      \item $P$は正則.
+      \item $P^{-1}AP=\diag(\lambda_1,\ldots,\lambda_n)$.
+      \end{enumerate}
+    \item $P=(\xx_1|\cdots|\xx_n)$とすると, 以下の条件を満たす:
+      \label{diagonalizable:item:2}
+      \begin{enumerate}
+      \item $(\xx_1,\ldots,\xx_n)$は一次独立.
+      \item $\xx_i$は固有値$\lambda_i$に属する$A$の固有ベクトル.
+      \end{enumerate}
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+  \paragraph{\Cref{diagonalizable:item:1}$\implies$\Cref{diagonalizable:item:2}}
+  $P=(\xx_1|\cdots|\xx_n)$とする.
+  $P^{-1}AP=\diag(\lambda_1,\ldots,\lambda_n)$であるので,
+  $AP=P\diag(\lambda_1,\ldots,\lambda_n)$.
+  一方,
+  \begin{align*}
+    AP&=A(\xx_1|\cdots|\xx_n)=(A\xx_1|\cdots|A\xx_n),\\
+    P\diag(\lambda_1,\ldots,\lambda_n)&=(\xx_1|\cdots|\xx_n)\diag(\lambda_1,\ldots,\lambda_n)=
+    (\lambda_1\xx_1|\cdots|\lambda_n\xx_n).
+  \end{align*}
+  したがって, $A\xx_i=\lambda_i$.
+
+  \paragraph{\Cref{diagonalizable:item:2}$\implies$\Cref{diagonalizable:item:1}}
+  $(\xx_1,\ldots,\xx_n)$は一次独立であるので,
+  $P=(\xx_1|\cdots|\xx_n)$は正則である.
+  また,
+  \begin{align*}
+    AP&=A(\xx_1|\cdots|\xx_n)\\
+    &=(A\xx_1|\cdots|A\xx_n)\\
+    &=(\lambda_1\xx_1|\cdots|\lambda_n\xx_n)\\
+    &=(\xx_1|\cdots|\xx_n)\diag(\lambda_1,\ldots,\lambda_n)\\
+    &=P\diag(\lambda_1,\ldots,\lambda_n).
+  \end{align*}
+  であるので,
+  $P^{-1}AP=\diag(\lambda_1,\ldots,\lambda_n)$.
+\end{proof}
+
+\begin{remark}
+固有ベクトルによって対角化可能性がわかる.
+\end{remark}
+
+\begin{prop}
+  $A$を$n$次正方行列とし,
+  $\det(A-\lambda E_n)=\prod_{i=1}^l(x-\lambda_i)^{m_i}$とする.
+  このとき, 以下は同値:
+  \begin{enumerate}
+  \item
+    $A$は対角化可能.
+  \item
+    $n$個の1次独立な$A$の固有ベクトルが存在する.
+  \item
+    $\CC^n=V(A,\lambda_1)\oplus\cdots\oplus V(A,\lambda_l)$.
+  \item
+    すべての$i$で, $\dim(V(A,\lambda_i))=m_i$.
+  \item
+    $\rank(A-\lambda_i E_n)=n=m_i$
+  \end{enumerate}
+\end{prop}
+
+\begin{remark}
+  $A$が対角化可能なら得られる対角行列は成分の並び替えを除いてただ一つ.
+\end{remark}
+
+特別な正方行列のクラスは対角化可能であることがすぐわかる.
+\begin{example}
+  $n$個の異なる固有値をもつ$n$次正方行列は, 対角化可能である.
+\end{example}
+\begin{example}
+  $n$次実対称行列は, 固有値は実数である.
+  また,
+  成分が実数である$n$個の固有ベクトルを互いに直交するようにとれる.
+  したがって,
+  直交行列で対角化可能である.
+  対角化に使う直交行列は, 一旦$n$固有ベクトルを求めてから,
+  Gram--Schumidtの直交化法により直交化することで求めることができる.
+\end{example}
+
+\section{Jordan標準形}
