@@ -504,3 +504,556 @@ ARはやらない.
 \tableofcontents
 \chapter{行列についての復習}
 \section{行列の用語と記号}
+  %% $I$, $J$を有限集合とする.
+  %% 各$i\in I$, $j\in J$に対し
+  %% $a_{i,j}$が定まっているとき,
+  %% $(a_{i,j})_{i\in I,j\in J}$
+  %% のように書き,
+  %% $(a_{i,j})_{i\in I,j\in J}$を
+  %% $(I,J)$-行列と呼ぶ
+  %% $(I,J)$-行列
+  %% $(a_{i,j})_{i\in I,j\in J}$に対し,
+  %% $I$を行のindex,
+  %% $J$を列のindexと呼ぶ.
+  %% つまり,
+  %% $(\quad)_{i\in I,j\in J}$の様に,
+  %% カッコの外側に書かれている部分で,
+  %% 最初に指定されている集合が行のindexであり,
+  %% 最後に指定されている集合が列のindexである. 
+  
+  %% 通常は,　
+  %% $I=\Set{1,\ldots,m}$,
+  %% $J=\Set{1,\ldots,n}$
+  %% というような集合を考える.
+  %% 正の整数は通常の大小関係で全順序となっているので,
+  %% その順序に従い表の様に,
+  %% \begin{align*}
+  %%   \begin{pmatrix}
+  %%     a_{1,1}&a_{1,2}&\cdots &a_{1,n}\\
+  %%     a_{2,1}&a_{2,2}&\cdots &a_{2,n}\\
+  %%     \vdots&\vdots &&\vdots\\
+  %%     a_{m,1}&a_{m,2}&\cdots &a_{m,n}
+  %%   \end{pmatrix}
+  %% \end{align*}
+  %% の様に書くことで行列を表すこともある.
+
+  %% $(a_{i,j})_{i\in I,j\in I}$
+  %% という行列を正方行列と呼ぶ.
+  %% つまり,
+  %% 行のindexと列のindexが`同じ'ときに正方行列と呼ぶ.
+$K$を体とする.
+また, $K^\times=\Set{x\in K|x\neq 0}$とする.
+
+$i\in\Set{1,\ldots,m}$,
+$j\in\Set{1,\ldots,n}$
+に対し,
+$a_{i,j}\in K$
+が与えられているとする.
+このとき,
+\begin{align*}
+    \begin{pmatrix}
+      a_{1,1}&a_{1,2}&\cdots &a_{1,n}\\
+      a_{2,1}&a_{2,2}&\cdots &a_{2,n}\\
+      \vdots&\vdots &&\vdots\\
+      a_{m,1}&a_{m,2}&\cdots &a_{m,n}
+    \end{pmatrix}
+\end{align*}
+のように$a_{i,j}$を並べたものを$(m,n)$行列と呼ぶ.
+\begin{align*}
+  (a_{i,j})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}
+\end{align*}
+のように表すこともある.
+この表記では,
+$(\quad)_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}$
+のカッコの外側にある添字に添字の情報が書かれている.
+上段が, 行を表す添字は$i$であり$1,\ldots,m$の値を取りうることを
+表している.
+下段が, 列を表す添字は$j$であり$1,\ldots,n$の値を取りうることを
+表している.
+
+$(m,n)$-行列$A$,
+$(m,l)$-行列$B$
+を
+並べて作った$(m,n+l)$-行列を
+\begin{align*}(A|B)\end{align*}
+で表す.
+
+$(m,n)$-行列$A$,
+$(l,n)$-行列$B$
+を
+並べて作った$(m,n+l)$-行列を
+\begin{align*}
+  \begin{pmatrix}A\\\hline B\end{pmatrix}\end{align*}
+で表す.
+
+$(n,1)$-行列
+\begin{align*}
+  \aaa=
+  \begin{pmatrix}a_1
+  \\\vdots\\a_n
+  \end{pmatrix}
+\end{align*}
+を$n$-項列ベクトルと呼ぶ.
+
+$(1,n)$-行列
+\begin{align*}
+  \aaa=
+  \begin{pmatrix}a_1
+  &\cdots&a_n
+  \end{pmatrix}
+\end{align*}
+を$n$-項行ベクトルと呼ぶ.
+
+$(m,n)$-行列を
+$m$-項列ベクトルを並べたものとして表したもの
+\begin{align*}
+  A=\begin{pmatrix}\aaa_1|\aaa_2|\cdots|\aaa_n\end{pmatrix}
+\end{align*}
+を列ベクトル表示と呼ぶ.
+
+
+$(m,n)$-行列を
+$n$-項行ベクトルを並べたものとして表したもの
+\begin{align*}
+  A=\begin{pmatrix}\aaa_1\\\hline \aaa_2\\\hline\vdots\\\hline\aaa_n\end{pmatrix}
+\end{align*}
+を行ベクトル表示と呼ぶ.
+
+\begin{align*}
+  \delta_{i,j}=
+  \begin{cases}
+    1&(i=j)\\
+    0&(i\neq j)
+  \end{cases}
+\end{align*}
+とおきKronecker's deltaと呼ぶ.
+
+$(k,l)$-成分のみ1で他は0である$(m,n)$-行列を行列単位と呼び
+\begin{align*}
+  B_{m,n;k,l}
+  &=(\delta_{i,k}\delta_{j,l})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}\\
+\end{align*}
+とおく.
+
+\begin{align*}
+  \ee^{(n)}_j
+  &=B_{n,1;j,1}\\
+  &=\begin{pmatrix}
+  0\\\vdots\\0\\1\\0\\\vdots\\0
+  \end{pmatrix}
+\end{align*}
+とおき, $n$-項基本ベクトルと呼ぶ.
+
+\begin{align*}
+  O_{m,n}&=(0)_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}\\
+  &=
+  \begin{pmatrix}
+    0&\cdots&0\\
+    \vdots&&\vdots\\
+    0&\cdots&0
+  \end{pmatrix}
+\end{align*}
+とおき,
+零行列と呼ぶ.
+
+
+\begin{align*}
+  \diag(a_1,\ldots,a_n)
+  &=(a_i\delta_{i,j})_{\substack{i=1,\ldots,n\\j=1,\ldots,n}}\\
+  &=\begin{pmatrix}a_1\ee^{(n)}_1|\cdots|a_n\ee^{(n)}_n\end{pmatrix}\\
+  &=\begin{pmatrix}
+  a_1&&0\\
+  &\ddots&\\
+  0&&a_n
+  \end{pmatrix}
+\end{align*}
+とおき,
+($a_1,\ldots,a_n$を対角成分とする)対角行列と呼ぶ.
+
+\begin{align*}
+  E_n&=
+  \diag(\underbrace{1,\ldots,1}_{n})\\
+  &=(\delta_{i,j})_{\substack{i=1,\ldots,n\\j=1,\ldots,n}}\\
+  &=\begin{pmatrix}\ee^{(n)}_1|\cdots|\ee^{(n)}_n\end{pmatrix}\\
+  &=\begin{pmatrix}
+  1&&0\\
+  &\ddots&\\
+  0&&1
+  \end{pmatrix}
+\end{align*}
+とおき,
+単位行列と呼ぶ.
+
+
+
+$A_1,\ldots,A_n$を正方行列とする.
+\begin{align*}
+  A_1\oplus\cdots\oplus A_n
+  &=\Diag(A_1,\ldots,A_n)\\
+  &=
+  \left(
+  \begin{array}{c|c|c|c}
+    A_1&&&\\\hline
+    &A_2&&\\\hline
+    &&\ddots&\\\hline
+    &&&A_n
+    \end{array}
+  \right)
+\end{align*}
+とおき,
+ブロック対角行列と呼ぶ.
+
+
+$A=(a_{i,j})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}$
+に対し,
+$\transposed{A}=(a_{j,i})_{\substack{i=1,\ldots,n\\j=1,\ldots,m}}$
+とおき,
+$A$の転置と呼ぶ.
+\begin{remark}
+  $\transposed{(AB)}=\transposed{B}\transposed{A}$.
+\end{remark}
+
+\begin{definition}
+  以下の条件を満たすとき,
+  $B$が$A$の逆行列であるという:
+  \begin{enumerate}
+  \item $BA=E_n$.
+  \item $AB=E_n$.
+  \end{enumerate}
+  $A$の逆行列が存在するとき,
+  $A$は正則であるという.
+\end{definition}
+\begin{remark}
+  正則行列$A$に対し,
+  その逆行列はただ一つである.
+  そこで, $A$の逆行列を$A^{-1}$と書く.
+\end{remark}
+\begin{remark}
+  $A$と$B$がともに正則であるとき,
+  $AB$も正則であり,
+  $(AB)^{-1}=B^{-1}A^{-1}$である.
+\end{remark}
+\begin{definition}
+  $n$次正方行列
+  $A=(a_{i,j})_{\substack{i=1,\ldots,n\\j=1,\ldots,n}}$
+  について考え,
+  $A$の$1$行目と$j$列目を忘れて得られる$(n-1)$次正方行列を
+  $A^{(1,j)}$とおく.
+  \begin{align*}
+    \det(A)=
+    \begin{cases}
+      \sum_{1=1}^n (-1)^{j+1}a_{1,j}\det (A^{(1,j)})& (n\leq 1)\\
+      1& (n=0)
+    \end{cases}
+  \end{align*}
+  と定義し, $\det(A)$を$A$の行列式と呼ぶ.
+\end{definition}
+
+\begin{remark}
+  $A$が正則であることと$\det(A)$が逆数をもつことは同値である.
+\end{remark}
+
+\begin{remark}
+  $n$次正方行列$A$, $B$と$\alpha\in K$に対し,
+  \begin{align*}
+    \det(AB)&=\det(A)\det(B)\\
+    \det(\alpha A)&=\alpha^n\det(A).
+  \end{align*}
+\end{remark}
+
+\begin{definition}
+  $n$次正方行列
+  $A=(a_{i,j})_{\substack{i=1,\ldots,n\\j=1,\ldots,n}}$
+  に対し,
+  \begin{align*}
+    \tr(A)=a_{1,1}+a_{2,2}+\cdots+a_{n,n}
+  \end{align*}
+  と定義し, $\tr(A)$を$A$のトレースと呼ぶ.
+\end{definition}
+\begin{remark}
+  $n$次正方行列$A$, $B$と$\alpha\in K$に対し,
+  \begin{align*}
+    \tr(A+B)&=\tr(A)+\tr(B),\\
+    \tr(\alpha A)&=\alpha\tr(A),\\
+    \tr(AB)&=\tr(BA).
+  \end{align*}
+\end{remark}
+
+\section{基本変形と標準形}
+\begin{definition}
+  $A=(a_{i,j})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}$
+  を$(m,n)$-行列とする.
+  $i\in\Set{1,\ldots,m}$に対し,
+  \begin{align*}
+    p_i&=\min\Set{j|a_{i,j}\neq 0} \cup \Set{\infty}
+  \end{align*}
+  とおく.
+  $p_i\neq \infty$のとき,
+  $(i,p_i)$を$A$の$i$行目のピボットと呼ぶことにする.
+
+  次の条件を満たすとき, $A$は行階段行列であるという:
+  \begin{enumerate}
+  \item $p_1<p_2<\cdots<p_n$.
+      (ただし, $\infty<\infty$とする.)
+  \end{enumerate}
+  次の条件を満たすとき, $A$は被約行階段行列であるという:
+  \begin{enumerate}
+  \item $A$は行階段行列.
+  \item $p_i\neq \infty\implies$ $p_i$列目は, $i$行目は$1$, それ以外は$0$.
+  \end{enumerate}
+\end{definition}
+\begin{definition}
+  $A=(a_{i,j})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}$
+  を$(m,n)$-行列とする.
+  
+  $\transposed{A}$が行階段行列であるとき,
+  $A$は列階段行列であるという.
+
+  $\transposed{A}$が被約行階段行列であるとき,
+  $A$は被約列階段行列であるという.
+\end{definition}
+
+\begin{definition}
+  \begin{align*}
+    \left(
+    \begin{array}{c|c}
+      E_r&O_{r,n-r}\\
+      O_{m-r,r}&O_{m-r,n-r}
+    \end{array}
+    \right)
+  \end{align*}
+  という$(m,n)$行列を階数$r$の階数標準形と呼ぶ.
+\end{definition}
+\begin{remark}
+  階数$r$の階数標準形は,
+  被約行階段行列でもあり,
+  被約列階段行列でもある.
+\end{remark}
+
+\begin{definition}
+  $n$次正方行列$F_n(i;c)$, $G_n(i,j;c)$, $H_n(i,j)$を以下で定義する:
+  \begin{enumerate}
+    \item $i\in\Set{1,\ldots,n}$, $c\in K^\times$に対し,
+      \begin{align*}
+        F_n(i;c)&=E_n+(c-1)B_{n,n}(i,i)\\
+        &=\diag(1,\ldots,1,\underbrace{c}_{i},1,\ldots,1).
+      \end{align*}
+    \item $i,j\in\Set{1,\ldots,n}$, $i\neq j$, $c\in K$に対し,
+      \begin{align*}
+        G_n(i,j;c)&=E_n+cB_{n,n}(i,j).
+      \end{align*}
+    \item $i,j\in\Set{1,\ldots,n}$, $i\neq j$に対し,
+      \begin{align*}
+        H_n(i,j)&=E_n+B_{n,n}(i,j)+B_{n,n}(j,i)-B_{n,n}(i,i)-B_{n,n}(j,j).
+      \end{align*}
+  \end{enumerate}
+  これらを($K$上の)基本行列と呼ぶ.
+\end{definition}
+
+\begin{prop}
+  基本行列は正則であり,
+  \begin{align*}
+    F_n(i;c)^{-1}&=F_n(i;c^{-1}),\\
+    G_n(i,j;c)^{-1}&=G_n(i,j;-c),\\
+    H_n(i,j)^{-1}&=H_n(i,j).
+  \end{align*}
+\end{prop}
+
+\begin{prop}
+  基本行列の転置も基本行列であり
+  \begin{align*}
+    \transposed{F_n(i;c)}&=F_n(i;c),\\
+    \transposed{G_n(i,j;c)}&=G_n(j,i;c),\\
+    \transposed{H_n(i,j)}&=H_n(i,j).
+  \end{align*}
+\end{prop}
+
+\begin{prop}
+  \label{prop:rowtranformation}
+  $A$を$(n,l)$行列とする.
+  \begin{enumerate}
+  \item $F_n(i;c)A$は``$A$の$i$行目を$c$倍して''得られる行列.
+  \item  $G_n(i,j;c)A$は``$A$の$i$行目に$j$行目の$c$倍を加えて''得られる行列.
+  \item $H_n(i,j)A$は``$A$の$i$行目と$j$行目を入れ替えて''得られる行列.
+  \end{enumerate}
+\end{prop}
+\begin{remark}
+  \Cref{prop:rowtranformation}の操作は行基本変形と呼ばれる.
+\end{remark}
+
+
+\begin{prop}
+  \label{prop:coltranformation}
+  $A$を$(m,n)$行列とする.
+  \begin{enumerate}
+  \item $AF_n(i;c)$は``$A$の$i$列目を$c$倍して''得られる行列.
+  \item  $AG_n(i,j;c)$は``$A$の$j$列目に$i$列目の$c$倍を加えて''得られる行列.
+  \item $AH_n(i,j)$は``$A$の$i$列目と$j$列目を入れ替えて''得られる行列.
+  \end{enumerate}
+\end{prop}
+\begin{remark}
+  \Cref{prop:coltranformation}の操作は列基本変形と呼ばれる.
+\end{remark}
+
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  $A$に($0$回以上, 有限回の)行基本変形を行うことで,
+  被約行階段行列に変形できる.
+\end{prop}
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  次の条件を満たす$m$次正則行列$P$が存在する:
+  \begin{enumerate}
+    \item $PA$は被約行階段行列.
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  $P$, $P'$は$m$次正則行列でり,
+  $PA$, $P'A$は被約行階段行列であるとする.
+  このとき, $PA=P'A$.
+\end{prop}
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  $A$に($0$回以上, 有限回の)列基本変形を行うことで,
+  被約行階段行列に変形できる.
+\end{prop}
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  次の条件を満たす$n$次正則行列$P$が存在する:
+  \begin{enumerate}
+    \item $AP$は被約列階段行列.
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  $P$, $P'$は$n$次正則行列でり,
+  $AP$, $AP'$は被約列階段行列であるとする.
+  このとき, $AP=AP'$.
+\end{prop}
+
+\begin{prop}
+  $A$を$(m,n)$-行列とする.
+  $A$に($0$回以上, 有限回の)行基本変形と列基本変形を行うことで,
+  階数標準形に変形できる.
+\end{prop}
+\begin{definition}
+  $A$を$(m,n)$-行列とする.
+  $A$に($0$回以上, 有限回の)行基本変形と列基本変形を行うことで,
+  階数$r$の階数標準形に変形できるとき,
+  $A$の階数は$r$であるといい,
+  $\rank(A)=r$と書く.
+\end{definition}
+
+\begin{remark}
+  $(m,n)$-行列全体を考える.
+  \begin{enumerate}
+  \item
+    行基本変形で移り合う行列を`同じ'と思う同値関係を考える.
+    つまり正則行列$P$に対して$PA\sim A$とする.
+    このとき, 被約行階段行列全体は完全代表系になっている.
+  \item
+    列基本変形で移り合う行列を`同じ'と思う同値関係を考える.
+    つまり正則行列$Q$に対して$AQ\sim A$とする.
+    このとき, 被約列階段行列全体は完全代表系になっている.
+   \item
+    行基本変形と列基本変形で移り合う行列を`同じ'と思う同値関係を考える.
+    つまり正則行列$P$, $Q$に対して$PAQ\sim A$とする.
+    このとき, 階数標準形全体は完全代表系になっている.
+  \end{enumerate}
+\end{remark}
+
+\section{連立一次方程式}
+$A$を$(m,n)$-行列とし, $\zzero=O_{m,1}$とする.
+$n$個の未知数
+\begin{align*}
+  \xx=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}
+\end{align*}
+に関する方程式
+\begin{align*}
+  A\xx=\zzero
+\end{align*}
+を斉次連立一次方程式と呼んだ.
+この方程式の解の集合を$\KKK(A)$と書くことにする.
+つまり,
+\begin{align*}
+  \KKK(A)=\Set{\vv|A\vv=\zzero}
+\end{align*}
+である.
+\begin{prop}
+  $(m,n)$-行列$A$に対し,
+  $\KKK(A)$はベクトル空間であり,
+  $\dim(\KKK(A))=n-\rank(A)$.
+\end{prop}
+\begin{cor}
+  $n$-次正方行列$A$に対し,
+  以下は同値:
+  \begin{enumerate}
+  \item $\KKK(A)=\Set{\zzero}$.
+  \item $\dim(\KKK(A))=0$.
+  \item $\rank(A)= n$.
+  \item $\det(A)\neq 0$.
+  \end{enumerate}
+\end{cor}
+
+\begin{cor}
+  $n$-次正方行列$A$に対し,
+  以下は同値:
+  \begin{enumerate}
+  \item $\KKK(A)\neq \Set{\zzero}$.
+  \item $\dim(\KKK(A))>0$.
+  \item $\rank(A)< n$.
+  \item $\det(A)= 0$.
+  \end{enumerate}
+\end{cor}
+
+\begin{remark}
+  どのような$A$に対しても,
+  $\zzero\in\KKK(A)$であるので,
+  $\zzero$を$A\xx=\zzero$の非自明な解と呼ぶ.
+\end{remark}
+
+
+$A$を$(m,n)$-行列とし, $\bb$を$m$-項列ベクトルとする.
+$n$個の未知数
+\begin{align*}
+  \xx=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}
+\end{align*}
+に関する方程式
+\begin{align*}
+  A\xx=\bb
+\end{align*}
+を連立一次方程式と呼んだ.
+$A$を連立一次方程式の係数行列と呼ぶ.
+$(A|\bb)$を連立一次方程式の拡大係数行列と呼ぶ.
+この方程式の解の集合を$\FFF(A,\bb)$と書くことにする.
+つまり,
+\begin{align*}
+  \FFF(A,\bb)=\Set{\vv|A\vv=\bb}.
+\end{align*}
+
+\begin{prop}
+  正則行列$P$に対し,
+\begin{align*}
+  \FFF(A,\bb)=\FFF(PA,P\bb).
+\end{align*}
+\end{prop}
+
+\begin{prop}
+  $\vv_0$が$A\vv_0=\bb$を満たすとする.
+  このとき,
+  \begin{align*}
+    \FFF(A,\bb)=\Set{\vv_0+\vv|\vv\in \KKK(A)}.
+  \end{align*}
+\end{prop}
+\begin{definition}
+$\dim(\KKK(A))$を方程式$A\xx=\bb$の解の自由度と呼ぶ.
+\end{definition}
+
+\section{固有値}
