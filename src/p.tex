@@ -1671,3 +1671,526 @@ $V$の加法に関する零元を$0_V$と書く.
 \end{remark}
 
 \section{表現行列}
+$V$, $W$を$K$-ベクトル空間とし,
+$(v_1,\ldots,v_n)$を$V$の基底,
+$(w_1,\ldots,w_m)$を$W$の基底とする.
+また,
+$\varphi\colon V\to W$を$K$-線型写像とする.
+このとき,
+\begin{align*}
+  \pi^{-1}_{w_1,\ldots,w_m}\circ \varphi \circ \pi_{v_1,\ldots,v_m}
+  \colon K^n\to K^m
+\end{align*}
+は線形写像である. 
+$K^n$から$K^m$への線型写像なので
+\begin{align*}
+  \mu_{A}=\pi^{-1}_{w_1,\ldots,w_m}\circ \varphi \circ \pi_{v_1,\ldots,v_m}
+\end{align*}
+を満たす$(m,n)$行列がとれる.
+図式で表すと
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[d,"\pi_{v_1,\ldots,v_m}"'] \arrow[r,dashed,"\mu_A"]&K^m\\
+    V \arrow[r,"\varphi"] &W \arrow[u,"\pi^{-1}_{w_1,\ldots,w_m}"']
+  \end{tikzcd}
+\end{center}
+となる.
+この行列$A$を,
+$\varphi$の
+基底$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$
+に関する表現行列と呼ぶ.
+\begin{remark}
+表現行列$A=(a_{i,j})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}$の$(i,j)$-成分$a_{i,j}$は,
+\begin{align*}
+  \pi^{-1}_{w_1,\ldots,w_m}\circ \varphi \circ \pi_{v_1,\ldots,v_m}
+  (\ee_j^{(n)})
+\end{align*}
+を$K^m$の基底$(\ee_1^{(m)},\ldots,\ee_m^{(m)})$の線型結合として書いた際の
+$\ee_i^{(m)}$の係数である.
+つまり,
+$\varphi(v_j)$を
+$W$の基底$(w_1,\ldots,w_m)$の線型結合として書いた際の
+$w_i$の係数である.
+\end{remark}
+\begin{prop}
+$V$, $W$, $U$を$K$-ベクトル空間とし,
+$(v_1,\ldots,v_n)$を$V$の基底,
+$(w_1,\ldots,w_m)$を$W$の基底,
+$(u_1,\ldots,u_l)$を$U$の基底とする.
+このとき, 線型写像
+$\varphi\colon V\to W$,
+$\psi\colon W\to U$について考える.
+$\varphi$の
+$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$に関する表現行列を$A$
+とし,
+$\psi$の
+$(w_1,\ldots,w_m)$,
+$(u_1,\ldots,u_l)$に関する表現行列を$B$
+とする.
+このとき,
+$\psi\circ \varphi$の
+$(v_1,\ldots,v_n)$,
+$(u_1,\ldots,u_l)$に関する表現行列は$BA$
+となる.
+図式で表すと
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[d,"\pi_{v_1,\ldots,v_m}"'] \arrow[r,dashed,"\mu_A"]&
+    K^m \arrow[d,shift left,"\pi_{w_1,\ldots,w_m}"] \arrow[r,dashed,"\mu_A"]&K^l\\
+    V \arrow[r,"\varphi"] &
+    W \arrow[u,shift left,"\pi^{-1}_{w_1,\ldots,w_m}"] \arrow[r,"\psi"] &W \arrow[u,"\pi^{-1}_{u_1,\ldots,u_k}"']
+  \end{tikzcd}
+\end{center}
+となる.
+\end{prop}
+
+\begin{prop}
+  $A$が$\varphi$の表現行列であるとき,
+  \begin{align*}
+    \rank(A)=\dim(Img(\mu_A))=\dim(\Img(\varphi)).
+  \end{align*}
+\end{prop}
+
+\section{基底の取り替え}
+$V$を$K$-ベクトル空間とし,
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+を$V$の基底とする.
+このとき, $K$線型写像
+\begin{align*}
+\pi_{v'_1,\ldots,v'_n}^{-1}\circ \pi_{v_1,\ldots,v_n}\colon K^n\to K^n
+\end{align*}
+に対し,
+$\mu_{P}=\pi_{v'_1,\ldots,v'_n}^{-1}\circ \pi_{v_1,\ldots,v_n}$
+を満たす$n$次正方行列$P$がとれる.
+図式で表すと,
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rr,dashed,"\mu_{P}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"']&& K^n \\
+    & K^m \arrow[ur,"\pi_{v'_1,\ldots,v'_n}^{-1}"']
+  \end{tikzcd}
+\end{center}
+となる.
+$\pi_{v'_1,\ldots,v'_n}^{-1}\circ \pi_{v_1,\ldots,v_n}$は全単射なので,
+$P$は正則.
+$P$を
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への
+基底の変換行列と呼ぶ.
+
+
+基底を取り替えたとき表現行列がとうなるかは,
+基底の変換行列により記述できる.
+\begin{prop}
+$V$を$K$-ベクトル空間とし,
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+を$V$の基底とする.
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への基底の変換行列を$P$とする.
+また,
+$W$を$K$-ベクトル空間とし,
+$(w_1,\ldots,w_m)$,
+$(w'_1,\ldots,w'_m)$
+を$W$の基底とする.
+$(w_1,\ldots,w_m)$から
+$(w'_1,\ldots,w'_m)$への基底の変換行列を$Q$とする.
+$\varphi\colon V\to W$を線型写像とし,
+$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$
+に関する
+$\varphi$の表現行列を$A$とし,
+$(v'_1,\ldots,v'_n)$
+$(w'_1,\ldots,w'_m)$
+に関する
+$\varphi$の表現行列を$A'$とする.
+このとき,
+\begin{align*}
+\mu_{A'}=\mu_Q\circ \mu_A \circ \mu_{P^{-1}}
+\end{align*}
+となるので,
+\begin{align*}
+  A'&=Q A P^{-1}
+\end{align*}
+となる.
+図式で表すと
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"]\arrow[dd,"\mu_{P}"']&&& K^n\arrow[dd,"\mu_{Q}"] \\
+    & V \arrow[r,"\varphi"']&W\arrow[rd,"\pi_{v'_1,\ldots,v'_n}^{-1}"']\arrow[ru,"\pi_{v_1,\ldots,v_n}^{-1}"]&\\
+    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\pi_{v'_1,\ldots,v'_n}"']&&& K^n 
+  \end{tikzcd}
+\end{center}
+となる.
+\end{prop}
+
+\section{直和}
+
+$n$次元ベクトル空間$V$と,
+$m$次元ベクトル空間$W$から
+$n+m$次元ベクトル空間を作ることを考える.
+例えば,
+\begin{align*}
+  K^n&=\Set{\xx=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}|x_i\in K}\\
+  K^m&=\Set{\yy=\begin{pmatrix}y_1\\\vdots\\y_m\end{pmatrix}|y_i\in K}
+\end{align*}
+に対して,
+\begin{align*}
+  K^{n+m}
+  &=\Set{\begin{pmatrix}\xx\\\hline\yy\end{pmatrix}|\xx\in K^n,\yy\in K^m}\\
+  &=\Set{\begin{pmatrix}x_1\\\vdots\\x_n\\y_1\\\vdots\\y_m\end{pmatrix}|x_i,y_i\in K}
+\end{align*}
+を作るといようなことを行いたい.
+
+\subsection{内部直和}
+
+$U$を$K$ベクトル空間とし,
+$V,W\subset U$とする.
+また$V$, $W$も($U$と同じ演算で)$K$ベクトル空間となっているとする.
+このようなとき, $V$と$W$は$U$の部分空間であるという.
+このとき,
+$V$と$W$の
+\begin{align*}
+  V+W&=\Set{v+w|v\in V, w\in W}\\
+  V\cap W&=\Set{v|v\in V\text{ かつ }w\in W}
+\end{align*}
+とおく.
+このとき, $V+W$も$V\cap W$も$K$ベクトル空間.
+一般に
+\begin{align*}
+  \dim(V+W)=\dim(V)+\dim(W)-\dim(V\cap W)
+\end{align*}
+である.
+したがって,
+\begin{align*}
+  \dim(V+W)\leq \dim(V)+\dim(W)
+\end{align*}
+であり,
+\begin{align*}
+  V\cap W=\Set{0_U}\iff \dim(V+W)=\dim(V)+\dim(W)
+\end{align*}
+である.
+\begin{definition}
+  $V\cap W=\Set{0_U}$であるとき,
+  $V+W$を$V$と$W$の(内部)直和と呼び,
+  $V\oplus W$と書く.  
+\end{definition}
+\begin{prop}
+  $V$, $W$を$U$の部分空間とし,
+  $V\cap W=\Set{0_U}$であるとする.
+  $(v_1,\ldots,v_n)$を$V$の基底,
+  $(w_1,\ldots,w_m)$を$W$の基底とすると,
+  $(v_1,\ldots,v_n,w_1,\ldots,w_m)$は
+  $V\oplus W$の基底である.
+\end{prop}
+
+
+
+\subsection{外部直和}
+
+
+$V,W$を$K$ベクトル空間とし,
+\begin{align*}
+  X&=\Set{(v,w)|v\in V,w\in W}
+\end{align*}
+は,
+\begin{align*}
+  (v,w)+(v',w')&=(v+v',w+w')\\
+  \alpha(v,w)&=(\alpha v,\alpha w)
+\end{align*}
+という和とスカラー倍でベクトル空間となる.
+またその次元は, $\dim(V)$と$\dim(W)$である.
+このベクトル空間を$V$と$U$の(外部)直和と呼び,
+$V\oplus W$で表す.
+
+\begin{prop}
+  $V$, $W$を$U$の部分空間とし,
+  $V\cap W=\Set{0_V}$であるとする.
+  $V$と$W$の外部直和を$X$,
+  $V$と$W$の内部直和を$Y$とする.
+  このとき,
+  \begin{align*}
+    \shazo{\varphi}
+          {X}{Y}
+          {(v,w)}{v+w}
+  \end{align*}
+  は同型写像である.
+\end{prop}
+
+\begin{prop}
+  $V$, $W$を$K$ベクトル空間とし,
+  $(v_1,\ldots,v_n)$を$V$の基底,
+  $(w_1,\ldots,w_m)$を$W$の基底とする.
+  このとき,
+  $((v_1,0_W),\ldots,(v_n,0_W),(0_V,w_1),\ldots,(0_V,w_1))$は
+  外部直和$V\oplus W$の基底である.
+\end{prop}
+
+
+\subsection{写像の直和}
+線型写像
+$\varphi\colon V\to W$,
+$\varphi'\colon V'\to W'$,
+が与えられたとき,
+\begin{align*}
+  \shazo{\varphi\oplus\varphi'}
+        {V\oplus V'}{W\oplus W'}
+        {(v,v')}{\varphi(v)+\varphi'(v')}
+\end{align*}
+とおき, $\varphi$と$\varphi'$の直和と呼ぶ.
+$\varphi\oplus\varphi'$は線型写像である.
+
+
+$(v_1,\ldots,v_n)$を$V$の基底,
+$(v'_1,\ldots,v'_{n'})$を$V'$の基底とする.
+このとき,
+$\hat v_i=(v_i,0_{V'})$,
+$\check v'_i=(0_V,v'_i)$とおけば,
+$(\hat v_1,\ldots,\hat v_n,\check v'_1,\ldots, \check v'_{n'})$
+は$V\oplus V'$の基底である.
+同様に,
+$(w_1,\ldots,w_m)$を$W$の基底,
+$(w'_1,\ldots,w'_{m'})$を$W'$の基底
+とする.
+このとき,
+$\hat w_i=(w_i,0_{W'})$,
+$\check w'_i=(0_W,w'_i)$とおけば,
+$(\hat w_1,\ldots,\hat w_m,\check w'_1,\ldots, \check w'_{m'})$
+は$W\oplus W'$の基底である.
+また,
+$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$
+に関する
+線型写像$\varphi$の表現行列を$A$とし,
+$(v'_1,\ldots,v'_{n'})$
+$(w'_1,\ldots,w'_{m'})$
+に関する
+線型写像$\varphi'$の表現行列を$A'$とする.
+このとき,
+線型写像$\varphi\oplus\varphi'$の
+$(\hat v_1,\ldots,\hat v_n,\check v'_1,\ldots, \check v'_{n'})$,
+$(\hat w_1,\ldots,\hat w_m,\check w'_1,\ldots, \check w'_{m'})$
+に関する表現行列は
+\begin{align*}
+  \Diag(A,A')
+\end{align*}
+となる.
+$\Diag(A,A')$を$A\oplus A'$と書くこともある.
+
+\chapter{ここまでのまとめ}
+\section{行列の変形と標準形}
+
+$PA=B$を満たす正則行列$P$が存在するとき,
+$A\sim B$とする.
+このとき$\sim$は同値関係である.
+$(m,n)$行列$A$に対し,
+$A\sim S$を満たす被約行階段行列$S$がただ一つ存在する.
+つまり,
+\begin{align*}
+  \Set{A\text{: $(m,n)$行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+  \Set{S\text{: $(m,n)$-被約行階段行列}}
+\end{align*}
+を取れる.
+
+$AP=B$を満たす正則行列$P$が存在するとき,
+$A\sim B$とする.
+このとき$\sim$は同値関係である.
+$(m,n)$行列$A$に対し,
+$A\sim S$を満たす被約列階段行列$S$がただ一つ存在する.
+つまり,
+\begin{align*}
+  \Set{A\text{: $(m,n)$行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+  \Set{S\text{: $(m,n)$-被約列階段行列}}
+\end{align*}
+を取れる.
+
+$QAP=B$を満たす正則行列$P$, $Q$が存在するとき,
+$A\sim B$とする.
+このとき$\sim$は同値関係である.
+$(m,n)$行列$A$に対し,
+$A\sim S$を満たす階数標準形がただ一つ存在する.
+つまり,
+\begin{align*}
+  \Set{A\text{: $(m,n)$行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+  \Set{\left(\begin{array}{c|c}E_r&O_{r,n-r}\\\hline O_{m-r,r}&O_{m-r,n-r}\end{array}\right)
+    |r\in\Set{0,1,\ldots,\min(m,n)}}
+\end{align*}
+を取れる.
+$r$が動く範囲は有限なので有限集合である.
+階数標準形
+\begin{align*}
+  \left(\begin{array}{c|c}E_r&O_{r,n-r}\\\hline O_{m-r,r}&O_{m-r,n-r}\end{array}\right)
+\end{align*}
+は,
+\begin{align*}
+  E_r\oplus O_{m-r,n-r}=\underbrace{E_1\oplus \cdots \oplus E_1}_{n}\oplus O_{m-r,n-r}
+\end{align*}
+と書くこともできる.
+
+$P^{-1}AP=B$を満たす正則行列$P$が存在するとき,
+$A\sim B$とする.
+このとき$\sim$は同値関係である.
+$A$が対角化可能であるとすると,
+$\diag(\lambda_1,\ldots,\lambda_n)\sim A$
+を満たす$\lambda_1,\ldots,\lambda_n$がとれる.
+$\lambda_1,\ldots,\lambda_n$は並び替えを除いてただひと組存在する.
+例えば,
+考える行列として実対称行列のみを考えるならば
+\begin{align*}
+  \Set{A\text{: $n$次実対称行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+  \Set{\diag(\lambda_1,\ldots,\lambda_n)|\lambda_1\geq \cdots\geq \lambda_n\in \RR}/\sim
+\end{align*}
+が取れる.
+より一般には,
+$A$を$n$次正方行列とすると,
+$A=J(n_1,\lambda_1)\oplus\cdots\oplus J(n_l,\lambda_l)$
+をみたす$(n_1,\lambda_1),\ldots,(n_l,\lambda_l)$
+が存在する.
+これらは, 並び替えを除いてただ一組存在する.
+\begin{align*}
+  \Set{A\text{: $n$次正方行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+\Set{J(n_1,\lambda_1)\oplus\cdots\oplus J(n_l,\lambda_l)|\lambda_i\in \RR,n_i\in\ZZ_{>0},n_1+\cdots+n_l=n}
+\end{align*}
+の部分集合をとれる.
+固有値が異なると異なる同値類となるので,
+無限個の代表が必要となる.
+
+\section{}
+$A$を$(m,n)$行列とし,
+\begin{align*}
+  \shazo{\mu_A}
+        {K^n}{K^m}
+        {\xx}{A\xx}
+\end{align*}
+とおくと$\varphi_A$は線形写像である.
+また, 与えられた線型写像$\varphi\colon K^n\to K^m$に対し,
+$\varpi=\mu_A$を満たす$A$がただ一つ定まる.
+$V$をベクトル空間とし,
+$(v_1,\ldots,v_n)$を$V$の基底とする.
+\begin{align*}
+  \shazo{\pi_{(v_1,\ldots,v_n)}}
+        {K^n}{V}
+        {\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}{a_1v_1+\cdots+a_nv_n}
+\end{align*}
+とおく.
+$(v_1,\ldots,v_n)$を$V$の基底であることと,
+$\pi_{(v_1,\ldots,v_n)}$が全単射であることは同値であるので,
+$\varepsilon_{(v_1,\ldots,v_n)}$を
+$\pi_{(v_1,\ldots,v_n)}$の逆写像として定義する.
+つまり
+\begin{align*}
+  \shazo{\varepsilon_{(v_1,\ldots,v_n)}}
+        {V}{K^n}
+        {a_1v_1+\cdots+a_Nv_n}{\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}
+\end{align*}
+とおく.
+
+$V$を$K$-ベクトル空間とし,
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+を$V$の基底とする.
+このとき, 図式
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rr,dashed,"\mu_{P}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"']&& K^n \\
+    & K^m \arrow[ur,"\pi_{v'_1,\ldots,v'_n}^{-1}"']
+  \end{tikzcd}
+\end{center}
+を可換にする正則$P$が存在する.
+この$P$を
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への基底の変換行列と呼んだ.
+
+$\varphi\colon V\to W$を線型写像とし,
+$(v_1,\ldots,v_n)$
+を$V$の基底とし,
+$(w_1,\ldots,w_m)$
+を$W$の基底とする.
+このとき, 図式
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[d,"\pi_{v_1,\ldots,v_m}"'] \arrow[r,dashed,"\mu_A"]&K^m\\
+    V \arrow[r,"\varphi"] &W \arrow[u,"\varepsilon_{w_1,\ldots,w_m}"']
+  \end{tikzcd}
+\end{center}
+を可換にする行列$A$ただ一つ存在する.
+この行列$A$を,
+$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$
+に関する$\varphi$の表現行列と呼んだ.
+
+線型写像
+$\varphi\colon V\to W$
+に対し,
+\begin{align*}
+  [\varphi]=
+  \Set{A|\begin{array}{c}
+\text{$(v_1,\ldots,v_n)$: $V$の基底}\\
+\text{$(w_1,\ldots,w_m)$: $W$の基底}\\
+\text{$(v_1,\ldots,v_n)$, $(w_1,\ldots,w_m)$に関する$\varphi$の表現行列}
+  \end{array}}
+\end{align*}
+とおく.
+このとき, $[\varphi]$はどのような集合か考えてみる.
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+を$V$の基底とし,
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への基底の変換行列を$P$とする.
+また,
+$(w_1,\ldots,w_m)$,
+$(w'_1,\ldots,w'_m)$
+を$W$の基底とし
+$(w_1,\ldots,w_m)$から
+$(w'_1,\ldots,w'_m)$への基底の変換行列を$Q$とする.
+$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$
+に関する
+$\varphi$の表現行列を$A$とし,
+$(v'_1,\ldots,v'_n)$
+$(w'_1,\ldots,w'_m)$
+に関する
+$\varphi$の表現行列を$A'$とする.
+このとき,
+図式
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"]\arrow[dd,"\mu_{P}"']&&& K^n\arrow[dd,"\mu_{Q}"] \\
+    & V \arrow[r,"\varphi"']&W\arrow[rd,"\varepsilon_{v'_1,\ldots,v'_n}"']\arrow[ru,"\varepsilon_{v_1,\ldots,v_n}^{-1}"]&\\
+    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\pi_{v'_1,\ldots,v'_n}"']&&& K^n 
+  \end{tikzcd}
+\end{center}
+が可換となるので, $B=PAQ^{-1}$と書けることがわかる.
+したがって
+$A$が$\varphi$のある基底に関する表現行列であるとすると,
+\begin{align*}
+  [\varphi]=\Set{PAQ|\text{$P$, $Q$:正則行列}}
+\end{align*}
+である.
+$A,B\in [\varphi]$となるとき,
+$A\sim B$とすると, $\sim$は同値関係である.
+\begin{align*}
+  \Set{A\text{: $(m,n)$行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+  \Set{E_r\oplus O_{m-r,n-r}|r\in\Set{0,1,\ldots,\min(m,n)}}
+\end{align*}
+がとれる.
