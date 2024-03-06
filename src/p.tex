@@ -3,7 +3,11 @@
 
 \newcommand{\ZU}{\marginpar{図を挿入}}
 
+
 \chapter{準備}
+\section{Known}
+$K$, 体
+
 \section{Intoroduction}
 Quiver の表現の直既約分解に関する諸々について解説することが目標である.
 
@@ -1334,4 +1338,336 @@ $A$は対角化できるときもあれば,
   よって$A^k$をJordan標準形を通して計算することができる.
 \end{remark}
 
+\chapter{ベクトル空間と線型写像}
+\section{数ベクトル空間と行列}
+$K$を体とする.
+\begin{align*}
+  K^n&=\Set{\xx|\text{$\xx$は$n$項数ベクトル}}\\
+  &=\Set{\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}|x_i\in K}
+\end{align*}
+とおき, $n$次元数ベクトル空間と呼ぶ.
+
+$\xx=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\in K^n$に対し,
+\begin{align*}
+  \xx=x_1\ee_1^{(n)}+\cdots+x_n\ee_n^{(n)}
+\end{align*}
+とかける.
+また, この表記は一意的である.  つまり,
+\begin{align*}
+  x_1\ee_1^{(n)}+\cdots+x_n\ee_n^{(n)}
+  =x'_1\ee_1^{(n)}+\cdots+x'_n\ee_n^{(n)}
+  \implies x_1=x'_1,\ldots,x_n=x'_n.
+\end{align*}
+\begin{definition}
+  以下の条件を満たすとき,
+  写像$\varphi\colon K^n\to K^m$は($K$-)線型であるという:
+  \begin{enumerate}
+    \item $\forall \xx,\yy\in K^n$, $\varphi(\xx+yy)=\varphi(\xx)+\varphi(yy)$.
+    \item $\forall \xx\in K^n$, $\forall \alpha\in K$, $\varphi(\alpha\xx)=\alpha\varphi(\xx)$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  線型写像$\varphi\colon K^n\to K^m$に対し,
+  \begin{align*}
+    \Img(\varphi)&=\Set{\varphi(\xx)|\xx\in K^n},\\
+    \Ker(\varphi)&=\Set{\xx\in K^m|\varphi(\xx)=\zzero}
+  \end{align*}
+  とおき, それぞれ, $\varphi$の像, $\varphi$の核と呼ぶ.
+\end{definition}
+
+\begin{example}
+  $\id_{K^n}\colon K^n\to K^n$は線型.
+\end{example}
+\begin{example}
+  $A$を$(m,n)$-行列とする.
+  このとき,
+  \begin{align*}
+    \shazo{\mu_A}
+          {K^n}{K^m}
+          {\xx}{A\xx}
+  \end{align*}
+  とおくと$\mu_A$は線型.
+  また$\Ker(\mu_A)=\KKK(A)$である.
+\end{example}
+
+\begin{prop}
+  $\varphi\colon K^n\to K^m$を線型写像とする.
+  \begin{align*}
+    \aaa_1&=\varphi(\ee_1^{(n)})\\
+&\vdots\\
+    \aaa_n&=\varphi(\ee_n^{(n)})\\
+  \end{align*}
+  とし, $A=(\aaa_1|\cdots|\aaa_n)$という$(m,n)$-行列を考える.
+  このとき, $\mu_A=\varphi$.
+\end{prop}
+\begin{proof}
+  まず$\ee_j^{(n)}$について考える.
+  \begin{align*}
+    \varphi(\ee_j^{(n)})&=\aaa_j,\\
+    \mu_A(\ee_j^{(n)})
+    &=A\ee_j^{(n)}\\
+    &=\text{$A$の$j$列目}\\
+    &=\aaa_j
+  \end{align*}
+  となるので$\varphi(\ee_j^{(n)})=\aaa_j$.
+
+  つぎに, 一般の場合について考える.
+  \begin{align*}
+  \xx=x_1\ee_1^{(n)}+\cdots+x_n\ee_n^{(n)}\in K^n
+  \end{align*}
+  とする. このとき,
+  \begin{align*}
+    \varphi(\xx)&=\varphi(x_1\ee_1^{(n)}+\cdots+x_n\ee_n^{(n)})\\
+    &=x_1\varphi(\ee_1^{(n)})+\cdots+x_n\varphi(\ee_n^{(n)})\\
+    \mu_A(\xx)&=\mu_A(x_1\ee_1^{(n)}+\cdots+x_n\ee_n^{(n)})\\
+    &=x_1\mu_A(\ee_1^{(n)})+\cdots+x_n\mu_A(\ee_n^{(n)})\\
+    &=x_1\varphi(\ee_1^{(n)})+\cdots+x_n\varphi(\ee_n^{(n)})
+  \end{align*}
+  となる.
+
+  したがって, $\varphi=\mu_A$.
+\end{proof}
+
+\begin{cor}
+  $\varphi\colon K^n\to K^m$を線型写像とする.
+  このとき, 次を満たす$(m,n)$-行列$A$がただ一つ存在する:
+  \begin{align*}
+    \varphi=\mu_A.
+  \end{align*}
+  とくに$A=(a_{i,j})_{\substack{i=1,\ldots,m\\j=1,\ldots,n}}$
+  とすると,
+  $a_{i,j}$は$\varphi(\ee_j^{(n)})$の第$i$成分.
+\end{cor}
+
+\begin{prop}
+  $B$を$(m,n)$-行列,
+  $A$を$(l,m)$-行列とする.
+  このとき,
+  $\mu_A\circ \mu_B=\mu_{AB}$.
+  つまり次の図式が可換:
+  \begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rr,"\mu_{AB}"]\arrow[rd,"\mu_B"]&& K^l \\
+    & K^m \arrow[ur,"\mu_A"]
+  \end{tikzcd}.
+  \end{center}
+\end{prop}
+\begin{proof}
+  $\mu_A\circ\mu_B(\ee_j^(n))$の第$i$成分が, $AB$の$(i,j)$-成分と一致することを示せばよい.
+  そのため,
+  $\mu_A\circ\mu_B(\ee_j^(n))$が, $AB$の$j$列目と一致することを示す.
+  \begin{align*}
+    B=(\bb_1|\cdots|\bb_l)
+  \end{align*}
+  とする.
+  $AB=(A\bb_1|\cdots|A\bb_l)$である.
+  よって, $\mu_{AB}(\ee_j^{l})=A\bb_j$である.
+  一方,
+  \begin{align*}
+    (\mu_A\circ \mu_B)(\ee_j^{(l)})
+    &=\mu_A(B\ee_j^{l})\\
+    &=\mu_A(\bb_j)\\
+    &=A\bb_j.
+  \end{align*} 
+\end{proof}
+\begin{prop}
+  $\mu_{E_n}=\id_{K^n}$である.
+  $A$を$n$次正方行列とすると以下が成り立つ:
+  \begin{enumerate}
+  \item $A$が正則であることと, $\mu_A$が全単射であることは同値.
+  \item $A$が正則ならば, $\mu_{A^{-1}}=(\mu_A)^{-1}$.
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  $E_n\xx=\xx$であることから,
+  $\mu_{E_n}=\id_{K^n}$は明らか.
+  また, $A$を正則とすると,
+  \begin{align*}
+    \mu_{A^{-1}}\circ \mu_{A} &= \mu_{A^{-1}A}=\mu_{E_n}=\id\\
+    \mu_{A}\circ \mu_{A^{-1}} &= \mu_{AA^{-1}}=\mu_{E_n}=\id
+  \end{align*}
+  となるので, $\mu_A$は全単射であり,
+  $\mu_{A^{-1}}=(\mu_A)^{-1}$.
+  一方, $\mu_A$を全単射とすると逆写像$(\mu_A)^{-1}$も線型である.
+  したがって, $\mu_B=(\mu_A)^{-1}$をみたす$B$がとれるが,
+  この$B$に対し,
+   \begin{align*}
+     \mu_{BA}&=\mu_{B}\circ \mu_{A}= \id=\mu_{E_n}\\
+     \mu_{AB}&=\mu_{A}\circ \mu_{B}=\id =\mu_{E_n}
+   \end{align*}
+   となり, $AB=BA=E_n$となるので, $B$は$A$の逆行列である.
+   よって$A$は正則である.
+\end{proof}
 \section{ベクトル空間と線型写像}
+
+$V$の元同士の和と$K$の元によるスカラー倍が定義されている$V$を,
+$K$-ベクトル空間と呼んだ.
+$V$の加法に関する零元を$0_V$と書く.
+
+\begin{example}
+  $K^n$は$K$-ベクトル空間
+\end{example}\begin{example}
+  $K^n$は$K$-ベクトル空間
+\end{example}
+\begin{example}
+  $\CC$は$\CC$-ベクトル空間であるが,
+  $\RR$-ベクトル空間でもある.
+\end{example}
+\begin{definition}
+  $V$, $W$を$K$-ベクトル空間とする.
+  以下の条件を満たすとき,
+  写像$\varphi\colon V\to W$は($K$-)線型であるという:
+  \begin{enumerate}
+    \item $\forall \xx,\yy\in V$, $\varphi(\xx+yy)=\varphi(\xx)+\varphi(yy)$.
+    \item $\forall \xx\in V$, $\forall \alpha\in K$, $\varphi(\alpha\xx)=\alpha\varphi(\xx)$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  線型写像$\varphi\colon V\to W$に対し,
+  \begin{align*}
+    \Img(\varphi)&=\Set{\varphi(\xx)|\xx\in V},\\
+    \Ker(\varphi)&=\Set{\xx\in W|\varphi(\xx)=\zzero}
+  \end{align*}
+  とおき, それぞれ, $\varphi$の像, $\varphi$の核と呼ぶ.
+\end{definition}
+
+\begin{example}
+  $V$を$K$-ベクトル空間とする.
+  $\id_V\colon V\to V$は$K$-線型である.
+\end{example}
+
+\begin{example}
+  $V,W$を$K$-ベクトル空間とし,
+  $\varphi\colon V\to W$は$K$-線型であるとする.
+  $\varphi$が全単射であるとき,
+  逆写像$\varphi^{-1}\colon W\to V$も線型.
+\end{example}
+
+\begin{example}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  \begin{align*}
+    \shazo{\pi_{(v_1,\ldots,v_n)}}
+          {K^n}{V}
+          {\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}{a_1v_1+\cdots+a_nv_n}
+  \end{align*}
+  とする.
+  このとき, $\pi_{(v_1,\ldots,v_n)}$は$K$-線型である.
+\end{example}
+
+\begin{definition}
+  $\varphi\colon V\to W$を$K$-線型写像とする.
+  次の条件を満たすとき, $\varphi$を同型写像と呼ぶ:
+  \begin{enumerate}
+  \item 以下の条件を満たす線型写像$\psi\colon W\to V$が存在する:
+    \begin{enumerate}
+      \item $\varphi\circ \psi=\id_W$.
+      \item $\psi\circ \varphi=\id_V$.
+    \end{enumerate}
+  \end{enumerate}
+  $V$から$W$への同型写像があるとき,
+  $V$と$W$は同型であるという.
+\end{definition}
+
+\begin{remark}
+  $V$と$W$が同型ならば,
+  $V$と$W$はベクトル空間としては同じものだと思うことができる.
+\end{remark}
+\begin{prop}
+  $V$, $W$を$K$-ベクトル空間とし,
+  $\varphi$を$V$から$W$への写像とする.
+  このとき以下は同値:
+  \begin{enumerate}
+  \item $\varphi$は$K$-線型同型写像である.
+  \item $\varphi$は$K$-線型写像であり全単射である.
+  \end{enumerate}
+\end{prop}
+\begin{prop}
+  $\varphi\colon V\to W$を$K$-線型写像とする.
+  このとき, $\varphi$が単射であることと,
+  $\Ker(\varphi)=\Set{0_V}$は同値である.
+\end{prop}
+\begin{definition}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  次の条件を満たすとき,
+  $(v_1,\ldots,v_n)$は一次独立であるという:
+  \begin{enumerate}
+    \item $\pi_{v_1,\ldots,v_n}$が単射.
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  以下は同値である:
+  \begin{enumerate}
+  \item $(v_1,\ldots,v_n)$は一次独立.
+  \item $\Ker(\pi_{v_1,\ldots,v_n})=\Set{\zzero}$.
+  \item $a_1v_1+\cdots+a_nv_n=0_V\implies a_1=\cdots=a_n=0$.
+  \end{enumerate}
+\end{remark}
+\begin{definition}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  次の条件を満たすとき,
+  $(v_1,\ldots,v_n)$は$V$の生成系であるという:
+  \begin{enumerate}
+    \item $\pi_{v_1,\ldots,v_n}$が全射.
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  以下は同値である:
+  \begin{enumerate}
+  \item $(v_1,\ldots,v_n)$は$V$の生成系.
+  \item $\Img(\pi_{v_1,\ldots,v_n})=V$.
+  \item $V=\Set{a_1v_1+\cdots+a_nv_n|a_i\in K}$.
+  \end{enumerate}
+\end{remark}
+
+
+\begin{definition}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  以下のの条件を満たすとき,
+  $(v_1,\ldots,v_n)$は$V$の基底であるという:
+  \begin{enumerate}
+  \item $(v_1,\ldots,v_n)$は$V$の生成系.
+  \item $(v_1,\ldots,v_n)$は一次独立.
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  $V$を$K$-ベクトル空間とし,
+  $v_1,\ldots,v_n\in V$とする.
+  以下は同値である:
+  \begin{enumerate}
+  \item $(v_1,\ldots,v_n)$は$V$の基底.
+  \item $\pi_{v_1,\ldots,v_n}$が全単射.
+  \item $\pi_{v_1,\ldots,v_n}$が同型写像.
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}
+  $V$を$K$-ベクトル空間とし,
+  $(v_1,\ldots,v_n)$を$V$の基底とする.
+  このとき, $K^n$と$V$は同型である.
+  $V$の次元は$n$であるといい$\dim(V)=n$と書く.
+  \begin{align*}
+    \shazo{\pi_{(v_1,\ldots,v_n)}}
+          {K^n}{V}
+          {\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}{a_1v_1+\cdots+a_n v_n}
+  \end{align*}
+  は同型写像である. したがって, この逆写像
+  \begin{align*}
+    \shazo{\varepsilon_{(v_1,\ldots,v_n)}=(\pi_{(v_1,\ldots,v_n)})^{-1}}
+          {V}{K^n}
+          {a_1v_1+\cdots+a_Nv_n}{\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}
+  \end{align*}
+  も同型写像である.
+  $\varepsilon_{(v_1,\ldots,v_n)}(v_k)=\ee_k^{(n)}$となっている.
+\end{remark}
+
+\section{表現行列}

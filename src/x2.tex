@@ -4,12 +4,17 @@
 %\documentclass[a4paper,12pt]{amsart}
 \documentclass[tombow,dvipdfmx]{jsbook} 
 \usepackage{amsmath, amssymb, amsthm}
+\usepackage{amscd}
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{braket}
 %\usepackage{showkeys}
 \AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % theorems
@@ -23,7 +28,19 @@
 \newtheorem{proposition}[thm]{Proposition}
 \newtheorem{prop}[thm]{Proposition}
 
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{algorithm}[thm]{Algorithm}
+\newtheorem{question}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{conjecture}[thm]{Conjecture}
+\newtheorem{conj}[thm]{Conjecture}
 \newtheorem{condition}[thm]{Condition}
+
 
 \theoremstyle{remark}
 
@@ -34,18 +51,6 @@
 
 \newtheorem*{acknowledgment}{Acknowledgment}
 \newtheorem*{ackn}{Acknowledgment}
-
-
-\theoremstyle{definition}
-\newtheorem{definition}[thm]{Definition}
-\newtheorem{dfn}[thm]{Definition}
-\newtheorem{algorithm}[thm]{Algorithm}
-\newtheorem{question}[thm]{Question}
-\newtheorem{problem}[thm]{Problem}
-\newtheorem{notation}[thm]{Notation}
-\newtheorem{conjecture}[thm]{Conjecture}
-\newtheorem{conj}[thm]{Conjecture}
-
 
 % Cref
 \crefname{section}{Section}{Sections}
@@ -90,22 +95,29 @@
 \Crefname{conj}{Conjecture}{Conjectures}
 \crefname{condition}{Condition}{Conditions}
 \Crefname{condition}{Condition}{Conditions}
-
 % theorems 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % blackboard bold capital
-
-\newcommand{\ZZ}{\mathbb{Z}}
+%\newcommand{\AA}{\mathbb{A}}
 \newcommand{\CC}{\mathbb{C}}
-\newcommand{\NN}{\mathbb{N}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\DD}{\mathbb{D}}
 \newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\LL}{\mathbb{L}}
+\newcommand{\NN}{\mathbb{N}}
 \newcommand{\PP}{\mathbb{P}}
-\newcommand{\FF}{\mathbf{F}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+%\newcommand{\SS}{\mathbb{S}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
 %
 % blackboard bold capital
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,36 +129,76 @@
 \newcommand{\AAA}{\mathcal{A}}
 \newcommand{\BBB}{\mathcal{B}}
 \newcommand{\CCC}{\mathcal{C}}
+\newcommand{\DDD}{\mathcal{D}}
+\newcommand{\EEE}{\mathcal{E}}
 \newcommand{\FFF}{\mathcal{F}}
-\newcommand{\TTT}{\mathcal{T}}
+\newcommand{\GGG}{\mathcal{G}}
 \newcommand{\HHH}{\mathcal{H}}
-\newcommand{\SSS}{\mathcal{S}}
-\newcommand{\OOO}{\mathcal{O}}
+\newcommand{\III}{\mathcal{I}}
 \newcommand{\KKK}{\mathcal{K}}
+\newcommand{\LLL}{\mathcal{L}}
+\newcommand{\MMM}{\mathcal{M}}
+\newcommand{\NNN}{\mathcal{N}}
+\newcommand{\OOO}{\mathcal{O}}
+\newcommand{\PPP}{\mathcal{P}}
+\newcommand{\QQQ}{\mathcal{Q}}
+\newcommand{\RRR}{\mathcal{R}}
+\newcommand{\SSS}{\mathcal{S}}
+\newcommand{\TTT}{\mathcal{T}}
 
 % caligraphic capital
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% fraktur
+
+\newcommand{\oO}{\mathfrak{o}}
+\newcommand{\aA}{\mathfrak{a}}
+\newcommand{\bB}{\mathfrak{b}}
+\newcommand{\Xx}{\mathfrak{X}}
+
+% fraktur
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bold italic
 
-\newcommand{\xx}{\boldsymbol{x}}
-\newcommand{\yy}{\boldsymbol{y}}
-\newcommand{\zz}{\boldsymbol{z}}
+\newcommand{\aaa}{\boldsymbol{a}}
+\newcommand{\bbb}{\boldsymbol{b}}
+\newcommand{\ccc}{\boldsymbol{c}}
+\newcommand{\ooo}{\boldsymbol{0}}
+\newcommand{\vvv}{\boldsymbol{v}}
+\newcommand{\www}{\boldsymbol{w}}
+\newcommand{\xxx}{\boldsymbol{x}}
+\newcommand{\yyy}{\boldsymbol{y}}
+\newcommand{\zzz}{\boldsymbol{z}}
+
+\newcommand{\bb}{\boldsymbol{b}}
+\newcommand{\cc}{\boldsymbol{c}}
+\newcommand{\ee}{\boldsymbol{e}}
+\newcommand{\dd}{\boldsymbol{d}}
+\newcommand{\mm}{\boldsymbol{m}}
+\newcommand{\pp}{\boldsymbol{p}}
+\newcommand{\qq}{\boldsymbol{q}}
 \newcommand{\uu}{\boldsymbol{u}}
 \newcommand{\vv}{\boldsymbol{v}}
 \newcommand{\ww}{\boldsymbol{w}}
-\newcommand{\ee}{\boldsymbol{e}}
-\newcommand{\aaa}{\boldsymbol{a}}
-\newcommand{\bb}{\boldsymbol{b}}
+\newcommand{\xx}{\boldsymbol{x}}
+\newcommand{\yy}{\boldsymbol{y}}
+\newcommand{\zz}{\boldsymbol{z}}
 
+
+\newcommand{\ggamma}{\boldsymbol{\gamma}}
 \newcommand{\aalpha}{\boldsymbol{\alpha}}
 \newcommand{\bbeta}{\boldsymbol{\beta}}
 \newcommand{\llambda}{\boldsymbol{\lambda}}
 \newcommand{\mmu}{\boldsymbol{\mu}}
+\newcommand{\ttheta}{\boldsymbol{\theta}}
 
+\newcommand{\OO}{\boldsymbol{O}}
 \newcommand{\zzero}{\boldsymbol{0}}
+%\newcommand{\zero}{\boldsymbol{0}}
 % bold italic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -154,7 +206,58 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % commands like  \det
 
+\newcommand{\Ab}{\operatorname{Ab}}
+\newcommand{\sCat}{\operatorname{Cat}}
+\newcommand{\Funct}{\operatorname{Func}}
+\newcommand{\Sets}{\operatorname{Sets}}
+\newcommand{\Gpd}{\operatorname{Gpd}}
+\newcommand{\Top}{\operatorname{Top}}
+
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Ider}{\operatorname{Ider}}
+\newcommand{\LK}{\operatorname{LK}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Nat}{\operatorname{Nat}}
+\newcommand{\Ob}{\operatorname{ob}}
+\newcommand{\Pos}{\operatorname{Pos}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Semi}{\operatorname{Semi}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\pdeg}{\operatorname{pdeg}}
+\newcommand{\Simp}{\operatorname{Simp}}
+\newcommand{\Syl}{\operatorname{Syl}}
+\newcommand{\Tot}{\operatorname{Tot}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\op}{\operatorname{op}}
+
+
+
+
+\newcommand{\Img}{\operatorname{Img}}
+%\newcommand{\Img}{\operatorname{Im}}
+
+%\newcommand{\Char}{\operatorname{char}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\chara}{\operatorname{Char}}
+%\newcommand{\chara}{\operatorname{char}}
+\newcommand{\charof}{\operatorname{Char}}
+
+\newcommand{\Argmax}{\operatorname{Argmax}}
+%\newcommand{\argmax}{\operatorname*{ArgMax}}
+%\newcommand{\argmax}{\operatorname{arg.max}}
+\newcommand{\argmax}{\operatorname{argmax}}
+%\newcommand{\argmin}{\operatorname*{ArgMin}}
+%\newcommand{\argmin}{\operatorname{arg.min}}
+\newcommand{\argmin}{\operatorname{argmin}}
+
+\newcommand{\type}{\operatorname{type}}
+
+\newcommand{\Ker}{\operatorname{Ker}}
 \newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\len}{\operatorname{len}}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\codim}{\operatorname{codim}}
@@ -164,7 +267,6 @@
 \newcommand{\Diag}{\operatorname{Diag}}
 \newcommand{\sgn}{\operatorname{sgn}}
 \newcommand{\Aut}{\operatorname{Aut}}
-\newcommand{\Char}{\operatorname{char}}
 \newcommand{\GCD}{\operatorname{GCD}}
 \newcommand{\rad}{\operatorname{rad}}
 \newcommand{\ord}{\operatorname{ord}}
@@ -178,15 +280,109 @@
 \newcommand{\conv}{\operatorname{conv}}
 \newcommand{\corank}{\operatorname{corank}}
 \newcommand{\rank}{\operatorname{rank}}
-\newcommand{\WCC}{\operatorname{WCC}}
 \newcommand{\height}{\operatorname{ht}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Des}{\operatorname{Des}}
+\newcommand{\arm}{\operatorname{arm}}
+\newcommand{\flip}{\operatorname{flip}}
+\newcommand{\leg}{\operatorname{leg}}
+\newcommand{\maj}{\operatorname{maj}}
+\newcommand{\shape}{\operatorname{shape}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\supp}{\operatorname{supp}}
+
+
 
 \newcommand{\KR}{\operatorname{KR}}
 \newcommand{\SE}{\operatorname{SE}}
 \newcommand{\DE}{\operatorname{DE}}
 \newcommand{\aff}{\operatorname{aff}}
 \newcommand{\ver}{\operatorname{vert}}
+\newcommand{\RPP}{\operatorname{RPP}}
+\newcommand{\SSYT}{\operatorname{SSYT}}
+\newcommand{\SYT}{\operatorname{SYT}}
+\newcommand{\indeg}{\operatorname{indeg}}
+\newcommand{\outdeg}{\operatorname{outdeg}}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\ycr}{\operatorname{ycr}}
+\newcommand{\yinv}{\operatorname{yinv}}
+\newcommand{\Dyck}{\operatorname{Dyck}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\Map}{\operatorname{Map}}
+\newcommand{\pr}{\operatorname{pr}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\mat}{\operatorname{Mat}}
+\newcommand{\Int}{\operatorname{Int}}
 
+%\newcommand{\IN}{\operatorname{in}}
+%\newcommand{\ini}{\operatorname{in}}
+\newcommand{\initial}[1][<]{\operatorname{in}_{#1}}
+%\newcommand{\initial}{\operatorname{in}}
+
+\newcommand{\Image}{\operatorname{Image}}
+%\newcommand{\Image}{\operatorname{Im}}
+\newcommand{\Domain}{\operatorname{Domain}}
+
+\newcommand{\tail}{\operatorname{start}}
+\newcommand{\head}{\operatorname{end}}
+%% \newcommand{\e}{\operatorname{end}}
+%% \newcommand{\e}{\operatorname{t}}
+%% \newcommand{\s}{\operatorname{start}}
+%% \newcommand{\s}{\operatorname{s}}
+%% \newcommand{\source}{\operatorname{source}}
+%% \newcommand{\target}{\operatorname{target}}
+%\newcommand{\s}{\operatorname{start}}
+%\newcommand{\e}{\operatorname{end}}
+\newcommand{\vertex}{\operatorname{vertex}}
+
+%\newcommand{\obj}{\operatorname{obj}}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\LCM}{\operatorname{L.C.M}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Att}{\operatorname{Att}}
+\newcommand{\Cc}{\operatorname{CC}}
+\newcommand{\Cox}{\operatorname{Cox}}
+\newcommand{\Gr}{\operatorname{Gr}}
+\newcommand{\Head}{\operatorname{Head}}
+\newcommand{\Hilb}{\operatorname{Hilb}}
+\newcommand{\Inn}{\operatorname{Inn}}
+\newcommand{\Inv}{\operatorname{Inv}}
+\newcommand{\Ish}{\operatorname{Ish}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Orb}{\operatorname{Orb}}
+\newcommand{\SP}{\operatorname{SP}}
+\newcommand{\ST}{\operatorname{ST}}
+\newcommand{\Shi}{\operatorname{Shi}}
+\newcommand{\Tail}{\operatorname{Tail}}
+\newcommand{\Vect}{\operatorname{Vect}}
+\newcommand{\coinv}{\operatorname{coinv}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\mor}{\operatorname{Mor}}
+%\newcommand{\Mor}{\operatorname{Mor}}
+%\newcommand{\Mor}{\operatorname{mor}}
+\newcommand{\nf}{\operatorname{nf}}
+\newcommand{\obj}{\operatorname{Obj}}
+\newcommand{\rpp}{\operatorname{rpp}}
+\newcommand{\uuu}{\operatorname{U}}
+\newcommand{\xgpd}{\widetilde{\operatorname{Gpd}}}
+
+
+
+%\newcommand{\STab}[1]{\operatorname{STab}_{#1}}
+%\newcommand{\STab}{\operatorname{STab}}
+%\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\compositionof}{\vddash}
+\newcommand{\partitionof}{\vdash}
+\newcommand{\Fillingson}[1]{\mathcal{F}_{#1}}
+\newcommand{\Fillingsonwith}[2]{\mathcal{F}_{#1}(#2)}
+
+
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\induce}[3]{\operatorname{Ind}_{#1}^{#2}{#3}}
+\newcommand{\ind}[3]{\left.\vphantom{\int}{#1}\right\uparrow_{#2}^{#3}}
 % commands like  \det
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -196,6 +392,8 @@
 
 \newcommand{\sL}{\mathfrak{sl}}
 \newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\sym}[1]{\mathfrak{S}_{#1}}
+\newcommand{\alt}{\mathfrak{A}}
 
 % commands for bold operatorname
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -203,8 +401,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % commands for italic operatorname like SL
 
+%\newcommand{\SL}[2]{\operatorname{\it SL}(#1,#2)}
+%\newcommand{\SL}{\operatorname{SL}}
 \newcommand{\SL}{\textit{SL}}
-\newcommand{\GL}{\textit{GL}}
+%\newcommand{\GL}{\textit{GL}}
+%\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\GL}{\operatorname{\textit{GL}}}
+%\newcommand{\Orthogonal}{\operatorname{O}}
+%\newcommand{\SO}{\operatorname{SO}}
 
 % commands for bold operatorname
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -220,15 +424,167 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % misc
+\newcommand{\Sin}{\operatorname{Sin}}
+\newcommand{\Tan}{\operatorname{Tan}}
+\newcommand{\Cos}{\operatorname{Cos}}
+\renewcommand{\arccos}{\Cos^{-1}}
+\renewcommand{\arcsin}{\Sin^{-1}}
+\renewcommand{\arctan}{\Tan^{-1}}
+
+
+\newcommand{\conjugate}[1]{#1^\top}
+\newcommand{\Conjugate}[1]{(#1)^\top}
+\newcommand{\placeholder}{{\begin{picture}(6.5,7)\put(0,0){\dashbox(6.5,7){}}\end{picture}}}
+
+%onepointsum
+\newcommand{\ops}[2]{\displaystyle\mathop{\vee}_{#1,#2}}
+
+
+
+\newcommand{\disjointunion}{\amalg}
+\newcommand{\compl}[1]{\check{#1}}
+\newcommand{\subst}[2]{\left.\vphantom{\sum}#1\right|_{#2}}
+%\newcommand{\subst}[2]{\left.#1\vphantom{\hat Jj}\right|_{#2}}
+%\newcommand{\subst}{\mathrel{:=}}
+
+%\newcommand{\ttt}{\mathcyr{t}}
+\newcommand{\eel}{\mathcyr{l}}
+%\newcommand{\eel}{\mathcyb{l}}
+
+\newcommand{\minimum}{\varnothing}
+%\newcommand{\minimum}{\hat{0}}
+
+
+%\newcommand{\Block}[1]{\mathopen{\texttt{(}}#1\mathclose{\texttt{)}}}
+%\newcommand{\Block}[1]{\left\lgroup#1\right\rgroup}
+\newcommand{\Block}[1]{\big\lgroup#1\big\rgroup}
+%\newcommand{\Block}[1]{\stretchleftright{(}{#1}{)}}
+
 
 \newcommand{\injectto}[1]{\hookrightarrow}
 %\newcommand{\injectto}[1]{\rightarrowtail}
+\newcommand{\xarrow}{\makebox[0pt][l]{$\nwarrow$}\nearrow}
+
+
+%\newcommand{\denotes}{:=}
+%\newcommand{\denotedby}{=:}
+%\newcommand{\denotes}{\mathrel{{{{}_\leftharpoondown}\kern-0.85em\raisebox{0.2ex}{$=$}}}}
+%\newcommand{\denotes}{\mathrel{{{\rule[-0.4ex]{0ex}{0ex}_\leftharpoondown}\kern-0.85em{=}}}}
+\newcommand{\denotes}{\mathrel{{{=}\kern-1.8ex{\rule[-0.4ex]{0ex}{0ex}_\leftharpoondown}}}}
+\newcommand{\Denotes}{\mathrel{{{=}\kern-1.5ex{\rule[-0.3ex]{0ex}{0ex}_\leftharpoondown}}}}
+%\newcommand{\denotes}{\mathrel{{\makebox[0em][l]{=}{\rule[-0.4ex]{0ex}{0ex}_\leftharpoondown}}}}
+%\newcommand{\denotes}{\mathrel{\overset{=}{\rule[-0.4ex]{0ex}{0ex}_\leftharpoondown}}}
+\newcommand{\denotedby}{\mathrel{{{{}_\rightharpoondown}\kern-0.85em\raisebox{0.2ex}{$=$}}}}
+
+
+\newcommand{\modulo}{\mathbin{\%}}
+%\newcommand{\modulo}{\mathop{\%}}
+
+
+%\newcommand{\efrom}{{\leftharpoonup}}
+%\newcommand{\eboth}{{\rightleftharpoons}}
+%\newcommand{\eto}{{\rightharpoonup}}
+%\newcommand{\edge}[2]{{#1}\eto{#2}}
+\newcommand{\lBrace}{{\boldsymbol\{}}
+\newcommand{\rBrace}{{\boldsymbol\}}}
+\newcommand{\lparent}{{\boldsymbol(}}
+\newcommand{\rparent}{{\boldsymbol)}}
+\newcommand{\lvrace}{{\boldsymbol\{}}
+\newcommand{\rvrace}{{\boldsymbol\}}}
+%\newcommand{\ed}[2]{\lBrace #1,#2 \rBrace}
+%\newcommand{\ed}[1]{\{#1\}}
+\newcommand{\ed}[2]{\lvrace #1,#2 \rvrace}
+\newcommand{\al}[2]{\lparent #1,#2\rparent}
+%\newcommand{\ed}[2]{\Ed{ #1,#2 }}
+\newcommand{\Ed}[1]{\lvrace #1 \rvrace}
+%\newcommand{\al}[2]{#1 \rightharpoonup #2}
+%\newcommand{\arc}[2]{{#1}\rightharpoonup {#2}}
+
+
+
 \newcommand{\transposed}[1]{\left.^{t}\!#1\right.}
+%\newcommand{\transposed}[1]{{\vphantom{A}}^{t\!}#1}
+%\newcommand{\transposed}[1]{{}^{t\!}#1}
+
 \newcommand{\restrictedto}[1]{\bigr|_{#1}}
+
+\newcommand{\isnormalsub}{\triangleleft}
+\newcommand{\semidirectprod}{\ltimes}
+
+
+\newcommand{\covers}{\mathrel{\dot >}}
+\newcommand{\coveredby}{\mathrel{\dot <}}
+%\newcommand{\covers}{\dot >}
+%\newcommand{\coveredby}{\dot <}
+%\newcommand{\coveredby}{\dot<}
+%\newcommand{\covers}{\dot>}
+
+\newcommand{\leqast}{\mathrel{\underset{\ast}{\leq}}}
 \newcommand{\rightleq}{\mathrel{\underset{\text{R}}{\leq}}}
 \newcommand{\leftleq}{\mathrel{\underset{\text{L}}{\leq}}}
 \newcommand{\strongleq}{\mathrel{\leq}}
 \newcommand{\sectionX}[1]{\newpage\section*{#1}\addcontentsline{toc}{section}{#1}}
+
+%\newcommand{\mset}[1]{\Lbag #1 \Rbag}
+%% \newcommand{\msetopen}{\Lbag}
+%% \newcommand{\msetclose}{\Rbag}
+%% \newcommand{\msetopen}{\left\lgroup}
+%% \newcommand{\msetclose}{\right\rgroup}
+\newcommand{\msetopen}{\mathopen{\boldsymbol{(}}}
+\newcommand{\msetclose}{\mathclose{\boldsymbol{)}}}
+\newcommand{\mset}[1]{\msetopen#1\msetclose}
+\newcommand{\multiset}[1]{\left\lgroup#1\right\rgroup}
+
+
+% Double parenthesis
+\newcommand{\ldoubleparenthesis}{\mathopen{{(}\!{(}}}
+\newcommand{\rdoubleparenthesis}[1][]{\mathclose{{)}\!{)}_{#1}}}
+
+% Double Pochhammer Synbol
+\newcommand{\dps}[2]{\ldoubleparenthesis #1 \rdoubleparenthesis[#2]}
+
+% Laurent series algebra
+\newcommand{\LaurentSeriesAlgebra}[2]{#1\ldoubleparenthesis #2 \rdoubleparenthesis[]}
+
+% Algebra with generators.
+\newcommand{\algebra}[2]{#1\lceil#2\rceil}
+
+% Algebra with generators.
+\newcommand{\lxceil}{\mathopen{{\lceil}}\!\!\!\raisebox{-.5ex}{\rule{0.5em}{0.5pt}}}
+\newcommand{\rxceil}{\mathopen{\raisebox{-.5ex}{\rule{0.5em}{0.5pt}}\!\!\!{\rceil}}}
+\newcommand{\freealgebra}[2]{#1\lxceil#2\rxceil}
+
+
+
+%\newcommand{\qbinom}[3][q]{\genfrac{[}{]}{0pt}{}{#2}{#3}_{#1}}
+\newcommand{\stirling}{\genfrac\{\}{0pt}{}}
+\newcommand{\vbinom}{\genfrac{\langle}{\rangle}{0pt}{}}
+\newcommand{\Qbinom}[3]{\genfrac{[}{]}{0pt}{}{#1}{#2}_{#3}}
+\newcommand{\qbinom}[2]{\Qbinom{#1}{#2}{q}}
+
+\newcommand{\hyper}[5]{{}_{#1}F_{#2} \left(#3;#4;#5\right)}
+\newcommand{\qhyper}[5]{{}_{#1}\phi_{#2} \left(#3;#4;#5\right)}
+\newcommand{\Hyper}[5]{{}_{#1}F_{#2} \left( \left.
+    \begin{matrix}
+      #3\\
+      #4\\
+    \end{matrix}
+    \:\right|\: #5
+    \right)}
+\newcommand{\qHyper}[5]{{}_{#1}\phi_{#2} \left(
+    \begin{matrix}
+      #3\\
+      #4\\
+    \end{matrix}
+    ; #5
+    \right)}
+
+
+\newcommand{\nin}{\cup\kern-0.352em\rule{0.4pt}{1.4ex}\kern-0,4pt\rule{0.352em}{0ex}}
+\newcommand{\Shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0.8ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
+\newcommand{\shazo}[5]{\begin{array}{rcccc}\displaystyle #1&:&\displaystyle #2&\longrightarrow&\displaystyle #3\\[-0.4ex]&&\nin&&\nin\\[0ex]&&\textstyle #4&\longmapsto&\textstyle #5\end{array}}
+%\newcommand{\shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
+
 
 % misc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -259,6 +615,7 @@
 \newcommand{\ideal}[2]{%
 \left(#1 \mathrel{}\middle|\mathrel{}  #2\right)
 }
+\newcommand{\quotient}[2]{\mathord{\mathord{#1}\mathbin{/}\mathord{#2}}}
 
 % misc (command)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -287,21 +644,100 @@
 
 \maketitle
 %% \begin{abstract}
-%% Quiverの表現
+%% Quiverについてのノート
 %% \end{abstract}
 
 
 % Introduction
-\input{p.tex}
 % Main part
-
+\input{p.tex}
+% Appendix
+%\appendix
+%\input{q.tex}
 % References
-\bibliography{by-mr,by-arxiv}
-\bibliographystyle{amsplain-url}
+%\bibliography{by-mr,by-arxiv}
+%\bibliographystyle{amsplain-url}
 
-\section*{記号表}
-\begin{itemize}
-\item
-\end{itemize}
+%% \Subsubsection{local}
+%% $\Delta$
+%% $\Phi$
+%% $M(\Phi)$
+
+%% \subsubsection{temporal}
+%% $\theta$ for $\cos(\theta)$
+%% $\sum_{\delta\in\Delta}$
+%% $\sigma\in S_n$
+%% $\tau\in S_n$
+
 \end{document}
 
+%beamer
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+%\blacksmiley
+%\frownie
+\usepackage{wasysym}
+\newcommand{\txbul}{\LARGE \smiley}
+\newcommand{\txBul}{\LARGE \blacksmiley}
+\newcommand{\txbull}{\LARGE \only<-2>{\smiley}\only<3->{\blacksmiley}}
+
+
+
+
+%%%%%%%%%%%%%%textrm
+% \newcommand{\AUT}[1]{\mathrm{Aut}(#1)}
+%%\newcommand\c{\mathrm{C}}%%C
+%\newcommand\ASmd{\mathrm{ASmd}}
+%\newcommand\AS{\mathrm{AS}}
+%\newcommand\Ab{\mathrm{Ab}}
+%\newcommand\Aut{\mathrm{Aut}}
+%\newcommand\Colim{\mathrm{Colim}}%varinjlim
+%\newcommand\Cplx{\mathrm{Cplx}}
+%\newcommand\Der{\mathrm{Der}}
+%\newcommand\Ext{\mathrm{Ext}}
+%\newcommand\Funct{\mathrm{Func}}%Funct
+%\newcommand\Gpd{\mathrm{Gpd}}
+%\newcommand\Gr{\mathrm{Gr}}
+%\newcommand\Hlgy{\mathrm{H}}
+%\newcommand\Hom{\mathrm{Hom}}
+%\newcommand\Ider{\mathrm{Ider}}%new
+%\newcommand\Img{\mathrm{Im}}
+%\newcommand\Ker{\mathrm{Ker}}
+%\newcommand\LK{\mathrm{LK}}
+%\newcommand\Mod{\mathrm{Mod}}
+%\newcommand\Mor{\mathrm{mor}}
+%\newcommand\Nat{\mathrm{Nat}}
+%\newcommand\Ob{\mathrm{ob}}
+%\newcommand\Pos{\mathrm{Pos}}
+%\newcommand\Res{\mathrm{Res}}
+%\newcommand\Semi{\mathrm{Semi}}
+%\newcommand\Sets{\mathrm{Sets}}
+%\newcommand\Simp{\mathrm{Simp}}
+%\newcommand\Top{\mathrm{Top}}
+%\newcommand\Tor{\mathrm{Tor}}
+%\newcommand\Tot{\mathrm{Tot}}
+%\newcommand\Vect{\mathrm{Vect}}
+%\newcommand\cod{\mathrm{cod}}
+%\newcommand\dom{\mathrm{dom}}
+%\newcommand\id{\mathrm{id}}
+%\newcommand\op{\mathrm{op}}
+%\newcommand\sCat{\mathrm{Cat}}%sCat
+%\newcommand\sign{\mathrm{sign}}
+%\newcommand{\ANN}[1]{\mathrm{Ann}(#1)}
+%\newcommand{\AUT}[1]{\mathrm{Aut}(#1)}
+%\newcommand{\GL}[1]{\mathrm{GL}(#1)}
+%\newcommand{\HOM}[1]{\mathrm{Hom}(#1)}
+%\newcommand{\LEX}{<_{\rm{lex}}}		%%  辞書式順序
+%\newcommand{\ML}[1]{\mathrm{M}(#1)}
+%\newcommand{\OO}[1]{\mathrm{O}(#1)}
+%\newcommand{\PLEX}{<_{\rm{purelex}}}	%%  純辞書式順序
+%\newcommand{\PREV}{<_{\rm{purerev}}}	%%  純逆辞書式順序
+%\newcommand{\REV}{<_{\rm{rev}}}		%%  逆辞書式順序
+%\newcommand{\SL}[1]{\mathrm{SL}(#1)}
+%\newcommand{\SO}[1]{\mathrm{SO}(#1)}
+%\newcommand{\SP}[1]{\mathrm{Sp}(#1)}
