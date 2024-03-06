@@ -1213,7 +1213,6 @@ $\lambda$を$A$の固有値と呼ぶ.
   であるので,
   $P^{-1}AP=\diag(\lambda_1,\ldots,\lambda_n)$.
 \end{proof}
-
 \begin{remark}
 固有ベクトルによって対角化可能性がわかる.
 \end{remark}
@@ -1236,9 +1235,6 @@ $\lambda$を$A$の固有値と呼ぶ.
   \end{enumerate}
 \end{prop}
 
-\begin{remark}
-  $A$が対角化可能なら得られる対角行列は成分の並び替えを除いてただ一つ.
-\end{remark}
 
 特別な正方行列のクラスは対角化可能であることがすぐわかる.
 \begin{example}
@@ -1254,4 +1250,78 @@ $\lambda$を$A$の固有値と呼ぶ.
   Gram--Schumidtの直交化法により直交化することで求めることができる.
 \end{example}
 
+\begin{remark}
+  $A$が対角化可能なら得られる対角行列は成分の並び替えを除いてただ一つである.
+
+  この事実は次のように考えることもできる:
+  $n$-次正方行列全体を考え,
+  正則行列$P$に対して$P^{-1}AP\sim A$とする同値関係を考える.
+  このとき,
+  対角化可能な行列$A$を含む同値類の代表元として
+  $A$を対角化した行列をとることができる.
+  ただし, 一般には対角化はできないことに注意が必要である.
+  今は, $n$-次正方行列全体を考えたが,
+  対角化可能な行列の集合にこの同値関係を制限して考えれば,
+  対角行列を使って完全代表系を与えることができる.
+  例えば, $n$次実対称行列全体を考えたときには,
+  実数を成分とする対角行列で値が大きい順に並んだもの全体$\Set{\diag(\lambda_1,\ldots,\lambda_n)|\lambda_1\geq\cdots\geq\lambda_n\in \RR}$
+  が完全代表系になる.
+\end{remark}
+
+\begin{remark}
+  対角化できると, $A^k$を計算するのに次の様に計算することができる:
+  \begin{align*}
+    P^{-1}A^kP&=P^{-1}\underbrace{A\cdots A}_{k}P\\
+    &=\underbrace{(P^{-1}AP)\cdots (P^{-1}AP)}_{k}\\
+    &=(P^{-1}AP)^k\\
+    &=(\diag(\lambda_1,\ldots,\lambda_n))^k\\
+    &=\diag(\lambda_1^k,\ldots,\lambda_n^k)
+  \end{align*}
+  であるので, $A^k=P\diag(\lambda_1^k,\ldots,\lambda_n^k)P^{-1}$.
+\end{remark}
+
 \section{Jordan標準形}
+$A$を正方行列とする.
+$A$は対角化できるときもあれば,
+できないときもあった.
+対角化できないときでもブロック対角にはできないだろうかという
+問題について考える.
+
+\begin{definition}
+  \begin{align*}
+    J_n(\alpha)=\alpha E_n+\sum_{i=1}^{n-1}B_{n,n}(i,i+1)
+  \end{align*}
+  をサイズ$n$, 固有値$\alpha$のJordan cellと呼ぶ.
+\end{definition}
+\begin{remark}
+  サイズが1の場合には, $J_1(\alpha)=\alpha E_1 = (\alpha)_{\substack{i=1\\j=1}}$という
+  $(1,1)$-行列である.
+\end{remark}
+\begin{theorem}
+  \label{thm:jordan:decomp}
+  $A$を$\CC$上の正方行列とする.
+  このとき次を満たす正則行列$P$と, $\alpha_1,\ldots,\alpha_l \in \CC$,
+  $n_1,\ldots, n_l\in\NN$が存在する:
+  \begin{align}
+    P^{-1}AP=\Diag(J_{n_1}(\alpha_1),\ldots,J_{n_l}(\alpha_l)).
+    \label{eq:jordan:decomp}
+  \end{align}
+\end{theorem}
+\begin{remark}
+  \Cref{thm:jordan:decomp}における
+  \Cref{eq:jordan:decomp}の右辺を
+  Jordan標準形と呼ぶ.
+  これは,
+  Jordan cells の並び替えを許してただ一つに定まる.
+\end{remark}
+\begin{remark}
+  与えられた正方行列に対し,
+  Jordan標準形を求めるアルゴリズムが存在するが,
+  ここでは割愛する.
+\end{remark}
+\begin{remark}
+  $(J_n(\alpha))^k$は割と簡単に求められる.
+  よって$A^k$をJordan標準形を通して計算することができる.
+\end{remark}
+
+\section{ベクトル空間と線型写像}
