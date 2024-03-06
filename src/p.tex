@@ -1826,6 +1826,61 @@ $\varphi$の表現行列を$A'$とする.
 となる.
 \end{prop}
 
+線型写像
+$\varphi\colon V\to W$
+に対し,
+\begin{align*}
+  [\varphi]=
+  \Set{A|\begin{array}{c}
+\text{$(v_1,\ldots,v_n)$: $V$の基底}\\
+\text{$(w_1,\ldots,w_m)$: $W$の基底}\\
+\text{$(v_1,\ldots,v_n)$, $(w_1,\ldots,w_m)$に関する$\varphi$の表現行列}
+  \end{array}}
+\end{align*}
+とおく.
+このとき, $[\varphi]$はどのような集合か考えてみる.
+$A, A'\in [\varphi]$とし,
+$A$は
+$(v_1,\ldots,v_n)$,
+$(w_1,\ldots,w_m)$
+に関する
+$\varphi$の表現行列,
+$A'$は
+$(v'_1,\ldots,v'_n)$
+$(w'_1,\ldots,w'_m)$
+に関する
+$\varphi$の表現行列とする.
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+は$V$の基底なので,
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への基底の変換行列を$P$とする.
+また,
+$(w_1,\ldots,w_m)$,
+$(w'_1,\ldots,w'_m)$
+は$W$の基底なので,
+$(w_1,\ldots,w_m)$から
+$(w'_1,\ldots,w'_m)$への基底の変換行列を$Q$とする.
+このとき,
+ $B=PAQ^{-1}$と書ける.
+したがって
+$A$が$\varphi$のある基底に関する表現行列であるとすると,
+\begin{align*}
+  [\varphi]=\Set{PAQ^{-1}|\text{$P$, $Q$:正則行列}}
+\end{align*}
+である.
+$n$次元ベクトル空間$V$と,
+$m$次元ベクトル空間$W$を固定する.
+$A,B\in [\varphi]$を満たす線型写像$\varphi\colon V\to W$が存在するとき,
+$A\sim B$とすると, $\sim$は同値関係である.
+\begin{align*}
+  \Set{A\text{: $(m,n)$行列}}/\sim
+\end{align*}
+の完全代表系として,
+\begin{align*}
+  \Set{\Diag(E_r, O_{m-r,n-r})|r\in\Set{0,1,\ldots,\min(m,n)}}
+\end{align*}
+がとれる.
 \section{直和}
 
 $n$次元ベクトル空間$V$と,
@@ -2072,7 +2127,7 @@ $A=J(n_1,\lambda_1)\oplus\cdots\oplus J(n_l,\lambda_l)$
 固有値が異なると異なる同値類となるので,
 無限個の代表が必要となる.
 
-\section{}
+\section{線型写像の表現行列と基底の取り替え}
 $A$を$(m,n)$行列とし,
 \begin{align*}
   \shazo{\mu_A}
@@ -2081,7 +2136,7 @@ $A$を$(m,n)$行列とし,
 \end{align*}
 とおくと$\varphi_A$は線形写像である.
 また, 与えられた線型写像$\varphi\colon K^n\to K^m$に対し,
-$\varpi=\mu_A$を満たす$A$がただ一つ定まる.
+$\varphi=\mu_A$を満たす$A$がただ一つ定まる.
 $V$をベクトル空間とし,
 $(v_1,\ldots,v_n)$を$V$の基底とする.
 \begin{align*}
@@ -2194,3 +2249,7 @@ $A\sim B$とすると, $\sim$は同値関係である.
   \Set{E_r\oplus O_{m-r,n-r}|r\in\Set{0,1,\ldots,\min(m,n)}}
 \end{align*}
 がとれる.
+
+
+\chapter{Quiverの表現}
+\section{ベクトル空間の同型と線型写像}
