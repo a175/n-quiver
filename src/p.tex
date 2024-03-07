@@ -327,15 +327,14 @@ $1\leq i\leq j\leq n$に対し,
 つまり,
 \begin{align*}
   I[i,j]\colon
-  0\xrightarrow{\underline{0}}
+  \underbrace{0\xrightarrow{\underline{0}}
   0\xrightarrow{\underline{0}} \cdots \xrightarrow{\underline{0}}
-  0\xrightarrow{\underline{0}}
-  \underbrace{\CC}_{i} \xrightarrow{\id_\CC}
-  \CC \xrightarrow{\id_\CC} \cdots
-  \underbrace{\CC}_{j} \xrightarrow{\underline{0}}
-  0\xrightarrow{\underline{0}}
+  0}_{i-1}\xrightarrow{\underline{0}}
+  \underbrace{\CC \xrightarrow{\id_\CC}
+  \CC \xrightarrow{\id_\CC} \cdots\CC}_{n-(i-1)-(j-1)} \xrightarrow{\underline{0}}
+  \underbrace{0\xrightarrow{\underline{0}}
   0\xrightarrow{\underline{0}} \cdots \xrightarrow{\underline{0}}
-  0.
+  0}_{j-1}.
 \end{align*}
 実は,
 $Q$の既約表現は, $I[i,j]$ ($1\leq i\leq j \leq n$)で
@@ -371,7 +370,7 @@ $\leadsto$ パーシステントホモロジー.
 \begin{align*}
   t\leq t' \implies X_t \subset X_{t'}
 \end{align*}
-という条件をみたいしていたら,
+という条件をみたしていたら,
 \begin{align*}
   X_t&\injectto X_{t'}\\
   x&\mapsto x
@@ -1568,7 +1567,7 @@ $V$の加法に関する零元を$0_V$と書く.
     \end{enumerate}
   \end{enumerate}
   $V$から$W$への同型写像があるとき,
-  $V$と$W$は同型であるという.
+  $V$と$W$は同型であるといい$V\simeq W$と書く.
 \end{definition}
 
 \begin{remark}
@@ -1714,6 +1713,7 @@ $W$の基底$(w_1,\ldots,w_m)$の線型結合として書いた際の
 $w_i$の係数である.
 \end{remark}
 \begin{prop}
+  \label{prop:repmatishom}
 $V$, $W$, $U$を$K$-ベクトル空間とし,
 $(v_1,\ldots,v_n)$を$V$の基底,
 $(w_1,\ldots,w_m)$を$W$の基底,
@@ -1745,11 +1745,38 @@ $(u_1,\ldots,u_l)$に関する表現行列は$BA$
 \end{center}
 となる.
 \end{prop}
+\begin{remark}
+  \label{rem:sqmat:samebasis}
+  \Cref{prop:repmatishom}は,
+  標語的にいうと,
+  `線型写像の合成$\psi\circ\varphi$の表現行列は,
+  それぞれの表現行列の積である'
+  となる.
+  ただし, そのためには,
+  $\varphi$の終域と$\psi$の定義域の基底を共通のもので考えなければいけない.
+  線型写像$\varphi\colon V\to V$のような
+  定義域と終域が等しいものを考えるときには,
+  自分自身の合成
+  $\varphi\circ\varphi\colon V\to V$
+  を考えることなどが重要になる.
+  そういった計算のためには,
+  定義域と終域の基底は同じもので
+  表現行列を考える必要がある.
+  定義域と終域の基底は同じものとするとき,
+  基底$(v_1,\ldots,v_n)$, $(v_1,\ldots,v_n)$に関する
+  $\varphi$の表現行列
+  というところを,
+  単に,
+  基底$(v_1,\ldots,v_n)$に関する
+  $\varphi$の表現行列
+  ということがある.
+\end{remark}
 
+表現行列から, もとの線型写像の情報を読み取ることもできる.
 \begin{prop}
   $A$が$\varphi$の表現行列であるとき,
   \begin{align*}
-    \rank(A)=\dim(Img(\mu_A))=\dim(\Img(\varphi)).
+    \rank(A)=\dim(\Img(\mu_A))=\dim(\Img(\varphi)).
   \end{align*}
 \end{prop}
 
@@ -1784,6 +1811,7 @@ $(v'_1,\ldots,v'_n)$への
 基底を取り替えたとき表現行列がとうなるかは,
 基底の変換行列により記述できる.
 \begin{prop}
+  \label{prop:rep:basis:change}
 $V$を$K$-ベクトル空間とし,
 $(v_1,\ldots,v_n)$,
 $(v'_1,\ldots,v'_n)$
@@ -1818,9 +1846,9 @@ $\varphi$の表現行列を$A'$とする.
 図式で表すと
 \begin{center}
   \begin{tikzcd}
-    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"]\arrow[dd,"\mu_{P}"']&&& K^n\arrow[dd,"\mu_{Q}"] \\
-    & V \arrow[r,"\varphi"']&W\arrow[rd,"\pi_{v'_1,\ldots,v'_n}^{-1}"']\arrow[ru,"\pi_{v_1,\ldots,v_n}^{-1}"]&\\
-    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\pi_{v'_1,\ldots,v'_n}"']&&& K^n 
+    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"]\arrow[dd,"\mu_{P}"']&&& K^m\arrow[dd,"\mu_{Q}"] \\
+    & V \arrow[r,"\varphi"']&W\arrow[rd,"\pi_{w'_1,\ldots,w'_m}^{-1}"']\arrow[ru,"\pi_{w_1,\ldots,w_m}^{-1}"]&\\
+    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\pi_{v'_1,\ldots,v'_n}"']&&& K^m
   \end{tikzcd}
 \end{center}
 となる.
@@ -1881,6 +1909,92 @@ $A\sim B$とすると, $\sim$は同値関係である.
   \Set{\Diag(E_r, O_{m-r,n-r})|r\in\Set{0,1,\ldots,\min(m,n)}}
 \end{align*}
 がとれる.
+
+
+\Cref{rem:sqmat:samebasis}でコメントした通り,
+定義域と終域が等しい線型写像$\varphi\colon V \to V$を考えるときには,
+定義域と終域で共通の基底を取ることが一般的である.
+この場合, \Cref{prop:rep:basis:change}は次の様に書き換えられる.
+\begin{cor}
+$V$を$K$-ベクトル空間とし,
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+を$V$の基底とする.
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への基底の変換行列を$P$とする.
+$\varphi\colon V\to V$を線型写像とし,
+$(v_1,\ldots,v_n)$
+に関する
+$\varphi$の表現行列を$A$とし,
+$(v'_1,\ldots,v'_n)$
+に関する
+$\varphi$の表現行列を$A'$とする.
+このとき,
+\begin{align*}
+\mu_{A'}=\mu_P\circ \mu_A \circ \mu_{P^{-1}}
+\end{align*}
+となるので,
+\begin{align*}
+  A'&=P A P^{-1}
+\end{align*}
+となる.
+図式で表すと
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"]\arrow[dd,"\mu_{P}"']&&& K^n\arrow[dd,"\mu_{P}"] \\
+    & V \arrow[r,"\varphi"']&W\arrow[rd,"\pi_{v'_1,\ldots,v'_n}^{-1}"']\arrow[ru,"\pi_{v_1,\ldots,v_n}^{-1}"]&\\
+    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\pi_{v'_1,\ldots,v'_n}"']&&& K^n 
+  \end{tikzcd}
+\end{center}
+となる.
+\end{cor}
+
+線型写像
+$\varphi\colon V\to V$
+に対し,
+\begin{align*}
+  [\varphi]=
+  \Set{A|\begin{array}{c}
+\text{$(v_1,\ldots,v_n)$: $V$の基底}\\
+\text{$(v_1,\ldots,v_n)$に関する$\varphi$の表現行列}
+  \end{array}}
+\end{align*}
+とおく.
+このとき, $[\varphi]$はどのような集合か考えてみる.
+$A, A'\in [\varphi]$とし,
+$A$は
+$(v_1,\ldots,v_n)$
+に関する
+$\varphi$の表現行列,
+$A'$は
+$(v'_1,\ldots,v'_n)$
+に関する
+$\varphi$の表現行列とする.
+$(v_1,\ldots,v_n)$,
+$(v'_1,\ldots,v'_n)$
+は$V$の基底なので,
+$(v_1,\ldots,v_n)$から
+$(v'_1,\ldots,v'_n)$への基底の変換行列を$P$とする.
+このとき,
+ $B=PAP^{-1}$と書ける.
+したがって
+$A$が$\varphi$のある基底に関する表現行列であるとすると,
+\begin{align*}
+  [\varphi]=\Set{PAP^{-1}|\text{$P$:正則行列}}
+\end{align*}
+である.
+$n$次元ベクトル空間$V$を固定し,
+$A,B\in [\varphi]$を満たす線型写像$\varphi\colon V\to V$が存在するとき,
+$A\sim B$とすると, $\sim$は同値関係である.
+\begin{align*}
+  \Set{A\text{: $n$次正方行列}}/\sim
+\end{align*}
+の完全代表系として,
+(並び替えによる重複を除いた)
+Jordan標準形からなる集合
+がとれる.
+
+
 \section{直和}
 
 $n$次元ベクトル空間$V$と,
@@ -2068,13 +2182,13 @@ $A\sim S$を満たす被約列階段行列$S$がただ一つ存在する.
 を取れる.
 
 $QAP=B$を満たす正則行列$P$, $Q$が存在するとき,
-$A\sim B$とする.
-このとき$\sim$は同値関係である.
+$A\sim^2 B$とする.
+このとき$\sim^2$は同値関係である.
 $(m,n)$行列$A$に対し,
-$A\sim S$を満たす階数標準形がただ一つ存在する.
+$A\sim^2 S$を満たす階数標準形がただ一つ存在する.
 つまり,
 \begin{align*}
-  \Set{A\text{: $(m,n)$行列}}/\sim
+  \Set{A\text{: $(m,n)$行列}}/\sim^2
 \end{align*}
 の完全代表系として,
 \begin{align*}
@@ -2094,8 +2208,8 @@ $r$が動く範囲は有限なので有限集合である.
 と書くこともできる.
 
 $P^{-1}AP=B$を満たす正則行列$P$が存在するとき,
-$A\sim B$とする.
-このとき$\sim$は同値関係である.
+$A\sim^1 B$とする.
+このとき$\sim^1$は同値関係である.
 $A$が対角化可能であるとすると,
 $\diag(\lambda_1,\ldots,\lambda_n)\sim A$
 を満たす$\lambda_1,\ldots,\lambda_n$がとれる.
@@ -2103,11 +2217,11 @@ $\lambda_1,\ldots,\lambda_n$は並び替えを除いてただひと組存在す�
 例えば,
 考える行列として実対称行列のみを考えるならば
 \begin{align*}
-  \Set{A\text{: $n$次実対称行列}}/\sim
+  \Set{A\text{: $n$次実対称行列}}/\sim^1
 \end{align*}
 の完全代表系として,
 \begin{align*}
-  \Set{\diag(\lambda_1,\ldots,\lambda_n)|\lambda_1\geq \cdots\geq \lambda_n\in \RR}/\sim
+  \Set{\diag(\lambda_1,\ldots,\lambda_n)|\lambda_1\geq \cdots\geq \lambda_n\in \RR}
 \end{align*}
 が取れる.
 より一般には,
@@ -2117,7 +2231,7 @@ $A=J(n_1,\lambda_1)\oplus\cdots\oplus J(n_l,\lambda_l)$
 が存在する.
 これらは, 並び替えを除いてただ一組存在する.
 \begin{align*}
-  \Set{A\text{: $n$次正方行列}}/\sim
+  \Set{A\text{: $n$次正方行列}}/\sim^1
 \end{align*}
 の完全代表系として,
 \begin{align*}
@@ -2253,3 +2367,588 @@ $A\sim B$とすると, $\sim$は同値関係である.
 
 \chapter{Quiverの表現}
 \section{ベクトル空間の同型と線型写像}
+以下では, 次の3つの実ベクトル空間を例として考える:
+\begin{align*}
+  V&=\RR^2=\Set{\begin{pmatrix}x\\y\end{pmatrix}|x,y\in\RR}\\
+  V'&=\Set{\begin{pmatrix}x&y\end{pmatrix}|x,y\in\RR}\\
+  V''&=\CC=\Set{x+y\sqrt{-1}|x,y\in\RR}.
+\end{align*}
+これらの例において,
+$V\neq V'$ではある.
+つまり$V$と$V'$は等しくない.
+しかし
+$\begin{pmatrix}x\\y\end{pmatrix}$を
+$\begin{pmatrix}x&y\end{pmatrix}$だと思えば
+ベクトル空間としては同じものの様に見える.
+
+状況を一般化して次の状況を考える:
+$W$と$W'$をベクトル空間とする.
+$W$から$W'$への同型写像, つまり全単射な線型写像が存在するとき,
+$W$と$W'$は同型であるいい$W\simeq W'$と書くのであった.
+$W$から$W'$への同型写像$\nu$が存在するときには,
+$W$に関してベクトル空間として言えることは,
+$\nu$を通して, $W'$に対しても言える.
+つまり, $W$と$W'$はベクトル空間として区別がつかない.
+
+考えている例では, 例えば
+\begin{align*}
+  \nu\colon&
+  \Shazo{V}{V'}
+        {\begin{pmatrix}x\\y\end{pmatrix}}{\begin{pmatrix}x&y\end{pmatrix}}
+        \\
+  \nu'\colon&
+  \Shazo{V'}{V''}
+        {\begin{pmatrix}x&y\end{pmatrix}}{x+y\sqrt{-1}}
+        \\
+  \nu''\colon&
+  \Shazo{V}{V''}
+        {\begin{pmatrix}x\\y\end{pmatrix}}{x+y\sqrt{-1}}
+\end{align*}
+を考えると$V$, $V'$, $V''$が同型であることがわかる.
+したがって, これらはこの同型写像を通して同じものだと思うことができる.
+また, $V$から$V$自身には$\id_V$が同型写像としてとれる.
+同型写像はここに挙げたものに限らない,
+例えば, 以下は$\id_V$以外の$V$から$V$への同型写像の例である:
+\begin{align*}
+  \nu'''\colon&
+  \Shazo{V}{V}
+        {\begin{pmatrix}x\\y\end{pmatrix}}{\begin{pmatrix}y\\x\end{pmatrix}}
+\end{align*}
+
+
+次に, 以下の4つの写像を考える:
+\begin{align*}
+  \varphi_1\colon&
+  \Shazo{V}{\RR}{\begin{pmatrix}x\\y\end{pmatrix}}{x}\\
+  \varphi_2\colon&
+  \Shazo{V'}{\RR}{\begin{pmatrix}x&y\end{pmatrix}}{x}\\
+  \varphi_3\colon&
+  \Shazo{V''}{\RR}{x+y\sqrt{-1}}{x}\\
+  \varphi_4\colon&
+  \Shazo{V}{\RR}{\begin{pmatrix}x\\y\end{pmatrix}}{y}.
+\end{align*}
+例えば$\varphi_1$と$\varphi_2$は同じものなのか異なるのか?
+
+$\varphi_1$と$\varphi_2$の定義域はそれぞれ$V$と$V'$であり,
+$V\neq V'$であるから, $\varphi_1\neq \varphi_2$である.
+しかし一方で$V\simeq V'$であるからベクトル空間としては見分けがつかない.
+定義域が等しくないからといって,
+$\varphi_1$と$\varphi_2$は異なるといってよいのか?
+
+状況を一般化して次の状況を考える:
+$U,U'$, $W,W'$を$K$ベクトル空間とする.
+また, $\varphi\colon U\to W$,
+$\varphi'\colon U'\to W'$
+を線型写像とする.
+次の条件をみたす$\nu_1$, $\nu_2$が存在するとき,
+$\varphi\sim_2\varphi'$と, ここでは, 書くことにする:
+\begin{enumerate}
+  \item $\nu_1\colon U\to U'$は同型写像.
+  \item $\nu_2\colon W\to W'$は同型写像.
+  \item $\varphi'\circ\nu_1=\nu_2\circ\varphi$.
+\end{enumerate}
+つまり, 図式
+\begin{center}
+  \begin{tikzcd}
+    U \arrow[d,"\nu_1"',"\simeq" sloped] \arrow[r,"\varphi"]&W\arrow[d,"\nu_2"',"\simeq" sloped]\\
+    U' \arrow[r,"\varphi'"] &W' 
+  \end{tikzcd}
+\end{center}
+が可換となる同型$\nu_1$, $\nu_2$があるとき,
+$\varphi\sim_2\varphi'$とする.
+$\varphi\sim_2\varphi'$であるとき,
+$\varphi$に関して線型写像として言えることは,
+$\varphi'$についても言える.
+つまり線型写像として区別がつかない.
+
+今考えている例においては, $\id_{\RR}$が$\RR$から$\RR$への同型写像であるので, 以下のようになる:
+$\varphi_2\circ\nu= \id_{\RR}\circ\varphi_1$であるので,
+$\varphi_1\sim_2 \varphi_2$.
+$\varphi_3\circ\nu'= \id_{\RR}\circ\varphi_1$であるので,
+$\varphi_1\sim_2 \varphi_3$.
+$\varphi_4\circ\nu''= \id_{\RR}\circ\varphi_1$であるので,
+$\varphi_1\sim_2 \varphi_4$.
+
+
+$\varphi\sim_2\varphi'$となるときに表現行列はどうなっているか調べる.
+$\varphi\colon U\to W$,
+$\varphi\colon U'\to W'$とし,
+$\varphi\sim_2\varphi'$とする.
+$\nu_1\colon U\to U'$,
+$\nu_2\colon W\to W'$を
+$\varphi'\circ\nu_1=\nu_2\circ \varphi$
+を満たす同型写像とする.
+$U\simeq U'$, $W\simeq W'$である.
+$(u_1,\ldots,u_n)$を$U$の基底,
+$(u'_1,\ldots,u'_n)$を$U'$の基底,
+$(w_1,\ldots,w_m)$を$W$の基底,
+$(w'_1,\ldots,w'_m)$を$W'$の基底とする.
+$A$を
+$(u_1,\ldots,u_n)$,
+$(w_1,\ldots,w_m)$
+に関する$\varphi$の表現行列,
+$A'$を
+$(u'_1,\ldots,u'_n)$,
+$(w'_1,\ldots,w'_m)$
+に関する$\varphi'$の表現行列
+とする.
+$P$を
+$(u_1,\ldots,u_n)$,
+$(u'_1,\ldots,u'_n)$,
+に関する$\nu_1$の表現行列,
+$Q$を
+$(w_1,\ldots,w_m)$,
+$(w'_1,\ldots,w'_m)$
+に関する$\nu_2$の表現行列
+とする.
+このとき, 図式
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\simeq" sloped]\arrow[ddd,"\mu_{P}"']&&& K^m\arrow[ddd,"\mu_{Q}"] \\
+    & U \arrow[r,"\varphi"]\arrow[d,"\nu_1"']&W\arrow[ru,"\simeq" sloped]\arrow[d,"\nu_2"]&\\
+    & U' \arrow[r,"\varphi'"']&W'\arrow[rd,"\simeq" sloped]&\\
+    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\simeq" sloped]&&& K^m 
+  \end{tikzcd}
+\end{center}
+が可換となる.
+したがって,
+\begin{align*}
+  \mu_{A'}&=\mu_{Q}\circ \mu_A \circ \mu_{P}^{-1}\\
+  &=\mu_{QAP^{-1}}
+\end{align*}
+をみたすので, $A'=QAP^{-1}$となる.
+逆に, $\varphi$の表現行列$A$と$\varphi'$の表現行列$A'$に対し,
+$A'=QAP^{-1}$を満たす正則行列$Q$, $P$が取れれば,
+図式を可換にする$\nu_1$, $\nu_2$を与えることができ,
+$\varphi\sim_2 \varphi'$がわかる.
+まとめると以下のようになる:
+\begin{prop}
+  線型写像$\varphi\colon U\to W$と$\varphi'\colon U'\to W'$に対し以下は同値:
+  \begin{enumerate}
+  \item $\varphi\sim_2\varphi'$
+  \item 以下の条件を満たす$P$, $Q$, $A$, $A'$が存在する:
+    \begin{enumerate}
+    \item $P$, $Q$は正則行列.
+    \item $A$は$\varphi$の表現行列.
+    \item $A'$は$\varphi'$の表現行列.
+    \item $QAP=A'$.
+    \end{enumerate}
+  \end{enumerate}
+\end{prop}
+正則行列$P$, $Q$に対して, $QAP\sim^{2} A$で定義される,
+行列に対する同値関係$\sim^{2}$を思い出すと,
+以下の様に書くこともできる.
+\begin{prop}
+  $\varphi\colon U\to W$と$\varphi'\colon U'\to W'$を
+  線型写像とする.
+  $\varphi$の表現行列$A$と$\varphi'$の表現行列$A'$に対し以下は同値:
+  \begin{enumerate}
+  \item $\varphi\sim_2\varphi'$
+  \item $A\sim^2 A'$.
+  \end{enumerate}
+したがって
+$[\varphi]_2=\Set{\varphi'|\varphi\sim_2\varphi'}$,
+$[A]^2=\Set{A'|A\sim^2A'}$
+とすると,
+$\varphi$の表現行列$A$に対し, 次が成り立つ:
+\begin{align*}
+  \Set{ A'| \text{$A'$はある$\varphi' \in [\varphi]_2$の表現行列}}
+  =[A]^{2}.
+\end{align*}
+\end{prop}
+さらに,
+$\varphi\colon U\to W$に対し,
+$U$の基底と$W$の基底をうまく取ると,
+$\varphi$の表現行列は$E_r\oplus O_{m-r,n-r}$という形で書けることがわかる.
+
+
+次に,
+定義域と終域が等しい場合を考える.
+以下の3つの写像を考える:
+\begin{align*}
+  \psi_1\colon&
+  \Shazo{V}{V}{\begin{pmatrix}x\\y\end{pmatrix}}{\begin{pmatrix}x\\-y\end{pmatrix}}\\
+  \psi_2\colon&
+  \Shazo{V'}{V'}{\begin{pmatrix}x&y\end{pmatrix}}{\begin{pmatrix}x&-y\end{pmatrix}}\\
+  \psi_3\colon&
+  \Shazo{V''}{V''}{x+y\sqrt{-1}}{x-y\sqrt{-1}}
+%  \psi_4\colon&
+%  \Shazo{V'}{V}{\begin{pmatrix}x&y\end{pmatrix}}{\begin{pmatrix}x\\y\end{pmatrix}}\\
+\end{align*}
+例えば$\varphi_1$と$\varphi_2$は同じものなのか異なるのか?
+ここでもベクトル空間の同型で移り合うものは同一視して考えたい.
+ただし, 今は, 定義域と終域が等しいので,
+定義域同士を移りあうための同型写像と
+終域同士を移りあうための同型写像は同じもを用いるのが妥当である.
+
+状況を一般化して次の状況を考える:
+$U,U'$を$K$ベクトル空間とする.
+また, $\varphi\colon U\to U$,
+$\varphi'\colon U'\to U'$
+を線型写像とする.
+次の条件をみたす$\nu$が存在するとき,
+$\varphi\sim_1\varphi'$と, ここでは, 書くことにする:
+\begin{enumerate}
+  \item $\nu\colon U\to U'$は同型写像.
+  \item $\varphi'\circ\nu=\nu\circ\varphi$.
+\end{enumerate}
+つまり, 図式
+\begin{center}
+  \begin{tikzcd}
+    U \arrow[d,"\nu"',"\simeq" sloped] \arrow[r,"\varphi"]&U\arrow[d,"\nu"',"\simeq" sloped]\\
+    U' \arrow[r,"\varphi'"] &U' 
+  \end{tikzcd}
+\end{center}
+が可換となる同型$\nu$があるとき,
+$\varphi\sim_1\varphi'$とする.
+$\varphi\sim_1\varphi'$であるとき,
+$\varphi$に関して線型写像として言えることは,
+$\varphi'$についても言える.
+つまり線型写像として区別がつかない.
+
+
+今考えている例においては, 
+以下のようになる:
+$\psi_2\circ\nu= \nu\circ\psi_1$であるので,
+$\psi_1\sim_2 psi_2$.
+$\psi_3\circ\nu'= \nu'\circ\psi_1$であるので,
+$\psi_1\sim_2 \psi_3$.
+
+
+$\varphi\sim_1\varphi'$となるときに表現行列はどうなっているか調べる.
+$\varphi\colon U\to U$,
+$\varphi\colon U'\to U'$とし,
+$\varphi\sim_1\varphi'$とする.
+$\nu\colon U\to U'$を
+$\varphi'\circ\nu=\nu\circ \varphi$
+を満たす同型写像とする.
+$U\simeq U'$である.
+$(u_1,\ldots,u_n)$を$U$の基底,
+$(u'_1,\ldots,u'_n)$を$U'$の基底とする.
+$A$を
+$(u_1,\ldots,u_n)$
+に関する$\varphi$の表現行列,
+$A'$を
+$(u'_1,\ldots,u'_n)$
+に関する$\varphi'$の表現行列
+とする.
+$P$を
+$(u_1,\ldots,u_n)$,
+$(u'_1,\ldots,u'_n)$
+に関する$\nu$の表現行列,
+とする.
+このとき, 図式
+\begin{center}
+  \begin{tikzcd}
+    K^n \arrow[rrr,"\mu_{A}"]\arrow[rd,"\simeq" sloped]\arrow[ddd,"\mu_{P}"']&&& K^n\arrow[ddd,"\mu_{P}"] \\
+    & U \arrow[r,"\varphi"]\arrow[d,"\nu"']&U\arrow[ru,"\simeq" sloped]\arrow[d,"\nu"]&\\
+    & U' \arrow[r,"\varphi'"']&U'\arrow[rd,"\simeq" sloped]&\\
+    K^n \arrow[rrr,"\mu_{A'}"']\arrow[ru,"\simeq" sloped]&&& K^n
+  \end{tikzcd}
+\end{center}
+が可換となる.
+したがって,
+\begin{align*}
+  \mu_{A'}&=\mu_{P}\circ \mu_A \circ \mu_{P}^{-1}\\
+  &=\mu_{PAP^{-1}}
+\end{align*}
+をみたすので, $A'=PAP^{-1}$となる.
+逆に, $\varphi$の表現行列$A$と$\varphi'$の表現行列$A'$に対し,
+$A'=PAP^{-1}$を満たす正則行列$P$が取れれば,
+図式を可換にする$\nu$を与えることができ,
+$\varphi\sim_1 \varphi'$がわかる.
+まとめると以下のようになる:
+\begin{prop}
+  線型写像$\varphi\colon U\to U$と$\varphi'\colon U'\to U'$に対し以下は同値:
+  \begin{enumerate}
+  \item $\varphi\sim_1\varphi'$
+  \item 以下の条件を満たす$P$, $A$, $A'$が存在する:
+    \begin{enumerate}
+    \item $P$は正則行列.
+    \item $A$は$\varphi$の表現行列.
+    \item $A'$は$\varphi'$の表現行列.
+    \item $PAP^{-1}=A'$.
+    \end{enumerate}
+  \end{enumerate}
+\end{prop}
+正則行列$P$に対して, $PAP^{-1}\sim^{1} A$で定義される,
+行列に対する同値関係$\sim^{1}$を思い出すと,
+以下の様に書くこともできる.
+\begin{prop}
+  $\varphi\colon U\to U$と$\varphi'\colon U'\to U'$を
+  線型写像とする.
+  $\varphi$の表現行列$A$と$\varphi'$の表現行列$A'$に対し以下は同値:
+  \begin{enumerate}
+  \item $\varphi\sim_1\varphi'$
+  \item $A\sim^1 A'$.
+  \end{enumerate}
+したがって
+$[\varphi]_1=\Set{\varphi'|\varphi\sim_1\varphi'}$,
+$[A]^1=\Set{A'|A\sim^1A'}$
+とすると,
+$\varphi$の表現行列$A$に対し, 次が成り立つ:
+\begin{align*}
+  \Set{ A'| \text{$A'$はある$\varphi' \in [\varphi]_1$の表現行列}}
+  =[A]^{1}.
+\end{align*}
+\end{prop}
+さらに,
+$\varphi\colon U\to U$に対し,
+$U$の基底をうまく取ると,
+$\varphi$の表現行列はJordan標準形で書けることがわかる.
+\begin{remark}
+  例えば,
+  \begin{align*}
+    \psi_4\colon&
+    \Shazo{V'}{V}{\begin{pmatrix}x&y\end{pmatrix}}{\begin{pmatrix}x\\y\end{pmatrix}}\\
+  \end{align*}
+  の場合は, $V'\sim V$ではあるが$V\neq V'$であるので,
+  定義域と終域の基底を共通に取ることは原理的にできない.
+  したがって, $\sim_1$という同値関係を考えることもできない.
+  定義域と終域の次元が等しいため,
+  表現行列は正方行列であるが,
+  この場合,
+  $PAP^{-1}\sim^{1}A$により定まる
+  $\sim^1$という同値関係を考えるのは不自然であり,
+  $PAQ\sim^{2}A$により定まる
+  $\sim^2$という同値関係を考えるべきである.
+  たまたま, 次元が等しく行列が正方行列になっているのか,
+  定義域と終域が本当に一致しているから正方行列になっているのか,
+  によって考える標準形が変わってくることに注意が必要である.
+\end{remark}
+
+
+
+\section{QuiverとQuiverの射}
+\begin{definition}
+  以下を満たすとき,
+  $Q=(Q_0,Q_1,s,t)$をQuiverと呼ぶ.
+  \begin{enumerate}
+  \item $Q_0$: 集合 (頂点の集合)
+  \item $Q_1$: 集合 (辺(矢印)の集合)
+  \item $s\colon Q_1\to Q_0$: 写像. ($s(\alpha)$は辺$\alpha$の始点\footnote{start, source})
+  \item $t\colon Q_1\to Q_0$: 写像. ($t(\alpha)$は辺$\alpha$の終点\footnote{teminal, target})
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$
+  $Q'=(Q'_0,Q'_1,s',t')$
+  をQuiverとする.
+  このとき,
+  以下の条件を満たすとき,
+  $\varphi=(\varphi_0,\varphi_1)$を
+  $Q$から$Q'$への射と呼ぶ:
+  \begin{enumerate}
+  \item $\varphi_0\colon Q_0\to Q'_0$.
+  \item $\varphi_1\colon Q_1\to Q'_1$.
+  \item
+    \label{def:item:quiver:hom:s}
+    $s'\circ\varphi_1=\varphi_0\circ s$.
+  \item $t'\circ\varphi_1=\varphi_0\circ t$.
+  \end{enumerate}
+    \label{def:item:quiver:hom:t}
+  $\varphi$が
+  $Q$から$Q'$への射であることを,
+  $\varphi\colon Q\to Q'$のように書く.
+\end{definition}
+Quiverの射の定義に現れる条件
+\Cref{def:item:quiver:hom:s}
+は次の図式が可換になるということである:
+\begin{center}
+  \begin{tikzcd}
+    Q_1 \arrow[d,"\varphi_1"'] \arrow[r,"s"]&Q_0 \arrow[d,"\varphi_0"]\\
+    Q'_1 \arrow[r,"s'"] &Q_0'
+  \end{tikzcd}.
+\end{center}
+これは,
+$Q$の辺$\alpha\in Q_1$に対し,
+$Q'$の辺$\varphi_1(\alpha)$の始点$s'(\varphi_1(\alpha))$は,
+$\alpha$の始点$s(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
+であることを意味する.
+同様に, Quiverの射の定義に現れる条件
+\Cref{def:item:quiver:hom:t}
+は次の図式が可換になるということである:
+\begin{center}
+  \begin{tikzcd}
+    Q_1 \arrow[d,"\varphi_1"'] \arrow[r,"t"]&Q_0 \arrow[d,"\varphi_0"]\\
+    Q'_1 \arrow[r,"t'"] &Q_0'
+  \end{tikzcd}.
+\end{center}
+これは,
+$Q$の辺$\alpha\in Q_1$に対し,
+$Q'$の辺$\varphi_1(\alpha)$の終点$t'(\varphi_1(\alpha))$は,
+$\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
+であることを意味する.
+
+\begin{example}
+  \ZU
+  \begin{align*}
+    Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+  \begin{align*}
+    Q'=\bullet_{1'}
+    \genfrac{}{}{0pt}{}{\xrightarrow{\alpha_1}}{\xrightarrow{\alpha_2}}
+    \bullet_{2'}
+  \end{align*}
+  とする.
+  $\varphi_1(\alpha)=\alpha_1$,
+  $\varphi_0(1)=1'$,
+  $\varphi_0(2)=2'$
+  とすると$(\varphi_0,\varphi_1)$は$Q$から$Q'$への射である.
+
+  $\psi_1(\alpha_1)=\psi_1(\alpha_2)=\alpha_1$,
+  $\psi_0(1')=1$,
+  $\psi_0(2')=2$
+  とすると$(\varphi_0,\varphi_1)$は$Q'$から$Q$への射である.  
+\end{example}
+
+\begin{example}
+  \ZU
+  \begin{align*}
+    Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+  \begin{align*}
+    Q'=\genfrac{}{}{0pt}{}{\bullet_{1'}}{\circlearrowleft_{\alpha'}}
+  \end{align*}
+  とする.
+  $\varphi_1(\alpha)=\alpha'$,
+  $\varphi_0(1)=1'$,
+  $\varphi_0(2)=1'$
+  とすると$(\varphi_0,\varphi_1)$は$Q$から$Q'$への射である.
+
+  一方, $Q'$から$Q$への射はない.
+  $Q'_1$から$Q_1$への写像は
+  $\psi_1(\alpha')=\alpha$に限られる.
+  また, $Q'_0$から$Q_0$への写像も
+  $\psi_0(1')=1$に限られる.
+  しかし$\psi(\alpha')=\alpha$の終点は$2$であり, $1$ではない.
+\end{example}
+
+
+\begin{example}
+  $Q=(Q_0,Q_1,s,t)$
+  をquiverとする.
+  このとき, $(\id_{Q_0},\id_{Q_1})$は$Q$から$Q$への射である.
+  これを$\id_Q$と書く.
+\end{example}
+\begin{example}
+  $Q$, $Q'$, $Q''$
+  をquiverとする.
+  $Q$から$Q'$への射$\varphi=(\varphi_0,\varphi_1)$と,
+  $Q'$から$Q''$への射$\varphi'=(\varphi'_0,\varphi'_1)$に対し,
+  $(\varphi'_0\circ \varphi_0,\varphi'_1\circ \varphi_1)$
+  は, $Q$から$Q''$への射となる.
+  これを$\varphi' \circ \varphi$と書く.
+\end{example}
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$
+  $Q'=(Q'_0,Q'_1,s',t')$
+  をQuiverとする.
+  以下の条件を満たす$\varphi$, $\varphi'$が存在するとき,
+  $Q$と$Q'$は同型であるという:
+  \begin{enumerate}
+  \item $\varphi$は$Q$から$Q'$への射.
+  \item $\psi$は$Q'$から$Q$への射.
+  \item $\psi\circ\varphi=\id_{Q}$.
+  \item $\varphi\circ\psi=\id_{Q'}$.
+  \end{enumerate}
+\end{definition}
+
+\section{Quiverの表現}
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  各$x\in Q_0$に対し, $K$-ベクトル空間$V_x$が定まっているとする.
+  各$\alpha\in Q_1$に対し, 線型写像$f_\alpha\colon V_{s(\alpha)}\to V_{t(\alpha)}$が定まっているとする.
+  このとき, この対応の組 $(V_\bullet, f_\bullet)$を$Q$の表現と呼ぶ.
+\end{definition}
+\begin{remark}
+  $K$を体とする.
+  \begin{enumerate}
+  \item $d\colon Q_0\to \NN$.
+  \item $A\colon Q_1 \to \Set{\text{$A$:$K$の元をを成分とする行列}}$, ただし $A_{\alpha}$は$(d(t(\alpha)),d(s(\alpha)))$-行列.
+  \end{enumerate}
+  という写像の組$(d,A)$を考えることで,
+  \begin{enumerate}
+  \item $x\in Q_0$に対し, $V_x=K^{d(x)}$,
+  \item $\alpha\in Q_1$に対し, $f_\alpha=\mu_{A_\alpha}$
+  \end{enumerate}
+  で定義される表現$(f_\bullet,V_\bullet)$が得られる.
+  有限次元$K$ベクトル空間は, $K^d$と同型であるので,
+  数ベクトル空間だけ考えるのでもある意味で十分である.
+  数ベクトル空間だけ考えるのであれば,
+  この写像の組$(d,A)$を$Q$の表現だと思ってもよい.
+\end{remark}
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $(V_\bullet,f_\bullet)$,
+  $(V'_\bullet,f'_\bullet)$
+  を$Q$の表現とする.
+  $x\in Q_0$に対し,
+  線型写像
+  $\nu_x\colon V_x \to V'_x$
+  が定まっているとする.
+  次の条件を満たすとき,
+  $\nu=(\nu_\bullet)$を
+  $(V_\bullet,f_\bullet)$から
+  $(V'_\bullet,f'_\bullet)$への準同型写像と呼ぶ:
+  \begin{enumerate}
+  \item
+    \label{def:hom:rep:quiver:item}
+    各$\alpha\in Q_1$に対し,
+    $\nu_{t(\alpha)}\circ f_{\alpha}=f'_{\alpha}\circ \nu_{s(\alpha)}$.
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  $(V_\bullet,f_\bullet)$から
+  $(V'_\bullet,f'_\bullet)$への準同型写像の満たすべき条件
+  \Cref{def:hom:rep:quiver:item}は,  
+  各$\alpha\in Q_1$に対し,
+  次の図式が可換になるということである:
+  \begin{center}
+  \begin{tikzcd}
+    V_{s(\alpha)} \arrow[d,"\nu_{s(\alpha)}"'] \arrow[r,"f"]&V_{t(\alpha)} \arrow[d,"\nu_{t(\alpha)}"]\\
+    V'_{s(\alpha)} \arrow[r,"f'"] &V_{t(\alpha)}'
+  \end{tikzcd}.
+\end{center}
+\end{remark}
+\begin{example}
+  $Q=(Q_0,Q_1,s,t)$をquiverとし,
+  $V=(V_\bullet,f_\bullet)$を
+  を$Q$の表現とする.
+  $x\in Q_0$に対し,
+  線型写像$\id_{V_x}\colon  V_x \to V_x$
+  を対応させると, これは, $V$から$V$への準同型写像である.
+  これを$\id_{V}$で表す.
+\end{example}
+\begin{example}
+  $Q=(Q_0,Q_1,s,t)$をquiverとし,
+  $V=(V_\bullet,f_\bullet)$,
+  $V'=(V'_\bullet,f'_\bullet)$,
+  $V''=(V''_\bullet,f''_\bullet)$を
+  を$Q$の表現とする.
+  また,
+  $\nu=(\nu_\bullet)$を$V$から$V'$への準同型写像,
+  $\nu'=(\nu'_\bullet)$を$V'$から$V''$への準同型写像
+  とする.
+  $x\in Q_0$に対し, $\nu_x\circ \nu'_{x}$を対応させると,
+  これは, $V$から$V''$への準同型写像である.
+  これを$\nu'\circ\nu$で表す.
+\end{example}
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $V=(V_\bullet,f_\bullet)$,
+  $V'=(V'_\bullet,f'_\bullet)$
+  を$Q$の表現とする.
+  以下の条件をみたす$\nu$と$\nu'$が存在するとき, $V$と$V'$は同型であるといい$V\simeq V'$とかく:
+  \begin{enumerate}
+  \item $\nu$は$V$から$V'$への準同型写像.
+  \item $\nu'$は$V'$から$V$への準同型写像.
+  \item $\nu'\circ\nu=\id_V$.
+  \item $\nu\circ\nu'=\id_{V'}$.
+  \end{enumerate}
+\end{definition}
+
+数ベクトル空間のみを考えるときには,

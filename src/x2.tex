@@ -461,7 +461,7 @@
 %\newcommand{\Block}[1]{\stretchleftright{(}{#1}{)}}
 
 
-\newcommand{\injectto}[1]{\hookrightarrow}
+\newcommand{\injectto}{\hookrightarrow}
 %\newcommand{\injectto}[1]{\rightarrowtail}
 \newcommand{\xarrow}{\makebox[0pt][l]{$\nwarrow$}\nearrow}
 
@@ -580,11 +580,16 @@
     \right)}
 
 
+% Map
 \newcommand{\nin}{\cup\kern-0.352em\rule{0.4pt}{1.4ex}\kern-0,4pt\rule{0.352em}{0ex}}
-\newcommand{\Shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0.8ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
+%\newcommand{\Shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0.8ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
+\newcommand{\Shazo}[4]{\begin{array}[t]{ccc}\displaystyle #1&\longrightarrow&\displaystyle #2\\[-0.4ex]\nin&&\nin\\[0ex]\textstyle #3&\longmapsto&\textstyle #4\end{array}}
 \newcommand{\shazo}[5]{\begin{array}{rcccc}\displaystyle #1&:&\displaystyle #2&\longrightarrow&\displaystyle #3\\[-0.4ex]&&\nin&&\nin\\[0ex]&&\textstyle #4&\longmapsto&\textstyle #5\end{array}}
-%\newcommand{\shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
 
+%% \newcommand{\nin}{\cup\kern-0.352em\rule{0.4pt}{1.4ex}\kern-0,4pt\rule{0.352em}{0ex}}
+%% %\newcommand{\Shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0.8ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
+%% \newcommand{\shazo}[5]{\begin{array}{rcccc}\displaystyle #1&:&\displaystyle #2&\longrightarrow&\displaystyle #3\\[-0.4ex]&&\nin&&\nin\\[0ex]&&\textstyle #4&\longmapsto&\textstyle #5\end{array}}
+%% %\newcommand{\shazo}[5]{\begin{array}{rcccc}#1&:&#2&\longrightarrow&#3\\[-0.4ex]&&\nin&&\nin\\[0ex]&&\displaystyle #4&\longmapsto&\displaystyle #5\end{array}}
 
 % misc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
