@@ -2731,6 +2731,19 @@ $\varphi$の表現行列はJordan標準形で書けることがわかる.
   \end{enumerate}
 \end{definition}
 
+\begin{remark}
+  本稿の目的はquiverの表現について説明することである.
+  Quiverの表現を考えるときには,
+  quiverを一つ固定して考えることが多い.
+  本稿でも表現を考えるときには,
+  quiverは固定されており,
+  複数のquiverが出てくることはおそらくない.
+  したがってquiverの間の射などを考える必要は,
+  本稿を読む上では必要ないかもしれないが,
+  一応念の為以下で説明をしておく.
+\end{remark}
+
+
 \begin{definition}
   $Q=(Q_0,Q_1,s,t)$
   $Q'=(Q'_0,Q'_1,s',t')$
@@ -2862,11 +2875,39 @@ $\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
   各$\alpha\in Q_1$に対し, 線型写像$f_\alpha\colon V_{s(\alpha)}\to V_{t(\alpha)}$が定まっているとする.
   このとき, この対応の組 $(V_\bullet, f_\bullet)$を$Q$の表現と呼ぶ.
 \end{definition}
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $Q$の表現$(V_\bullet, f_\bullet)$
+  に対し,
+  \begin{align*}
+    \shazo{\dim(V_\bullet, f_\bullet)}
+          {Q_0}{\NN}
+          {x}{\dim(V_x)}
+  \end{align*}
+  という写像を$(V_\bullet,f_\bullet)$の次元ベクトルと呼ぶ.
+\end{definition}
+\begin{example}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  このとき,
+  \begin{enumerate}
+  \item $x\in Q_0$に対し, $V_0=\Set{0}$
+  \item $\alpha\in Q_1$に対し, $f_\alpha=\underline{0}\colon \Set{0}\to \Set{0}$
+  \end{enumerate}
+  とすると, $(V_\bullet,f_\bullet)$は$Q$の表現である.
+  この表現を$Q$の零表現と呼んだりする.
+  $(V_\bullet,f_\bullet)$が零表現なら,
+  次元ベクトル$\dim(V_\bullet,f_\bullet)$は零ベクトルである.
+  つまり, どの$x\in Q_0$に対しても,
+  $\dim(V_\bullet,f_\bullet)(x)=0$である.
+  逆に,
+  次元ベクトル$\dim(V_\bullet,f_\bullet)$が零ベクトルであるような表現は
+  零表現しかないこともすぐわかる.
+\end{example}
 \begin{remark}
-  $K$を体とする.
+  $K$を体とし, $\Mat(K)$を$K$の元を成分とする行列全体の集合とする.
   \begin{enumerate}
   \item $d\colon Q_0\to \NN$.
-  \item $A\colon Q_1 \to \Set{\text{$A$:$K$の元をを成分とする行列}}$, ただし $A_{\alpha}$は$(d(t(\alpha)),d(s(\alpha)))$-行列.
+  \item $A\colon Q_1 \to \Mat(K)$, ただし $A_{\alpha}$は$(d(t(\alpha)),d(s(\alpha)))$-行列.
   \end{enumerate}
   という写像の組$(d,A)$を考えることで,
   \begin{enumerate}
@@ -2874,11 +2915,16 @@ $\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
   \item $\alpha\in Q_1$に対し, $f_\alpha=\mu_{A_\alpha}$
   \end{enumerate}
   で定義される表現$(f_\bullet,V_\bullet)$が得られる.
+  写像$d$は次元ベクトル$\dim(f_\bullet,V_\bullet)$である.
   有限次元$K$ベクトル空間は, $K^d$と同型であるので,
   数ベクトル空間だけ考えるのでもある意味で十分である.
   数ベクトル空間だけ考えるのであれば,
   この写像の組$(d,A)$を$Q$の表現だと思ってもよい.
+  また, $Q_0$が1点集合のときには,
+  写像$A$は行列束(matrix pencil)と呼ばれるものである.
+  写像$A$のことをここでは一般化された行列束とよぶことにする.
 \end{remark}
+
 
 \begin{definition}
   $Q=(Q_0,Q_1,s,t)$をquiverとする.
@@ -2951,4 +2997,428 @@ $\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
   \end{enumerate}
 \end{definition}
 
+\begin{remark}
 数ベクトル空間のみを考えるときには,
+以下のように考えることができる:
+$Q$を, quiverとする.
+$(d,A)$, $(d',A')$を次元ベクトルと行列束の組として与えられた$Q$の表現とする.
+このとき,
+以下の条件を満たす
+写像$A\colon Q_0 \to \Mat(K)$
+が, $(d,A)$から$(d',A')$への準同型写像である:
+\begin{enumerate}
+\item $x\in Q_0$に対し, $P_x$は$(d'(x),d(x))$-行列.
+\item $\alpha\in Q_1$に対し, $A_\alpha P_{s(\alpha)}= P_{t(\alpha)}A'_\alpha$.
+\end{enumerate}
+すべての$P_x$が正則であるような準同型写像がとれるとき,
+$(d,A)$と$(d',A')$は同型である.
+\end{remark}
+
+\begin{example}
+  \begin{align*}
+    Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+  とする.
+  このとき, $Q$の表現とは,
+  \begin{align*}
+    V_1 \xrightarrow{f_\alpha} V_{2}
+  \end{align*}
+  であり,
+  線型写像を1つ与えることと同じである.
+  $(V_\bullet,f_\bullet)$から
+  $(V_\bullet,f_\bullet)$への
+  準同型写像$\nu$は
+  \begin{center}
+    \begin{tikzcd}
+    V_1 \arrow[d,"\nu_1"'] \arrow[r,"f_\alpha"]&V_2\arrow[d,"\nu_2"]\\
+    V_1' \arrow[r,"f'_\alpha"'] &V_2' 
+  \end{tikzcd}
+  \end{center}
+  を可換にする$\nu_1,\nu_2$の組である.
+  $\nu_1$, $\nu_2$が全単射であるときに,
+  $(V_\bullet,f_\bullet)\simeq (V_\bullet,f_\bullet)$
+  である.
+  したがって, この$Q$においては,
+  $(V_\bullet,f_\bullet)\simeq (V_\bullet,f_\bullet)$であることと,
+  線型写像として
+  $f_\alpha \sim_2 f_\alpha$であることが同値である.  
+\end{example}
+
+
+\begin{example}
+  \begin{align*}
+    Q=\genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
+  \end{align*}
+  とする.
+  このとき, $Q$の表現とは,
+  \begin{align*}
+    V_1 \xrightarrow{f_\alpha} V_{1}
+  \end{align*}
+  であり,
+  定義域と終域が等しい線型写像を1つ与えることと同じである.
+  \begin{center}
+    \begin{tikzcd}
+    V_1 \arrow[d,"\nu"'] \arrow[r,"f_\alpha"]&V_1\arrow[d,"\nu"]\\
+    V_1' \arrow[r,"f'_\alpha"'] &V_1' 
+  \end{tikzcd}
+  \end{center}
+  を可換にする線型写像$\nu$をあたえることが,
+  $(V_\bullet,f_\bullet)$から
+  $(V_\bullet,f_\bullet)$への
+  準同型写像を与えることとなる.
+  $\nu$が全単射であるときに,
+  $(V_\bullet,f_\bullet)\simeq (V_\bullet,f_\bullet)$
+  である.
+  したがって, この$Q$においては,
+  $(V_\bullet,f_\bullet)\simeq (V_\bullet,f_\bullet)$であることと,
+  線型写像として
+  $f_\alpha \sim_1 f_\alpha$であることが同値である.  
+\end{example}
+
+\section{表現の直和}
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $V=(V_\bullet,f_\bullet)$,
+  $V'=(V'_\bullet,f'_\bullet)$
+  を$Q$の表現とする.
+  このとき,
+  \begin{enumerate}
+  \item $x\in Q_0$に対し, $W_x=V_x\oplus V'_x$
+  \item $\alpha\in Q_1$に対し, $g_\alpha=f_\alpha\oplus f'_\alpha$
+  \end{enumerate}
+  とおくと, $(W_\bullet,g_\bullet)$は$Q$の表現である.
+  この表現を$V$と$V'$の直和と呼び, $V\oplus V'$で表す.
+  また, $V$や$V'$を$V\oplus V'$の直和因子と呼ぶ.
+\end{definition}
+\begin{remark}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $V=(V_\bullet,f_\bullet)$,
+  $V'=(V'_\bullet,f'_\bullet)$
+  を$Q$の表現とする.
+  このとき, $V\oplus V'$の次元ベクトル$\dim(V\oplus V')$は,
+  直和因子の次元ベクトルの和
+  $\dim(V)+\dim(V')$となる.
+  つまり,
+  $\dim(V\oplus V')(x)=\dim(V)(x)+\dim(V')(x)$
+\end{remark}
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $V=(V_\bullet,f_\bullet)$,
+  を$Q$の表現とする.
+  零表現ではない表現
+  $V'=(V'_\bullet,f'_\bullet)$,
+  $V''=(V''_\bullet,f''_\bullet)$
+  を使って
+  $V\simeq V'\oplus V''$
+  と書けるとき,
+  $V$は$V'$と$V''$に直和分解できるという.
+\end{definition}
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $V=(V_\bullet,f_\bullet)$,
+  を$Q$の表現とする.
+  次の条件をみたすとき,
+  $V$は直既約表現であるという:
+  \begin{enumerate}
+  \item $V\simeq V'\oplus V''$ならば, $V'$または$V''$は零表現.
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  直既約表現とは直和分解できない表現のこと.
+\end{remark}
+
+\begin{remark}
+  部分表現が自明なものしかないものを, 単純表現という.
+  直既約であるとこと単純であることは一般に異なる.
+  本稿では直既約の方に興味がある.
+\end{remark}
+
+
+然るべき$K$に対して以下が成り立つことが知られている:
+\begin{prop}[Krull--Remak--Schmidtの定理]
+  $Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $V=(V_\bullet,f_\bullet)$,
+  を$Q$の表現とする.
+  このとき,
+  $V$を
+  直既約表現に直和直和分解できる.
+  すなわち,
+  \begin{align*}
+    V\simeq V^1\oplus\cdots\oplus V^n
+  \end{align*}
+  をみたす直既約表現$V^i$が存在する.
+  また, この分解は同型と並び替えを除いて一意である.
+  つまり,
+  直既約表現$V^i$と$W^i$が
+  \begin{align*}
+    V^1\oplus\cdots \oplus V^n\simeq W^1\oplus\cdots\oplus W^m
+  \end{align*}
+  を満たすならば, $m=n$であり,
+  $V^i\simeq V^{\sigma(i)}$をみたす
+  $\sigma\in S_n$がとれる.
+\end{prop}
+
+\begin{remark}
+  一般の表現を考えることは難しくとも,
+  直既約表現という(少なくとも次元は小さく)わかりやすいであろう表現に
+  分解すると考えやすくなることがあるだろう.
+\end{remark}
+
+\begin{example}
+  \begin{align*}
+    Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+  とし, $Q$の表現について考える.
+  $Q$の表現は線型写像を与えることと同じであった.
+  \begin{align*}
+    I_{1,1}&\colon\Shazo{K}{\Set{0}}{x}{0}
+  \end{align*}
+  という表現を考える.
+  次元ベクトルを$(\dim(V_1),\dim(V_2))$の形式で表すと,
+  $\dim(I_{1,1})=(1,0)$である.
+  したがって, $I_{1,1}=V\oplus V'$と書けたとすると,
+  $\dim(V)$または$\dim(V')$のいずれかは零ベクトルである.
+  これは$V$または$V'$のいずれかは零表現であることを意味するので,
+  $I_{1,1}$は直既約表現である.
+  また, 次元ベクトルが$(1,0)$の表現は$I_{1,1}$しかない.
+  同様に,
+  \begin{align*}
+    I_{2,2}&\colon\Shazo{\Set{0}}{K}{0}{0}\\
+  \end{align*}
+  も直既約表現であり,
+  次元ベクトルが$(0,1)$の表現は$I_{2,2}$しかない.
+  次に,
+  \begin{align*}
+    I_{1,2}&\colon\Shazo{K}{K}{x}{x}
+  \end{align*}
+  という表現について考える.
+  $I_{1,2}=(I_\bullet,\iota_\bullet)$とする.
+  $V=(V_\bullet,f_\bullet)$,
+  $V=(V'_\bullet,f'_\bullet)$が
+  $I_{1,2}\simeq V\oplus V'$を満たしており,
+  この同型が$\nu=(\nu_1,\nu_2)$で与えられているとする.
+  $\dim(I_{1,2})=(1,1)$であるので,
+  $\dim(V_1)=1$, $\dim(V'_1)=0$と仮定する. 
+  $1\in I_{1}=K$とする.
+  このとき, $\iota_{\alpha}(1)=1\in I_2$であり$\iota_{\alpha}(1)\neq 0$である.
+  $\nu_2\colon I_2\to V_2\oplus V'_2$は同型写像であるので,
+  $\nu_2(\iota_{\alpha}(1))$は$V_2\oplus V'_2$零元ではない.
+  一方,
+  $\nu_1\colon K\to V_1\oplus V'_1$は同型写像であるが,
+  $V'_1=\Set{0}$であるので,
+  $\nu_1(x)\in V_1$である.
+  また,
+  $\nu$が表現の準同型であることから,
+  $f_{\alpha}(\nu_1(x))=\nu_2(\iota_{\alpha}(1))$
+  であることがわかり, $V_2$には零元以外の元が存在することがわかる.
+  したがって, $\dim(V_2)=1$, $\dim(V'_2)=0$となり
+  $V'$は零表現であることがわかる.
+  したがって, $I_{1,2}$は直既約表現である.
+
+  次に階数標準形
+  \begin{align*}
+    R_{r;m,n}=E_r\oplus O_{m-r,n-r}
+  \end{align*}
+  で表される表現を考える.
+  つまり
+  \begin{align*}
+    \mu_{R_{r;m,n}}&\colon\Shazo{K^m}{K^n}{x}{R_{r;m,n}x}
+  \end{align*}
+  で表される線型写像を考える.
+  この表現は,
+  \begin{align*}
+    \underbrace{I_{1,2}\oplus\cdots\oplus I_{1,2}}_r
+    \oplus
+    \underbrace{I_{1,1}\oplus\cdots\oplus I_{1,1}}_{n-r}
+    \oplus
+    \underbrace{I_{2,2}\oplus\cdots\oplus I_{2,2}}_{m-r}
+  \end{align*}
+  と同型である.
+
+  一般に,
+  線型写像$f\colon V_1\to V_2$は
+  基底をうまく取ることで,
+  表現行列が階数標準形になった.
+  したがって,
+  $Q$上の表現$(V_\bullet,f_\bullet)$は,
+  $I_{1,2}$,
+  $I_{1,1}$,
+  $I_{2,2}$という直既約表現の直和に分解できる.
+
+  ここまでの話をまとめると,
+  \begin{align*}
+    Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+  の表現の直既約分解を求めることは,
+  表現行列の階数標準形をもとめることに他ならないということになる.  
+\end{example}
+\begin{example}
+  \begin{align*}
+    Q=\genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
+  \end{align*}
+  とする.
+  このとき, $Q$の表現とは,
+  定義域と終域が等しい線型写像を1つ与えることと同じである.
+  実はJordan cellで表される表現は直既約である.
+  したがって, この$Q$において, 表現の直既約分解を求めることは,
+  表現行列のJordan標準形を求めることに他ならない.
+
+  Jordan cellで表される表現が直既約であることの証明のスケッチ:
+  Jordan cell
+  \begin{align*}
+    J_n(0)=\alpha E_n+\sum_{i=1}^{n-1}B_{n,n}(i,i+1)
+  \end{align*}
+  で表される表現について考える.
+  つまり,
+  \begin{align*}
+    \Shazo{K^n}{K^n}{x}{J_nx}
+  \end{align*}
+  という写像により決まる$Q$の表現$J=(J_\bullet, j_\bullet)$考える.
+  $V=(V_\bullet,f_\bullet)$,
+  $V=(V'_\bullet,f'_\bullet)$が
+  $J\simeq V\oplus V'$を満たしており,
+  この同型が$\nu=(\nu_1)$で与えられているとする.
+  $e_1$は固有値$\alpha$に属する固有ベクトルであり,
+  固有値$\alpha$の固有空間の次元は1であるから,
+  $\nu_1(\ee_1)$が$V_1$か$V'_1$のいずれかに一方に含まれることがわかる.
+  $\nu_1(\ee_1)\in V_1$に含まれているとする.
+  $\ee_2$は2次の広義固有空間に含まれるが,
+  次元は2であることから,
+  $\nu_1(\ee_2)$は$\nu_1(\ee_1)$と同じ空間に含まれていないといけない.
+  したがって$\nu_1(\ee_2)\in V_1$である.
+  以下同様に$\ee_i\in V_1$がわかるため,
+  $\dim(V_1)=\dim(K^n)$となり, $V'$は零表現であることがわかる.  
+
+  この$Q$では直既約表現は次元ベクトルを固定したとしても無限個ある.
+\end{example}
+
+
+\section{有限表現型}
+
+\begin{definition}
+  次の条件を満たす
+  $\Gamma=(Q_0,Q_1,e)$
+  を無向グラフと呼ぶ:
+  \begin{enumerate}
+  \item $Q_0$: 集合 (頂点の集合)
+  \item $Q_1$: 集合 (辺(矢印)の集合)
+  \item $e\colon Q_1\to 2^Q_0$: 写像.
+  \item $\alpha\in Q_1\implies |e(\alpha)|\leq 2$.
+    ($e(\alpha)$は辺$\alpha$の端点\footnote{end}の集合)
+  \end{enumerate}
+  $x\in Q_0$を頂点といい,
+  $\alpha\in Q_1$を辺という.
+  $\alpha\in Q_1$に対し
+  $x\in e(\alpha)$を$\alpha$の端点と呼ぶ.
+  $|e(\alpha)|=0$となる$\alpha\in Q_1$をself loopと呼ぶ.
+\end{definition}
+\begin{example}
+  \begin{align*}
+    A_n : \bullet_1 -\bullet_2-\cdots -\bullet_n
+  \end{align*}
+\end{example}
+\begin{example}
+  \begin{align*}
+    D_n : \bullet_1 -\begin{array}[t]{l}\bullet_2\\|\\\bullet_0\end{array}-\bullet_3-\cdots -\bullet_{n-1}
+  \end{align*}
+\end{example}
+\begin{example}
+  \begin{align*}
+    E_6 : \bullet_1-\bullet_2 -\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}-\bullet_4-\cdots -\bullet_{6-1}\\
+    E_7 : \bullet_1-\bullet_2 -\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}-\bullet_4-\cdots -\bullet_{7-1}\\
+    E_8 : \bullet_1-\bullet_2 -\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}-\bullet_4-\cdots -\bullet_{8-1}\\
+  \end{align*}
+\end{example}
+
+\begin{definition}
+  $\Gamma=(Q_0,Q_1,e)$を無向グラフとする.
+  $Q_0$で添字付けられたベクトル$t=(t_x)_{x\in Q_0}$に対し,
+  \begin{align*}
+    B_\Gamma(t)=\sum_{x\in Q_0}t_x^2 - \sum_{\alpha \in Q_1}t_\alpha
+  \end{align*}
+  とおく.
+  ただし,
+  $\alpha=\Set{x,y}$ ($x\neq y$)に対し$t_\alpha=t_xt_y$,
+  $\alpha=\Set{x}$に対し$t_\alpha=t_x^2$とする.  
+\end{definition}
+$B_\Gamma$は二次形式である.
+この二次形式に対して以下が知られている.
+\begin{lemma}
+  $\Gamma=(Q_0,Q_1,e)$を
+  連結でself loopのない無向グラフとする.
+  このとき, 以下は同値:
+  \begin{enumerate}
+  \item $B_\Gamma$が正定値.
+  \item $\Gamma$は以下のうちのいずれか:
+    \begin{enumerate}
+      \item $A_n$ ($n\leq 1$)
+      \item $D_n$ ($n\leq 4$)
+      \item $E_6$, $E_7$, $E_8$
+    \end{enumerate}
+  \end{enumerate}
+\end{lemma}
+\begin{definition}
+  $Q$をquiverとする.
+  $\Gamma_Q$で$Q$の矢の向きを忘れた無向グラフを考える.
+  つまり,
+  $e(\alpha)=\Set{s(\alpha), t(\alpha)}$で$e$を定義し,
+  $\Gamma_Q=(Q_0,Q_1,e)$とおく.
+\end{definition}
+
+\begin{lemma}
+  $Q$をself loopのないquiverとする.
+  $d\colon Q_0\to \NN$とする.
+  $B_{\Gamma_Q}(d)\leq 0$ならば,
+  次元ベクトルが$d$であるような$Q$の表現は,
+  (同型なものを除いても)無限個存在する.
+\end{lemma}
+
+
+\begin{definition}
+  $Q$をquiverとする.
+  $Q$の直既約表現が同型を除いて高々有限個しかないとき,
+  $Q$は有限表現型であるという.
+\end{definition}
+直既約表現が有限個しかなければ,
+次元ベクトルを与えたときに現れる表現も有限個しかない.
+したがって,
+二次形式$B_{\Gamma_Q}$が
+どのような次元ベクトルに対しても正の値をとるようなもののみが,
+有限表現型となる.
+
+以下でそれらの直既約表現について考える.
+\begin{example}
+  $A_n$のときには, 区間表現になる.
+  これは, $A_n$型ルート系というもののポジティブルートというものに対応している.
+  $\frac{1}{2}n(n-1)$種類のものがある.
+\end{example}
+
+\begin{example}
+  $D_n$のときも,
+  $D_n$型ルート系のポジティブルートに対応している.
+  $n(n-1)$種類のものがある.
+\end{example}
+\begin{example}
+  $E_6$のときも,
+  $E_6$型ルート系のポジティブルートに対応している.
+  $36$種類のものがある.
+\end{example}
+\begin{example}
+  $E_7$のときも,
+  $E_7$型ルート系のポジティブルートに対応している.
+  $63$種類のものがある.
+\end{example}
+\begin{example}
+  $E_8$のときも,
+  $E_8$型ルート系のポジティブルートに対応している.
+  $120$種類のものがある.
+\end{example}
+
+\chapter{多元環の加群と表現}
+
+
+%グラフ連結の定義.
+
+
