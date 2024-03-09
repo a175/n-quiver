@@ -5,8 +5,8 @@
 
 
 \chapter{準備}
-\section{Known}
-$K$, 体
+%% \section{Known}
+%% $K$, 体
 
 \section{Intoroduction}
 Quiver の表現の直既約分解に関する諸々について解説することが目標である.
@@ -16,29 +16,29 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
 それらを結ぶ(ラベルのついた)矢印(辺)
 を集めたもの(図形)をQuiverと呼ぶ.
 \begin{example}
-  \ZU
+  次は, 頂点2つと辺が一つからなるquiverである.
   \begin{align*}
     \bullet_{1} \xrightarrow{\alpha} \bullet_{2}
   \end{align*}
 \end{example}
 \begin{example}
-  \ZU
+  次のような, 辺がないquiverも考える.
   \begin{align*}
     \bullet_{1} 
   \end{align*}
 \end{example}
 \begin{example}
-  \ZU
-  \begin{align*}
-    \bullet_{1}
-    \genfrac{}{}{0pt}{}{\xrightarrow{\alpha}}{\xrightarrow{\beta}}
-    \bullet_{2}
-  \end{align*}
+  次のような, 多重辺を持つquiverも考える.
+  \begin{center}
+    \begin{tikzcd}
+    1 \arrow[r,"\alpha",bend left]\arrow[r,"\beta"',bend right]&2
+    \end{tikzcd}.
+  \end{center}
 \end{example}
 \begin{example}
-  \ZU
+  次のような, self loopを持つquiverも考える.
   \begin{align*}
-    \genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
+    \stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}
   \end{align*}
 \end{example}
 
@@ -54,7 +54,6 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
 
 
 \begin{example}
-  \ZU
   $Q_0=\Set{1,2,3}$,
   $Q_1=\Set{\alpha,\beta,\gamma,\delta}$,
   $s(\alpha)=1$,
@@ -66,6 +65,13 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
   $s(\delta)=1$,
   $t(\delta)=1$
   は次の図で表されるものとなる.
+  \begin{center}
+    \begin{tikzcd}
+      \bullet_1 \arrow[loop left,"\delta"]\arrow[r,"\alpha",bend left=50]\arrow[r,"\beta"]&
+      \bullet_2\arrow[l,"\gamma"',bend left=50]&
+      \bullet_3
+    \end{tikzcd}.
+  \end{center}
 \end{example}
 
 
@@ -258,7 +264,7 @@ $(V_\bullet,f_\bullet)$
 \end{enumerate}
 
 \Cref{basicquestion:ks}について:
-Krull-Schimidtの定理 ($\CC$上ならOK)
+Krull-Schimidtの定理% ($\CC$上ならOK)
 
 \Cref{basicquestion:ar}について:
 (非アルゴリズム的\footnote{無限回のステップからなる手続きを含む}な)
@@ -284,7 +290,7 @@ $A_n$, $D_n$, $E_n$
 実は, \ZU
 \begin{itemize}
 \item
-  $Q=\genfrac{}{}{0pt}{}{\bullet}{\circlearrowleft}$のときには,
+  $Q=\stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}$のときには,
   $Q$の表現の直既約分解はジョルダン標準形を求めることに相当する.
 \item
   $Q=\bullet\to\bullet$のときには,
@@ -331,7 +337,7 @@ $1\leq i\leq j\leq n$に対し,
   0\xrightarrow{\underline{0}} \cdots \xrightarrow{\underline{0}}
   0}_{i-1}\xrightarrow{\underline{0}}
   \underbrace{\CC \xrightarrow{\id_\CC}
-  \CC \xrightarrow{\id_\CC} \cdots\CC}_{n-(i-1)-(j-1)} \xrightarrow{\underline{0}}
+  \CC \xrightarrow{\id_\CC} \cdots\xrightarrow{\id_\CC}\CC}_{n-(i-1)-(j-1)} \xrightarrow{\underline{0}}
   \underbrace{0\xrightarrow{\underline{0}}
   0\xrightarrow{\underline{0}} \cdots \xrightarrow{\underline{0}}
   0}_{j-1}.
@@ -347,24 +353,61 @@ $Q$の既約表現は, $I[i,j]$ ($1\leq i\leq j \leq n$)で
 という形で書ける.
 
 \subsubsection{Persistent Homology}
-ホモロジー:
-幾何的対象 $\leadsto$ ホモロジー群
-\ZU
-`穴の個数'を調べる道具.
+ホモロジーとは...
 
+$X$:
+\begin{itemize}
+\item 幾何学的対象 (図形)
+\item 知りたい対象.
+\item 扱いにくい. (生データ).
+\end{itemize}
 
+$\leadsto$
+
+$H(X)$
+\begin{itemize}
+\item ホモロジー群 (ベクトル空間/$\ZZ$-加群)
+\item $X$の`穴'の`個数'の情報`だけ'を持っている.
+\item 扱いやすい. (データが大雑把. 大きさとかがない)
+\end{itemize}
+
+\begin{remark}
+  ホモロジー群は扱いやすいが情報が落ちている.
+\end{remark}
+
+パーシステントホモロジーとは..
 
 時刻$t$に合わせて変化する図形$X_t$を考える.
 \begin{example}
-  \label{ex:fundex:ph}
-\ZU
-中心は動かず時刻に合わせて
+  中心は動かず時刻に合わせて
 半径が大きくなる円たち.
+\begin{align*}  
+  \begin{picture}(90,80)(-20,-10)
+    \put(10,50){\makebox(0,0)[c]{$\bullet$}}
+    \put(40,50){\makebox(0,0)[c]{$\bullet$}}
+    \put(30,30){\makebox(0,0)[c]{$\bullet$}}
+    \put(25,20){\makebox(0,0)[c]{$\bullet$}}
+    \put(10,50){\circle{15}}
+    \put(40,50){\circle{15}}
+    \put(30,30){\circle{15}}
+    \put(25,20){\circle{15}}
+  \end{picture}
+  \xrightarrow{\text{$t$秒後}}
+  \begin{picture}(90,80)(-20,-10)
+    \put(10,50){\makebox(0,0)[c]{$\bullet$}}
+    \put(40,50){\makebox(0,0)[c]{$\bullet$}}
+    \put(30,30){\makebox(0,0)[c]{$\bullet$}}
+    \put(25,20){\makebox(0,0)[c]{$\bullet$}}
+    \put(10,50){\circle{30}}
+    \put(40,50){\circle{30}}
+    \put(30,30){\circle{30}}
+    \put(25,20){\circle{30}}
+  \end{picture}
+\end{align*}
 \end{example}
-
 各時刻でのホモロジー$H(X_t)$が得られる.
-つまり時刻$t$に合わせて変化するホモロジー群(ベクトル空間)
-$\leadsto$ パーシステントホモロジー.
+つまり時刻$t$に合わせて変化するホモロジー群(ベクトル空間).
+%$\leadsto$ パーシステントホモロジー.
 
 \Cref{ex:fundex:ph}の様に
 \begin{align*}
@@ -379,7 +422,7 @@ $\leadsto$ パーシステントホモロジー.
 \begin{align*}
   H(X_{t'})&\to H(X_t)\\
 \end{align*}
-を作ることができる,
+を作ることができる.
 よって,
 $t_1<\cdots <t_n$を取ると,
 \begin{align*}
@@ -486,7 +529,7 @@ Lefschetz元を持つ環は,
   \begin{enumerate}
   \item 定義
   \item $\bullet \to \bullet$の表現
-  \item $\genfrac{}{}{0pt}{}{\bullet}{\circlearrowleft}$の表現
+  \item $\stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}$の表現
   \item finite type/infinite fype
   \end{enumerate}
 \item
@@ -2241,69 +2284,69 @@ $A=J(n_1,\lambda_1)\oplus\cdots\oplus J(n_l,\lambda_l)$
 固有値が異なると異なる同値類となるので,
 無限個の代表が必要となる.
 
-\section{線型写像の表現行列と基底の取り替え}
-$A$を$(m,n)$行列とし,
-\begin{align*}
-  \shazo{\mu_A}
-        {K^n}{K^m}
-        {\xx}{A\xx}
-\end{align*}
-とおくと$\varphi_A$は線形写像である.
-また, 与えられた線型写像$\varphi\colon K^n\to K^m$に対し,
-$\varphi=\mu_A$を満たす$A$がただ一つ定まる.
-$V$をベクトル空間とし,
-$(v_1,\ldots,v_n)$を$V$の基底とする.
-\begin{align*}
-  \shazo{\pi_{(v_1,\ldots,v_n)}}
-        {K^n}{V}
-        {\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}{a_1v_1+\cdots+a_nv_n}
-\end{align*}
-とおく.
-$(v_1,\ldots,v_n)$を$V$の基底であることと,
-$\pi_{(v_1,\ldots,v_n)}$が全単射であることは同値であるので,
-$\varepsilon_{(v_1,\ldots,v_n)}$を
-$\pi_{(v_1,\ldots,v_n)}$の逆写像として定義する.
-つまり
-\begin{align*}
-  \shazo{\varepsilon_{(v_1,\ldots,v_n)}}
-        {V}{K^n}
-        {a_1v_1+\cdots+a_Nv_n}{\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}
-\end{align*}
-とおく.
+%% \section{線型写像の表現行列と基底の取り替え}
+%% $A$を$(m,n)$行列とし,
+%% \begin{align*}
+%%   \shazo{\mu_A}
+%%         {K^n}{K^m}
+%%         {\xx}{A\xx}
+%% \end{align*}
+%% とおくと$\varphi_A$は線形写像である.
+%% また, 与えられた線型写像$\varphi\colon K^n\to K^m$に対し,
+%% $\varphi=\mu_A$を満たす$A$がただ一つ定まる.
+%% $V$をベクトル空間とし,
+%% $(v_1,\ldots,v_n)$を$V$の基底とする.
+%% \begin{align*}
+%%   \shazo{\pi_{(v_1,\ldots,v_n)}}
+%%         {K^n}{V}
+%%         {\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}{a_1v_1+\cdots+a_nv_n}
+%% \end{align*}
+%% とおく.
+%% $(v_1,\ldots,v_n)$を$V$の基底であることと,
+%% $\pi_{(v_1,\ldots,v_n)}$が全単射であることは同値であるので,
+%% $\varepsilon_{(v_1,\ldots,v_n)}$を
+%% $\pi_{(v_1,\ldots,v_n)}$の逆写像として定義する.
+%% つまり
+%% \begin{align*}
+%%   \shazo{\varepsilon_{(v_1,\ldots,v_n)}}
+%%         {V}{K^n}
+%%         {a_1v_1+\cdots+a_Nv_n}{\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}}
+%% \end{align*}
+%% とおく.
 
-$V$を$K$-ベクトル空間とし,
-$(v_1,\ldots,v_n)$,
-$(v'_1,\ldots,v'_n)$
-を$V$の基底とする.
-このとき, 図式
-\begin{center}
-  \begin{tikzcd}
-    K^n \arrow[rr,dashed,"\mu_{P}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"']&& K^n \\
-    & K^m \arrow[ur,"\pi_{v'_1,\ldots,v'_n}^{-1}"']
-  \end{tikzcd}
-\end{center}
-を可換にする正則$P$が存在する.
-この$P$を
-$(v_1,\ldots,v_n)$から
-$(v'_1,\ldots,v'_n)$への基底の変換行列と呼んだ.
+%% $V$を$K$-ベクトル空間とし,
+%% $(v_1,\ldots,v_n)$,
+%% $(v'_1,\ldots,v'_n)$
+%% を$V$の基底とする.
+%% このとき, 図式
+%% \begin{center}
+%%   \begin{tikzcd}
+%%     K^n \arrow[rr,dashed,"\mu_{P}"]\arrow[rd,"\pi_{v_1,\ldots,v_n}"']&& K^n \\
+%%     & K^m \arrow[ur,"\pi_{v'_1,\ldots,v'_n}^{-1}"']
+%%   \end{tikzcd}
+%% \end{center}
+%% を可換にする正則$P$が存在する.
+%% この$P$を
+%% $(v_1,\ldots,v_n)$から
+%% $(v'_1,\ldots,v'_n)$への基底の変換行列と呼んだ.
 
-$\varphi\colon V\to W$を線型写像とし,
-$(v_1,\ldots,v_n)$
-を$V$の基底とし,
-$(w_1,\ldots,w_m)$
-を$W$の基底とする.
-このとき, 図式
-\begin{center}
-  \begin{tikzcd}
-    K^n \arrow[d,"\pi_{v_1,\ldots,v_m}"'] \arrow[r,dashed,"\mu_A"]&K^m\\
-    V \arrow[r,"\varphi"] &W \arrow[u,"\varepsilon_{w_1,\ldots,w_m}"']
-  \end{tikzcd}
-\end{center}
-を可換にする行列$A$ただ一つ存在する.
-この行列$A$を,
-$(v_1,\ldots,v_n)$,
-$(w_1,\ldots,w_m)$
-に関する$\varphi$の表現行列と呼んだ.
+%% $\varphi\colon V\to W$を線型写像とし,
+%% $(v_1,\ldots,v_n)$
+%% を$V$の基底とし,
+%% $(w_1,\ldots,w_m)$
+%% を$W$の基底とする.
+%% このとき, 図式
+%% \begin{center}
+%%   \begin{tikzcd}
+%%     K^n \arrow[d,"\pi_{v_1,\ldots,v_m}"'] \arrow[r,dashed,"\mu_A"]&K^m\\
+%%     V \arrow[r,"\varphi"] &W \arrow[u,"\varepsilon_{w_1,\ldots,w_m}"']
+%%   \end{tikzcd}
+%% \end{center}
+%% を可換にする行列$A$ただ一つ存在する.
+%% この行列$A$を,
+%% $(v_1,\ldots,v_n)$,
+%% $(w_1,\ldots,w_m)$
+%% に関する$\varphi$の表現行列と呼んだ.
 
 線型写像
 $\varphi\colon V\to W$
@@ -2822,7 +2865,8 @@ $\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
     Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
   \end{align*}
   \begin{align*}
-    Q'=\genfrac{}{}{0pt}{}{\bullet_{1'}}{\circlearrowleft_{\alpha'}}
+    Q'=
+    \stackrel{\bullet^{1'}}{\circlearrowleft_{\alpha'}}
   \end{align*}
   とする.
   $\varphi_1(\alpha)=\alpha'$,
@@ -3047,7 +3091,8 @@ $(d,A)$と$(d',A')$は同型である.
 
 \begin{example}
   \begin{align*}
-    Q=\genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
+    Q=
+    \stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}
   \end{align*}
   とする.
   このとき, $Q$の表現とは,
@@ -3256,7 +3301,7 @@ $(d,A)$と$(d',A')$は同型である.
 \end{example}
 \begin{example}
   \begin{align*}
-    Q=\genfrac{}{}{0pt}{}{\bullet_{1}}{\circlearrowleft_{\alpha}}
+    Q=\stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}
   \end{align*}
   とする.
   このとき, $Q$の表現とは,
