@@ -3418,6 +3418,152 @@ $B_\Gamma$は二次形式である.
 
 \chapter{多元環の加群と表現}
 
+\section{Path algebra}
+$K$を体とする.
+$K$ベクトル空間の構造ももつ環$R$を$K$代数と呼ぶ.
+\begin{example}
+  $\CC$は$\RR$代数.
+\end{example}
+$R$を$K$-代数とする.
+$K$-ベクトル空間$M$に
+分配律を満たす$R$による左からのスカラー倍が定義されてるとき,
+$M$を$R$左加群と呼ぶ.
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとし,
+  $x,y\in Q_0$とする.
+  以下の条件を満たすとき,
+  $(x|\alpha_n\cdots\alpha_1|y)$を
+  $y$から$x$への長さ$n$のpathと呼ぶ:
+  \begin{enumerate}
+    \item $\alpha_i\in Q_1$.
+    \item $x=t(\alpha_n)$.
+    \item $y=s(\alpha_1)$.
+    \item $i\in \Set{1,2,\ldots,n-1}\implies s(\alpha_{i+1})=t(\alpha_{i})$.
+  \end{enumerate}
+  また,
+  次の条件を満たすとき,
+  $(x|y)$を長さ0のpathと呼ぶ:
+  \begin{enumerate}
+    \item $x=y$.
+  \end{enumerate}
+  %また,
+  %長さ1のpath$(x|\alpha|y)$を$\alpha$と略記する.
+\end{definition}
+
+\begin{definition}
+  $Q=(Q_0,Q_1,s,t)$をquiverとし,
+  $p=(x|\alpha_n\cdots\alpha_1|y)$,
+  $p'=(x'|\alpha'_m\cdots\alpha'_1|y')$
+  をpathsとする.
+  $y=x'$のとき,
+  pathの合成$pq$を,
+  \begin{align*}
+    (x|\alpha_n\cdots\alpha_1\alpha'_m\cdots\alpha'_1|y')
+  \end{align*}
+  で定義する.
+\end{definition}
+
+\begin{definition}
+  Quiver $Q=(Q_0,Q_1,s,t)$に対し,
+  $Q$のpathをすべて集めた集合を
+  $\PPP_Q$で表す.
+  $\PPP_Q$を基底とする$K$ベクトル空間を$K[Q]$で表す.
+\end{definition}
+$Q=(Q_0,Q_1,s,t)$をquiverとする.
+$p=(x|\alpha_n\cdots\alpha_1|y)$,
+$p'=(x'|\alpha'_m\cdots\alpha'_1|y')\in \PPP_Q$に対し,
+積$pq\in K[Q]$を
+\begin{align*}
+  p\cdot p'=
+  \begin{cases}
+    pp'=(x|\alpha_n\cdots\alpha_1\alpha'_m\cdots\alpha'_1|y') &(y=x')\\
+      0&(y\neq x')
+  \end{cases}
+\end{align*}
+で定義する.
+これを双線型に拡張する.
+つまり,
+\begin{align*}
+  \sum_{i}a_ip_i\sum_{j}b_jq_j = \sum_{i,j}a_ib_jp_iq_j
+\end{align*}
+とする.
+この積で, $K[Q]$は
+(1を含むとは限らない)
+$K$代数となる.
+\begin{remark}
+  $Q_0$を有限集合とする.
+  このとき$\sum_{x\in Q_0}(x|x)$は有限和であるので,
+  $K[Q]$の元である.
+\end{remark}
+\begin{remark}
+  $x,y\in Q_0$に対し,
+  \begin{align*}
+    (x|x)\cdot (y|y)=
+    \begin{cases}
+      (x|x) & (y=x)\\
+      0&(y\neq x)
+    \end{cases}
+  \end{align*}
+  であるので, 長さ0のpathは$(x|x)$冪等元であり,
+  互いに直交している.
+\end{remark}
+
+\begin{remark}
+$M$を$K[Q]$加群とする.
+このとき,
+\begin{align*}
+  V_x&= (x|x)\cdot M\\
+  &=\Set{(x|x)\cdot v | v\in M}
+\end{align*}
+とする.
+\begin{align*}
+  \shazo{f_\alpha}
+  {V_{s(\alpha)}}{V_{t(\alpha)}}
+  {v}{(t(\alpha)|\alpha|s(\alpha))\cdot v}
+\end{align*}
+とおく.
+このとき,
+$V_M=(V_\bullet,f_\bullet)$は$Q$の表現となる.
+\end{remark}
+\begin{remark}
+  $V=(V_\bullet,f_\bullet)$を$Q$の表現とする.
+  このとき,
+  \begin{align*}
+    M_{V}=\bigoplus_{x\in Q_0} V_x
+  \end{align*}
+  とする.
+  $(x|x)\in \PPP_Q$と$v\in V_{x'}$に対し,
+  \begin{align*}
+    (x|\alpha|x)\cdot v =
+    \begin{cases}
+      v & (x=x')\\
+      0 & (x\neq x')
+    \end{cases}
+  \end{align*}
+  とする.
+  $(x|\alpha|y)\in \PPP_Q$と$v\in V_{y'}$に対し,
+  \begin{align*}
+    (x|\alpha|y)\cdot v =
+    \begin{cases}
+      f_\alpha(v) & (y=y')\\
+      0 & (y\neq y')
+    \end{cases}
+  \end{align*}
+  とする.
+  これにより, $K[Q]$の$M_V$への作用が定義できる.
+  つまり, $M_V$は$K[Q]$-加群となる.
+\end{remark}
+\begin{remark}
+  $Q$の表現$V$から$K[Q]$-加群$M_V$が得られる.
+  また,
+  $K[Q]$-加群$M$から$Q$の表現$V_M$が得られる.
+  $Q$の表現全体と,
+  $K[Q]$-加群全体は本質的に同じである(カテゴリー同値).
+  $K[Q]$の構造を調べることで$Q$の表現がわかる.
+\end{remark}
+
+\section{}
 
 %グラフ連結の定義.
 
