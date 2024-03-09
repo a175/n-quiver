@@ -3563,7 +3563,55 @@ $V_M=(V_\bullet,f_\bullet)$は$Q$の表現となる.
   $K[Q]$の構造を調べることで$Q$の表現がわかる.
 \end{remark}
 
-\section{}
+\section{Quiver with Relation}
+\begin{definition}
+$Q=(Q_0,Q_1,s,t)$をquiverとする.
+  $x,y\in Q_0$とする.
+  $p_i=(x|\alpha_{n_i}^{(i)}\cdots \alpha_{n_i}^{(i)}|y)$とする.
+  $a_i\in K$とする.
+  このとき,
+  \begin{align*}
+    \sum_{i=1}^{n}a_i p_i \in K[Q]
+  \end{align*}
+  をquiverのrelarionと呼ぶ.
+\end{definition}
+\begin{remark}
+  Quiverのrelationとは,
+  始点と終点がそれぞれ揃っているpathの線型結合ということである.
+\end{remark}
+\begin{definition}
+  いくつかのrelationで生成された$K[Q]$のイデアルを
+  $I$とする.
+  このとき,
+  $K[Q]/I$をpath algebra with relations
+  と呼ぶ.
+\end{definition}
+\begin{remark}
+  \begin{align*}
+    \sum_{i=1}^{n}a_i (x|\alpha_{n_i}^{(i)}\cdots \alpha_{n_i}^{(i)}|y) \in K[Q]
+  \end{align*}
+  をrelationとし,
+  イデアル$I$に含まれているとする.
+  これは表現の言葉にすると,
+  \begin{align*}
+    \sum_{i}a_i f_{\alpha_{n_i}^{(i)}}\circ\cdots\circ f_{\alpha_{n_i}^{(i)}}=0
+  \end{align*}
+  という線型写像の関係式を意味している.
+\end{remark}
+\begin{example}
+  次のquiverを考える:
+\begin{center}
+  \begin{tikzcd}
+    \bullet_1 \arrow[d,"\alpha'"'] \arrow[r,"\alpha"]&\bullet_2 \arrow[d,"\beta'"]\\
+    \bullet_3 \arrow[r,"\beta"] &\bullet_4 
+  \end{tikzcd}.
+\end{center}
+このとき,
+$(4|\beta\alpha|1)-(4|\beta'\alpha'|1)$は,
+relationである.
+このrelationを課すということは,
+この図式を可換にするような表現を考えるということに相当する.
+\end{example}
 
 %グラフ連結の定義.
 
