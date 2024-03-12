@@ -31,7 +31,7 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
   次のような, 多重辺を持つquiverも考える.
   \begin{center}
     \begin{tikzcd}
-    1 \arrow[r,"\alpha",bend left]\arrow[r,"\beta"',bend right]&2
+    \bullet_1 \arrow[r,"\alpha",bend left]\arrow[r,"\beta"',bend right]&\bullet_2
     \end{tikzcd}.
   \end{center}
 \end{example}
@@ -91,87 +91,101 @@ $Q=(Q_0,Q_1,s,t)$をquiverとする.
 \end{enumerate}
 
 \begin{example}
-  \ZU
   $Q_0=\Set{1}$,
   $Q_1=\Set{\alpha}$,
   $s(\alpha)=1$,
   $t(\alpha)=1$
   とする.
+  つまり,
+  \begin{align*}
+    \stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}
+  \end{align*}
+  というquiverを考える.
   このとき,
   例えば,
   \begin{align*}
-    V_1=\CC^2&\\
-    f_\alpha\colon V_1&\to V_1\\
-    \begin{pmatrix}a\\b\end{pmatrix}
-      &\mapsto
-    \begin{pmatrix}b\\a\end{pmatrix}
+    V_1&=\CC^2\\
+    f_\alpha&\colon
+    \Shazo{V_1}{V_1}
+    {\begin{pmatrix}a\\b\end{pmatrix}}
+    {\begin{pmatrix}b\\a\end{pmatrix}}
   \end{align*}
   とすれば,
   $(V_\bullet,f_\bullet)$は$Q$の表現である.
   例えば,
   \begin{align*}
-    V_1=\CC^2&\\
-    f'_\alpha\colon V_1&\to V_1\\
-    \begin{pmatrix}a\\b\end{pmatrix}
-      &\mapsto
-    \begin{pmatrix}a\\0\end{pmatrix}
+    V_1&=\CC^2\\
+    f'_\alpha&\colon
+    \Shazo{V_1}{V_1}
+    {\begin{pmatrix}a\\b\end{pmatrix}}
+    {\begin{pmatrix}a\\0\end{pmatrix}}
   \end{align*}
   とすれば,
   $(V_\bullet,f'_\bullet)$は$Q$の表現である.
 \end{example}
 
 \begin{example}
-  \ZU
   $Q_0=\Set{1,2}$,
   $Q_1=\Set{\alpha}$,
   $s(\alpha)=1$,
   $t(\alpha)=2$
   とする.
+  つまり,
+  \begin{align*}
+    \bullet_{1} \xrightarrow{\alpha} \bullet_{2}
+  \end{align*}
+  というquiverを考える.
   このとき,
   例えば,
   \begin{align*}
-    V_1=\CC^2&\\
-    V_2=\CC^2&\\
-    f_\alpha\colon V_1&\to V_2\\
-    \begin{pmatrix}a\\b\end{pmatrix}
-      &\mapsto
-    \begin{pmatrix}b\\a\end{pmatrix}
+    V_1&=\CC^2\\
+    V_2&=\CC^2\\
+    f_\alpha&\colon
+    \Shazo{V_1}{V_2}
+    {\begin{pmatrix}a\\b\end{pmatrix}}
+    {\begin{pmatrix}b\\a\end{pmatrix}}
   \end{align*}
   とすれば,
   $(V_\bullet,f_\bullet)$は$Q$の表現である.
   例えば,
   \begin{align*}
-    V_1=\CC^2&\\
-    V_2=\CC^2&\\
-    f'_\alpha\colon V_1&\to V_2\\
-    \begin{pmatrix}a\\b\end{pmatrix}
-      &\mapsto
-    \begin{pmatrix}a\\0\end{pmatrix}
+    V_1&=\CC^2\\
+    V_2&=\CC^2\\
+    f'_\alpha&\colon
+    \Shazo{V_1}{V_2}
+    {\begin{pmatrix}a\\b\end{pmatrix}}
+    {\begin{pmatrix}a\\0\end{pmatrix}}
   \end{align*}
   とすれば,
   $(V_\bullet,f'_\bullet)$は$Q$の表現である.
 \end{example}
 
 \begin{example}
-  \ZU
   $Q_0=\Set{1,2}$,
   $Q_1=\Set{\alpha,\beta}$,
   $s(\alpha)=s(\beta)=1$,
   $t(\alpha)=t(\alpha)=2$
   とする.
+  つまり
+  \begin{center}
+    \begin{tikzcd}
+    \bullet_1 \arrow[r,"\alpha",bend left]\arrow[r,"\beta"',bend right]&\bullet_2
+    \end{tikzcd}
+  \end{center}
+  というquiveを考える.
   このとき,
   例えば,
   \begin{align*}
-    V_1=\CC^2&\\
-    V_2=\CC^2&\\
-    f_\alpha\colon V_1&\to V_2\\
-    \begin{pmatrix}a\\b\end{pmatrix}
-      &\mapsto
-    \begin{pmatrix}a\\0\end{pmatrix}\\
-    f_\beta\colon V_1&\to V_2\\
-    \begin{pmatrix}a\\b\end{pmatrix}
-      &\mapsto
-    \begin{pmatrix}0\\b\end{pmatrix}
+    V_1&=\CC^2\\
+    V_2&=\CC^2\\
+    f_\alpha&\colon
+    \Shazo{V_1}{V_2}
+    {\begin{pmatrix}a\\b\end{pmatrix}}
+    {\begin{pmatrix}a\\0\end{pmatrix}}\\
+    f_\beta&\colon
+    \Shazo{V_1}{V_2}
+    {\begin{pmatrix}a\\b\end{pmatrix}}
+    {\begin{pmatrix}0\\b\end{pmatrix}}
   \end{align*}
   とすれば,
   $(V_\bullet,f_\bullet)$は$Q$の表現である.
@@ -184,8 +198,9 @@ $Q=(Q_0,Q_1,s,t)$をquiverとする.
   \item 各$x\in Q_0$に対して, $V_x=\Set{0}$ ($0$)
   \item 各$\alpha\in Q_1$に対して,
     \begin{align*}
-      f_\alpha = \underline{0} \colon \Set{0} &\to \Set{0}\\
-      0&\mapsto 0
+      f_\alpha = \underline{0} \colon
+      \Shazo{\Set{0}}{\Set{0}}
+      {0}{0}
     \end{align*}
   \end{enumerate}
   とすると
@@ -206,10 +221,9 @@ $Q=(Q_0,Q_1,s,t)$をquiverとする.
     $\alpha\in Q_1$に対し, 
     \begin{align*}
       h_\alpha = f_\alpha\oplus g_\alpha \colon
-      V_{s(\alpha)}\oplus U_{s(\alpha)}&\to
-      V_{t(\alpha)}\oplus U_{t(\alpha)}
-      \\
-      (v,u)&\mapsto (f_\alpha(v),g_\alpha(u))
+      \Shazo{V_{s(\alpha)}\oplus U_{s(\alpha)}}
+      {V_{t(\alpha)}\oplus U_{t(\alpha)}}
+      {(v,u)}{(f_\alpha(v),g_\alpha(u))}
     \end{align*}
   \end{enumerate}
     とおくと,
@@ -282,12 +296,18 @@ Gabrielの定理.
   $Q$は(simply laced) Dynkin図形に向きをつけたものののみ.
 \end{enumerate}
 ただし, (simply laced) Dynkin図形とは,
-\ZU
-$A_n$, $D_n$, $E_n$
-のこと.
+$A_n$ ($n>0$), $D_n$ ($n\leq 4$), $E_n$ ($n\in\Set{6,7,8}$)
+のこと:
+  \begin{align*}
+    A_n &: \bullet_1 -\bullet_2-\cdots -\bullet_n\\
+    D_n &: \bullet_1 -\!\!\!\begin{array}[t]{l}\bullet_2\\|\\\bullet_0\end{array}\!\!\!-\bullet_3-\cdots -\bullet_{n-1}\\
+    E_6 &: \bullet_1-\bullet_2 -\!\!\!\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}\!\!\!-\bullet_4-\cdots -\bullet_{6-1}\\
+    E_7 &: \bullet_1-\bullet_2 -\!\!\!\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}\!\!\!-\bullet_4-\cdots -\bullet_{7-1}\\
+    E_8 &: \bullet_1-\bullet_2 -\!\!\!\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}\!\!\!-\bullet_4-\cdots -\bullet_{8-1}\\
+  \end{align*}
 
 
-実は, \ZU
+実は, 
 \begin{itemize}
 \item
   $Q=\stackrel{\bullet^{1}}{\circlearrowleft_{\alpha}}$のときには,
@@ -488,8 +508,7 @@ $\overline{l}\in R_1$とする.
 このとき,
 \begin{align*}
   \times \overline{l}\colon
-R_{k}&\to R_{k+1}  \\
-\overline{f}&\mapsto \overline{fl}
+  \Shazo{R_{k}}{R_{k+1}}{\overline{f}}{\overline{fl}}
 \end{align*}
 は$K$-線型写像であり,
 \begin{align*}
@@ -2838,15 +2857,15 @@ $\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
 であることを意味する.
 
 \begin{example}
-  \ZU
   \begin{align*}
     Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
   \end{align*}
-  \begin{align*}
-    Q'=\bullet_{1'}
-    \genfrac{}{}{0pt}{}{\xrightarrow{\alpha_1}}{\xrightarrow{\alpha_2}}
-    \bullet_{2'}
-  \end{align*}
+  \begin{center}
+    $Q'=$
+    \begin{tikzcd}
+    \bullet_{1'} \arrow[r,"\alpha_1",bend left]\arrow[r,"\alpha_2"',bend right]&\bullet_{2'}
+  \end{tikzcd}
+  \end{center}
   とする.
   $\varphi_1(\alpha)=\alpha_1$,
   $\varphi_0(1)=1'$,
@@ -2860,13 +2879,10 @@ $\alpha$の始点$t(\alpha)$の$\varphi_0$による像$\varphi_0(s(\alpha))$
 \end{example}
 
 \begin{example}
-  \ZU
   \begin{align*}
-    Q=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}
-  \end{align*}
-  \begin{align*}
-    Q'=
-    \stackrel{\bullet^{1'}}{\circlearrowleft_{\alpha'}}
+    Q&=\bullet_{1} \xrightarrow{\alpha} \bullet_{2}\\
+    Q'&=
+    {\stackrel{\bullet^{1'}}{\circlearrowleft_{\alpha'}}}
   \end{align*}
   とする.
   $\varphi_1(\alpha)=\alpha'$,
@@ -3366,14 +3382,14 @@ $(d,A)$と$(d',A')$は同型である.
 \end{example}
 \begin{example}
   \begin{align*}
-    D_n : \bullet_1 -\begin{array}[t]{l}\bullet_2\\|\\\bullet_0\end{array}-\bullet_3-\cdots -\bullet_{n-1}
+    D_n : \bullet_1 -\!\!\!\begin{array}[t]{l}\bullet_2\\|\\\bullet_0\end{array}\!\!\!-\bullet_3-\cdots -\bullet_{n-1}
   \end{align*}
 \end{example}
 \begin{example}
   \begin{align*}
-    E_6 : \bullet_1-\bullet_2 -\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}-\bullet_4-\cdots -\bullet_{6-1}\\
-    E_7 : \bullet_1-\bullet_2 -\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}-\bullet_4-\cdots -\bullet_{7-1}\\
-    E_8 : \bullet_1-\bullet_2 -\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}-\bullet_4-\cdots -\bullet_{8-1}\\
+    E_6 : \bullet_1-\bullet_2 -\!\!\!\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}\!\!\!-\bullet_4-\cdots -\bullet_{6-1}\\
+    E_7 : \bullet_1-\bullet_2 -\!\!\!\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}\!\!\!-\bullet_4-\cdots -\bullet_{7-1}\\
+    E_8 : \bullet_1-\bullet_2 -\!\!\!\begin{array}[t]{l}\bullet_3\\|\\\bullet_0\end{array}\!\!\!-\bullet_4-\cdots -\bullet_{8-1}\\
   \end{align*}
 \end{example}
 
