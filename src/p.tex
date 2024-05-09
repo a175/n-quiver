@@ -4,14 +4,21 @@
 \newcommand{\ZU}{\marginpar{図を挿入}}
 
 
-\chapter{準備}
+\chapter{Introduction}
 %% \section{Known}
 %% $K$, 体
 
-\section{Intoroduction}
-Quiver の表現の直既約分解に関する諸々について解説することが目標である.
+本稿は,
+`Quiver の表現の直既約分解に関連する事項について解説する'
+ことが目標である.
+ここでは,
+`quiver',
+`quiverの表現',
+`quiver の表現の直既約分解',
+`$A_n$型quiverの表現の応用など'
+について順に概要を述べる.
 
-\subsection{Quiver (矢筒, 箙(えびら))とは?}
+\section{Quiver (矢筒, 箙(えびら))とは?}
 (ラベルのついた)点(頂点)と,
 それらを結ぶ(ラベルのついた)矢印(辺)
 を集めたもの(図形)をQuiverと呼ぶ.
@@ -76,7 +83,7 @@ Quiver の表現の直既約分解に関する諸々について解説するこ�
 
 
 
-\subsection{quiverの表現とは?}
+\section{quiverの表現とは?}
 $Q=(Q_0,Q_1,s,t)$をquiverとする.
 \begin{enumerate}
 \item
@@ -236,7 +243,7 @@ $Q=(Q_0,Q_1,s,t)$をquiverとする.
     で表す.
   \end{example}
 
-\subsection{Quiverの表現の構造について}
+\section{Quiverの表現の構造について}
 
 $Q$をquiverとする.
 $Q$の表現$(V_\bullet,f_\bullet)$を理解するにはどうしたらよいか?
@@ -319,8 +326,10 @@ $A_n$ ($n>0$), $D_n$ ($n\leq 4$), $E_n$ ($n\in\Set{6,7,8}$)
 これらについては前半で復習する.
 
 
-\subsection{$A_n$型quiverの表現と関連する話}
-\subsubsection{$A_n$型quiverの表現について}
+\section{$A_n$型quiverの表現と関連する話}
+ここでは,
+$A_n$型quiverの表現の応用などについて述べる.
+\subsection{$A_n$型quiverの表現について}
 \begin{align*}
 Q=\bullet_1\xrightarrow{\alpha_1}\bullet_2\xrightarrow{\alpha_2}\bullet_3\cdots \bullet_{n-1}\xrightarrow{\alpha_{n-1}}\bullet_n
 \end{align*}
@@ -372,35 +381,58 @@ $Q$の既約表現は, $I[i,j]$ ($1\leq i\leq j \leq n$)で
 \end{align*}
 という形で書ける.
 
-\subsubsection{Persistent Homology}
-ホモロジーとは...
+\subsection{Persistent Homology}
+\subsubsection{ホモロジーとは}
 
-$X$:
-\begin{itemize}
-\item 幾何学的対象 (図形)
-\item 知りたい対象.
-\item 扱いにくい. (生データ).
-\end{itemize}
+大雑把に述べると,
+図形$X$という幾何学的対象に対し,
+ホモロジー群$H(X)$という代数的対象を定めるものである.
+標語的な言い方をするなら,
+$H(X)$は$X$の`穴'(の数)に着目した不変量である.
+一般的には幾何学的対象よりも代数的対象の方が,
+同型であるかの判定などにおいて,
+扱いやすい.
+一方で,
+幾何学的対象から代数的対象を作るにあたって,
+情報が落ちており, 大きさなどの情報が抜け落ちる.
 
-$\leadsto$
-
-$H(X)$
-\begin{itemize}
-\item ホモロジー群 (ベクトル空間/$\ZZ$-加群)
-\item $X$の`穴'の`個数'の情報`だけ'を持っている.
-\item 扱いやすい. (データが大雑把. 大きさとかがない)
-\end{itemize}
 
 \begin{remark}
-  ホモロジー群は扱いやすいが情報が落ちている.
+模式的に書くなら以下のようになる:
+  \begin{center}
+$X$:
+\begin{minipage}{0.3\textwidth}
+\begin{itemize}
+\item 幾何学的対象
+  \\(図形)
+\item 扱いにくい.
+\item 生データ,\\
+  知りたい対象.
+\end{itemize}
+\end{minipage}
+$\leadsto$
+$H(X)$:
+\begin{minipage}{0.4\textwidth}
+\begin{itemize}
+\item 代数的対象
+\\
+  (ベクトル空間/$\ZZ$-加群).
+\item 扱いやすい.
+\item データが大雑把. \\
+  (大きさ等の情報がない)
+\end{itemize}
+\end{minipage}
+\end{center}
 \end{remark}
 
-パーシステントホモロジーとは..
+\subsubsection{パーシステントホモロジーとは}
 
 時刻$t$に合わせて変化する図形$X_t$を考える.
 \begin{example}
+  \label{ex:fundex:ph}
+  例えば以下のようなものを$X_t$をする:
   中心は動かず時刻に合わせて
-半径が大きくなる円たち.
+半径が大きくなる円板たちの和集合.
 \begin{align*}  
   \begin{picture}(90,80)(-20,-10)
     \put(10,50){\makebox(0,0)[c]{$\bullet$}}
@@ -412,7 +444,7 @@ $H(X)$
     \put(30,30){\circle{15}}
     \put(25,20){\circle{15}}
   \end{picture}
-  \xrightarrow{\text{$t$秒後}}
+  \raisebox{50\unitlength}{$\xrightarrow{\text{$t$秒後}}$}
   \begin{picture}(90,80)(-20,-10)
     \put(10,50){\makebox(0,0)[c]{$\bullet$}}
     \put(40,50){\makebox(0,0)[c]{$\bullet$}}
@@ -425,8 +457,9 @@ $H(X)$
   \end{picture}
 \end{align*}
 \end{example}
-各時刻でのホモロジー$H(X_t)$が得られる.
-つまり時刻$t$に合わせて変化するホモロジー群(ベクトル空間).
+このような図形を考えると,
+各時刻$t$でのホモロジー$H(X_t)$が得られる.
+つまり時刻$t$に合わせて変化するホモロジー群(ベクトル空間)が得られる.
 %$\leadsto$ パーシステントホモロジー.
 
 \Cref{ex:fundex:ph}の様に
@@ -434,6 +467,7 @@ $H(X)$
   t\leq t' \implies X_t \subset X_{t'}
 \end{align*}
 という条件をみたしていたら,
+包含写像
 \begin{align*}
   X_t&\injectto X_{t'}\\
   x&\mapsto x
@@ -465,18 +499,20 @@ $I[i_k,j_k]$に含まれるホモロジー類は,
 `穴' の個数だけでなく,
 その生存時刻(大きさ)がわかる.
 
-$\leadsto$
-\begin{itemize}
-\item
+
+\begin{remark}
+  このように, パラメーターによって変化するホモロジー群,
+  (もしくはその直既約表現への分解)
+  をパーシステントホモロジーと
+  呼ぶ.
   この情報を使ってデータ解析をするというのが流行っている.
-\item
   例えば, $t$だけではなく,
   2つのパラメータ$(t,s)$などで変化する図形のときには,
-  別のQuiverの表現.
-\end{itemize}
+  別のQuiverの表現がでてくることになる.  
+\end{remark}
 
 
-\subsubsection{Leschets性}
+\subsection{Leschets性}
 多項式環$A=K[x_1,\ldots,x_n]$を考える.
 $f\in A$ 
 に現れる単項式が$k$次のもののみであるとき,
@@ -536,7 +572,7 @@ Lefschetz元を持つ環は,
 もしもつなら, Lefschetz元は何か?
 という問題を考えることができる.
 
-\section{今後の予定}
+\section*{今後の予定}
 \begin{enumerate}
 \item 線型代数の復習---行列の標準形 (証明はせず事実のみを紹介する)
   \begin{enumerate}
